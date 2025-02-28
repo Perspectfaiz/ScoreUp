@@ -7,7 +7,7 @@ body{
     font-family: 'poppins', sans-serif;
 }
   
-.mainbody{
+/* .mainbody{
     background-color: rgb(255, 255, 255);
     display: flex;
     height: 300px;
@@ -16,8 +16,9 @@ body{
     border-radius: 15px;
     box-shadow: 0 0 5px #5d20d3;
     padding: 15px;
-    /* align-items: center; */
-}
+   
+} */
+ 
 .heading{
     padding-left: 12px;
 }
@@ -95,6 +96,7 @@ body{
     background-color: white;
     width: 155px;
     height: 65px;
+    cursor: pointer;
     border: 1px solid #b69de7;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -135,6 +137,7 @@ body{
     font-weight: 600;
     background-color: #5d20d3;
     color: white;
+    cursor: pointer;
     border: none;
     border-radius: 4px;
 }
