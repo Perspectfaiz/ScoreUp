@@ -28,7 +28,7 @@ res.json({success:false,message:"Invalid Email"});
       const newStudent=new studentModel(studentData);
      const user=await newStudent.save();
     const token =jwt.sign({id:user._id},"homelander");
-     res.json({success:true,token})
+     res.json({success:true,token,message:"new user Added"})
     }catch(error){
         console.log(error);
      res.json({success:false,message:error.message})
