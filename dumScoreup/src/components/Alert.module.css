@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.main{
+    background-color: #703ed1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 7px 0;
+}
+p{
+    margin: 0;
+    margin-left: 24px;
+}
+a{
+    all: unset;
+    color: white;
+    text-decoration: underline;
+    transition: all 150ms ease-in-out;
+}
+
+a:hover{
+    color: rgb(255, 198, 167);
+}
+
+button{
+    all: unset;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
