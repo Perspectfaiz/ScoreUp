@@ -1,7 +1,14 @@
 import validator from "validator"
+<<<<<<< HEAD
 import jwt from "jwtwebtoken"
 import bcrypt from "bcrypt";
 import teacherModel from "../Models/teacherModel";
+=======
+import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt";
+import teacherModel from "../Models/teacherModel.js";
+
+>>>>>>> 1651085 (Commite by ajasg)
 
 const signupTeacher= async (req,res)=>{
     try {
@@ -51,16 +58,28 @@ const signupTeacher= async (req,res)=>{
 const loginTeacher= async(req,res)=>{
     try {
         const {usernameORemail,password}= req.body;
+<<<<<<< HEAD
     const user= await teacherModel.findOne({eamil:usernameORemail});
+=======
+    let user= await teacherModel.findOne({email:usernameORemail});
+>>>>>>> 1651085 (Commite by ajasg)
     if(!user){
         user=await teacherModel.findOne({username:usernameORemail});
     }
     if(!user){
+<<<<<<< HEAD
         res.status(404).json({success:false,message:"User not found"})
     }
     const match = await bcrypt.compare(password,user.password);
     if(match){
         const token = jwt.sign({id:user._id},'homelander',{expireIn:'1h'})
+=======
+       return res.status(404).json({success:false,message:"User not found"})
+    }
+    const match = await bcrypt.compare(password,user.password);
+    if(match){
+        const token = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
+>>>>>>> 1651085 (Commite by ajasg)
        return res.json({success:true,token})
     }
     else{
