@@ -2,7 +2,7 @@ import validator from "validator"
 
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
-import teacherModel from "../Models/teacherModel";
+import teacherModel from "../Models/teacherModel.js";
 
 
 const signupTeacher= async (req,res)=>{
