@@ -1,7 +1,9 @@
 import validator from "validator"
-import jwt from "jwtwebtoken"
+
+import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 import teacherModel from "../Models/teacherModel";
+
 
 const signupTeacher= async (req,res)=>{
     try {
@@ -51,16 +53,21 @@ const signupTeacher= async (req,res)=>{
 const loginTeacher= async(req,res)=>{
     try {
         const {usernameORemail,password}= req.body;
-    const user= await teacherModel.findOne({eamil:usernameORemail});
+
+
+    let user= await teacherModel.findOne({email:usernameORemail});
+
     if(!user){
         user=await teacherModel.findOne({username:usernameORemail});
     }
     if(!user){
-        res.status(404).json({success:false,message:"User not found"})
+
+       return res.status(404).json({success:false,message:"User not found"})
     }
     const match = await bcrypt.compare(password,user.password);
     if(match){
-        const token = jwt.sign({id:user._id},'homelander',{expireIn:'1h'})
+        const token = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
+
        return res.json({success:true,token})
     }
     else{
