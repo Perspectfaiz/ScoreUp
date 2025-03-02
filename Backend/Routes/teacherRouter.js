@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { loginTeacher, signupTeacher } from '../Controller/teacherController';
+import { loginTeacher, signupTeacher } from '../Controller/teacherController.js';
 
 const teacherRouter =express.Router();
 teacherRouter.use('/sign-up',signupTeacher);
