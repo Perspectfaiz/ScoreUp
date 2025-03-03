@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.foot{
+    background-color: #0e0e0f;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.detail{
+    display: flex;
+    width:100%;
+    height: 80%;
+    margin-top: 40px;
+}
+
+.links{
+    height:66%;
+    width:70%;
+    display: flex;
+    justify-content: space-around;
+    color: rgb(255, 255, 255);
+}
+.feedback{
+    width: 30%;
+    color: white;
+    position: relative;
+    left:62px;
+}
+
+.comment{
+    
+    all:unset;
+    word-break:break-all;
+    width: 70%;
+    display: block;
+    height: 100px;
+    resize: none;
+    padding: 5px;
+    border: 1px solid rgb(56, 56, 56);
+    border-radius: 7px;
+    font-size: 16px;
+    background-color: #1b1b1b;
+    color: #dddddd;
+}
+
+.send{
+    all: unset;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    color: #0e0e0f;
+    padding: 4px 7px;
+}
+
+
+.sendicon{
+    margin-left: 5px;
+}
+
+.sec{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+.head{
+    font-size: 22px;
+    text-decoration: none;
+    color: #ddd;
+    margin-left: 0;
+    margin-bottom: 10px;
+    /* border-bottom: 1px solid white; */
+}
+.sec a{
+    text-decoration: none;
+    color:#bbb;
+    font-size: 14px;
+    font-weight: 300;
+}
+.sec a:hover{
+    text-decoration: underline;
+    color:#b69de7;
+}
+
+
+
+.foot .bottom{
+    height: 20%;
+    border-top: 1px solid rgb(38, 38, 38);
+    display: flex;
+    align-items: center;
+
+}
+
+.brand{
+    /* background-color: red; */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 37%;
+    height: 100%;
+    text-decoration: none;
+    /* margin-top: 10px; */
+    margin-left: 20px;
+}
+
+.brand img{
+    height: 40px;
+    width: 40px;
+    margin-left: 20px;
+}
+.brand .brandname{
+    margin-left: 5px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-size: 20px;
+    
+}
+
+.social{
+    width: 44%;
+    /* margin-top: 50px; */
+    display: flex;
+    align-items: center;
+    position: relative;
+    left:448px;
+}
+
+.title{
+    color: #616161;
+    font-size: 18px;
+    margin: 0;
+    margin-right: 20px;
+    position: relative;
+    /* top: 4px; */
+}
+
+.icon{
+    display: flex;
+}
+
+.icon > * > *{
+    size: 40;
+    color: #616161;
+    margin: 15px;
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.icon > * > *:hover{
+    color: #c0a0ff;
+}
+
+
