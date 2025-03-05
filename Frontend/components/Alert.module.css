@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.main{
+    background-color: #6e3dd1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 7px 0;
+}
+p{
+    margin: 0;
+    
+    font-weight: 300;
+    
+}
+.text{
+    font-size: 14px;
+    margin-left: 24px;
+}
+a{
+    all: unset;
+    color: white;
+    text-decoration: underline;
+    transition: all 150ms ease-in-out;
+}
+
+a:hover{
+    color: #decdff;
+}
+
+.main .cancel{
+    all: unset;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 50%;
+    padding: 1px;
+    transition: all 150ms ease-out;
+}
+
+.main .cancel:hover{
+    background-color: #b794ff60;
+}

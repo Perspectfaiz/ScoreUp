@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid > *{
+    margin: 10px;
+}
+

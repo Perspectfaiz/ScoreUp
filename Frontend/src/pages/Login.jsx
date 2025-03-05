@@ -20,7 +20,7 @@ const Login=()=>{
      if(data.success){
         localStorage.setItem('token',data.token);
         setToken(data.token);
-        toast.success(data.message);
+        toast.success(data.message || "Teacher account created sucessfully");
      }else{
         toast.error(data.message);
      }
