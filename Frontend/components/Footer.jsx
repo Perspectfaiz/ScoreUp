@@ -5,7 +5,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { RiTelegram2Line } from "react-icons/ri";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-// import { RiSendPlane2Fill } from "react-icons/ri";
+import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { TbSend } from "react-icons/tb";
 
 
@@ -56,7 +56,7 @@ export function Footer() {
                         <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts'></textarea>
                         <button className={styles.send}>
                             <div className={styles.sendtxt}>Send</div>
-                            <TbSend className={styles.sendicon} size={20}/>
+                            <LiaLongArrowAltRightSolid className={styles.sendicon} size={25}/>
                         </button>
                     </div>
                 </div>

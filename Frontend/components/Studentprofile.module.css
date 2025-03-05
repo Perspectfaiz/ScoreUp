@@ -94,8 +94,12 @@
 }
 
 .studprofile .editbtn {
+    all: unset;
     height: 80%;
     width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #703ed1;
     color: white;
     border-radius: 5px;
@@ -105,8 +109,8 @@
     background-color: #5c33ae;
     height: 82%;
     width: 82%;
-    font-size: 15px;
-    border-radius: 7px;
+    border-radius: 8px;
+    color: #eeeeee;
 
 }
 
@@ -149,7 +153,7 @@ p {
     flex-direction: column;
     height: 90vh;
     width: 100%;
-    display: none;
+    /* display: none; */
 }
 .update .heading{
     display: flex;
@@ -246,7 +250,11 @@ p {
     align-items: center;
 }
 .update .savebtn{
+    all: unset;
     height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #703ed1;
     width: 12%;
     color: #fff;

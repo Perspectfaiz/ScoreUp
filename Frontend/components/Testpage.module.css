@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.testpage{
+    width: 100vw;
+    height: 100vh;
+    background-color: #cccccc;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -----heading------- */
+.testpage .heading{
+    height: 8%;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.testpage .logo{
+    width: 20%;
+    display: flex;
+    justify-content: left;
+}
+
+.testpage .logoimg{
+    height: 45px;
+    margin-left: 20px;
+}
+
+.testpage .timer {
+    width: 20%;
+    height: 70%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    position: relative;
+}
+.testpage .timelogo{
+    position: absolute;
+    left: 15px;
+}
+
+
+.testpage .submit{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.testpage .submitbtn{
+    all: unset;
+    margin-right: 20px;
+    background-color: #703ed1;
+    color: white;
+    height: 65%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+/* -----main------- */
+.testpage .main{
+    height: 84%;
+    width: 100%;
+    display: flex;
+}
+
+.testpage .left{
+    height: 100%;
+    width: 75%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.testpage .panel{
+    height: 90%;
+    width:94%;
+    background-color: aqua;
+}
+
+.testpage .right{
+    width: 25%;
+    height: 100%;
+    background-color: #fff;
+    border-left: 1px solid rgb(226, 226, 226);
+}
+
+.testpage .right .all {
+    margin: 10px;
+}
+
+/* -----bottom------- */
+.testpage .bottom{
+    height: 8%;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.testpage .tsbtn{
+    all:unset;
+    margin: 10px;
+    padding: 10px 3%;
+    background-color: #703ed1;
+    border-radius: 5px;
+    color:#fff;
+}
+.testpage .back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.testpage .next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.testpage .rule{
+    width: 2px;
+    height: 70%;
+    border-radius: 2px;
+    background-color: rgb(240, 240, 240);
+}
+.testpage .save{
+    padding: 10px 5%;
+}
+.testpage .review{
+    position: relative;
+    left: 31%;
+}

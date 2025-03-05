@@ -1,7 +1,8 @@
 import { Footer } from './footer'
 import styles from './Studentprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
-export function Studentprofile() {
+
+export function Studentprofile({hid}) {
     return (
         <>
         <div className={styles.details}>
@@ -13,7 +14,7 @@ export function Studentprofile() {
                                 <img src="../../public/dp.jpeg" alt="imagine..." className={styles.dpimg}/>
                             </div>
                             <div className={styles.txt}>
-                                <p className={styles.name}>Sagar Tupe</p>
+                                <p className={styles.name}>Sameer Mishra</p>
                                 <p className={styles.stream}>JEE</p>
                             </div>
                         </div>
@@ -21,7 +22,7 @@ export function Studentprofile() {
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae corporis ipsam porro eaque sit quis quasi, ipsum eius asperiores vel, aperiam earum doloremque maiores ea quisquam, perspiciatis inventore beatae nihil.
                         </div> */}
                         <div className={styles.edit}>
-                            <button className={styles.editbtn}>Edit Profile</button>
+                            <button className={styles.editbtn} onClick={hid}>Edit Profile</button>
                         </div>
                     </div>
                     <div className={styles.fav}>
@@ -65,7 +66,7 @@ export function Studentprofile() {
                         <input type="text" className={`${styles.input} ${styles.name_input}`} placeholder="Name"/>
                     </div>
                     <div className={styles.dob}>
-                        <p>Date</p>
+                        <p>Date of birth</p>
                         <input type="date" className={`${styles.input} ${styles.dob_input}`} placeholder="Date"/>
                     </div>
                     <div className={styles.username}>
