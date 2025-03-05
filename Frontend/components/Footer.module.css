@@ -58,16 +58,28 @@
     margin-top: 10px;
     display: flex;
     justify-content: center;
-    background-color: #ffffff;
-    border-radius: 5px;
+    align-items: center;
+    background-color: #1b1b1b;
+    border-radius: 50px;
     color: #0e0e0f;
-    padding: 4px 7px;
+    padding: 6px 20px;
+    border: 1px solid rgb(56, 56, 56);
+    color: #ddd;
+    transition: all 130ms ease-out;
 }
-
 
 .sendicon{
     margin-left: 5px;
 }
+
+
+.send:hover{
+    /* background-color: #eaeaea; */
+    /* color: rgb(49, 49, 49); */
+    background-color: #282828;
+    padding: 6px 24px;
+}
+
 
 .sec{
     display: flex;

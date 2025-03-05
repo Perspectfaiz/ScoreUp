@@ -17,12 +17,13 @@
 }
 p{
     margin: 0;
-    margin-left: 24px;
+    
     font-weight: 300;
     
 }
 .text{
     font-size: 14px;
+    margin-left: 24px;
 }
 a{
     all: unset;
@@ -32,13 +33,21 @@ a{
 }
 
 a:hover{
-    color: hsl(82, 100%, 56%);
+    color: #decdff;
 }
 
-button{
+.main .cancel{
     all: unset;
     margin-right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    border-radius: 50%;
+    padding: 1px;
+    transition: all 150ms ease-out;
+}
+
+.main .cancel:hover{
+    background-color: #b794ff60;
 }
