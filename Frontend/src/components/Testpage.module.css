@@ -10,7 +10,7 @@
 .testpage{
     width: 100vw;
     height: 100vh;
-    background-color: #cccccc;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
 }
@@ -36,6 +36,7 @@
     height: 45px;
     margin-left: 20px;
 }
+
 
 .testpage .timer {
     width: 20%;
@@ -66,12 +67,19 @@
     margin-right: 20px;
     background-color: #703ed1;
     color: white;
-    height: 65%;
-    width: 40%;
+    height: 70%;
+    width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    transition: all 100ms ease-out;
+}
+
+.testpage .submitbtn:hover{
+    background-color: #000000;
+    font-size: 16.5px;
+    border-radius: 7px;
 }
 
 /* -----main------- */
@@ -92,19 +100,71 @@
 
 .testpage .panel{
     height: 90%;
-    width:94%;
-    background-color: aqua;
+    width:88%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
 }
+
+.testpage .qntxt{
+    font-size: 115%;
+    text-align: justify;
+}
+
+.testpage .qnimg{
+    margin-top: 20px;
+    align-self: center;
+    height: 30%;
+    width: 20%;
+}
+
+.testpage .objimg{
+    height: 100%;
+    width: 100%;
+}
+
+.testpage .option{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.testpage .choose{
+
+    margin: 4px 0px;
+    padding:10px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.testpage .choose:hover{
+    background-color: #f0edf7;
+    border: 1px solid #703ed1;
+    box-shadow: inset 0 0 0 1px #703ed1;
+    color: #5d20d3;
+}
+
+.testpage .astat{
+    font-size: 18px;
+}
+
 
 .testpage .right{
     width: 25%;
     height: 100%;
     background-color: #fff;
     border-left: 1px solid rgb(226, 226, 226);
+    overflow: scroll;
+    padding-top: 1.45%;
 }
 
 .testpage .right .all {
     margin: 10px;
+}
+
+.testpage .right .all > *{
+    margin-top: 10px;
+    margin-left: 15px;
 }
 
 /* -----bottom------- */
@@ -115,25 +175,43 @@
     justify-content: left;
     align-items: center;
     background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(226, 226, 226);
 }
 
 .testpage .tsbtn{
     all:unset;
     margin: 10px;
-    padding: 10px 3%;
-    background-color: #703ed1;
+    padding: 10px 2%;
+    background-color: #f0edf7;
     border-radius: 5px;
-    color:#fff;
+    color:#000000;
+    border: 1px solid #e0d8ee;
+    transition: all 100ms ease-out;
+}
+
+.testpage .tsbtn:hover{
+    background-color: #703ed1;
+    color: white;
 }
 .testpage .back{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid #d5d5d5;
+    margin-left: 60px;
 }
 .testpage .next{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-right: 30px;
+    border-left: none;
 }
 .testpage .rule{
     width: 2px;
@@ -142,9 +220,18 @@
     background-color: rgb(240, 240, 240);
 }
 .testpage .save{
-    padding: 10px 5%;
+    padding: 10px 4%;
+    margin-left: 30px;
+    background-color: #e2f9e7;
+    border: 1px solid #b0eebf;
+}
+.testpage .save:hover{
+    background-color: #11b73d;
+    color: white;
+    border: 1px solid #d8eee1;
+    box-shadow: 0px 0px 10px 5px #20be5a25;
 }
 .testpage .review{
     position: relative;
-    left: 31%;
+    left: 41%;
 }

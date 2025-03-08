@@ -10,10 +10,6 @@ export function Testpage() {
     const sec=testObj.section;
 
     const [qn, setQn]=useState(sec[0].list[0]);
-    // function change(){
-    //     setQn
-
-    // }
     
     return (
         <>
@@ -37,10 +33,10 @@ export function Testpage() {
                             qn.image!='#' && <div className={styles.qnimg}> <img src={qn.image} alt="imagine..." className={styles.objimg} /> </div>
                         }
                         <div className={styles.option}> 
-                            <div className={styles.chose}>{qn.options[0]}</div>
-                            <div className={styles.chose}>{qn.options[1]}</div>
-                            <div className={styles.chose}>{qn.options[2]}</div>
-                            <div className={styles.chose}>{qn.options[3]}</div>
+                            <div className={styles.choose}><p className={styles.astat}>{qn.options[0]}</p></div>
+                            <div className={styles.choose}><p className={styles.astat}>{qn.options[1]}</p></div>
+                            <div className={styles.choose}><p className={styles.astat}>{qn.options[2]}</p></div>
+                            <div className={styles.choose}><p className={styles.astat}>{qn.options[3]}</p></div>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,15 @@
 import { Footer } from './footer'
 import styles from './Studentprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
+import { IoIosArrowBack } from "react-icons/io";
+import { useState } from 'react'
 
 export function Studentprofile({hid}) {
+    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+
     return (
         <>
+        {isDetailsVisible && (
         <div className={styles.details}>
             <div className={styles.studprofile}>
                 <div className={styles.left}>
@@ -22,13 +27,15 @@ export function Studentprofile({hid}) {
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae corporis ipsam porro eaque sit quis quasi, ipsum eius asperiores vel, aperiam earum doloremque maiores ea quisquam, perspiciatis inventore beatae nihil.
                         </div> */}
                         <div className={styles.edit}>
-                            <button className={styles.editbtn} onClick={hid}>Edit Profile</button>
+                            <button className={styles.editbtn} onClick={() => {
+                                setIsDetailsVisible(!isDetailsVisible)
+                            }}>Edit Profile</button>
                         </div>
                     </div>
                     <div className={styles.fav}>
                         Fav loading...
                     </div>
-                </div>
+                </div> 
                 <div className={styles.right}>
                     <div className={styles.stats}>Stats loading...</div>
                     <div className={styles.list}>Lists loading...</div>
@@ -36,13 +43,19 @@ export function Studentprofile({hid}) {
                 
             </div>
             <Footer></Footer>
-        </div>
+        </div> )}
 
         {/* /////////////////////////////////////////////////////////////////////////////// */}
         
+        {!isDetailsVisible && (
         <div className={styles.update}>
+
             <div className={styles.heading}>
-                <p>Edit Profile</p>
+                <div className={styles.backbutton} onClick={ () => {
+                    setIsDetailsVisible(!isDetailsVisible)
+                }}><IoIosArrowBack className={styles.iconback} size={18}/><p className={styles.txtback}>Back</p>
+                </div>
+                <p className={styles.editprofile}>Edit Profile</p>
             </div>
             <div className={styles.main}>
                 <div className={styles.left}>
@@ -86,7 +99,15 @@ export function Studentprofile({hid}) {
                 <div className={styles.other}>
                     <div className={styles.class}>
                         <p>Class</p>
-                        <input type="text" className={`${styles.input} ${styles.class_input}`} placeholder="Class"/>
+                        <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`}>
+                            <option value="6">6th</option>
+                            <option value="7">7th</option>
+                            <option value="8">8th</option>
+                            <option value="9">9th</option>
+                            <option value="10">10th</option>
+                            <option value="11">11th</option>
+                            <option value="12">12th</option>
+                        </select>
                     </div>
                     <div className={styles.stream}>
                         <p>Stream</p>
@@ -118,7 +139,7 @@ export function Studentprofile({hid}) {
             <div className={styles.base}>
                 <button className={styles.savebtn}>Save Changes</button>
             </div>
-        </div>
+        </div> )}
         </>
     )
 }
