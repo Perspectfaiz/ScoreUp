@@ -1,4 +1,6 @@
+
 import { Route, Routes} from 'react-router-dom'
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -10,6 +12,41 @@ import { Hero } from './components/Hero'
 import { Explore } from './components/explore'
 import { Footer } from './components/footer'
 import { Studentprofile } from './components/studentprofile'
+
+import { Qnbtn } from './components/Qnbtn'
+import { Instruction } from './components/Instruction'
+import { Testpage } from './components/Testpage'
+function App() {
+ const [showInstruct, setShowInstuct]=useState(true);
+ function hide(){
+  setShowInstuct(!showInstruct);
+ }
+
+// ///////////////////////////////////////////////////
+const [showAlert, setShowAlert]=useState(true);
+function hideAlert(){
+  setShowAlert(!showAlert);
+}
+
+  return (
+    <>
+      <Navbar></Navbar> 
+      {showAlert && <Alert hideAlert={hideAlert}></Alert>}
+      
+      <Hero></Hero>
+      <Explore></Explore>
+      <Footer></Footer>
+      
+            
+      
+      <Studentprofile hid={hide}></Studentprofile> 
+     
+      {showInstruct && <Instruction hide={hide}></Instruction>}
+
+      {/* <Qnbtn></Qnbtn> */}
+
+      <Testpage></Testpage>
+
 import Login from './pages/Login'
 import { ToastContainer, toast } from 'react-toastify'; 
 import Home from './pages/Home'
@@ -29,15 +66,9 @@ function App() {
    
     </Routes>
     <Footer></Footer>
+
     </>
   )
 }
 
 export default App
-
-
-
-
-
-
-

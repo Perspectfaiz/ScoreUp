@@ -2,6 +2,13 @@ import { Footer } from './footer'
 import styles from './Studentprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
 import { IoIosArrowBack } from "react-icons/io";
+
+import { useState } from 'react'
+
+export function Studentprofile({hid}) {
+    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+
+
 import { useContext, useState,useEffect } from 'react'
 import { AppContext } from '../Context/AppContext'
 import { toast } from 'react-toastify';
@@ -58,6 +65,7 @@ export function Studentprofile() {
             toast.error(error.message);
         }
     }
+
     return (
         <>
         {isDetailsVisible && (
@@ -93,6 +101,9 @@ export function Studentprofile() {
                 </div>
                 
             </div>
+
+            <Footer></Footer>
+
         </div> )}
 
         {/* /////////////////////////////////////////////////////////////////////////////// */}
@@ -169,11 +180,15 @@ export function Studentprofile() {
                 <div className={styles.other}>
                     <div className={styles.class}>
                         <p>Class</p>
+
+                        <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`}>
+
                         <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`} value={classes} onChange={
                             (e) => {
                                 setClasses(e.target.value)
                             }
                         }>
+
                             <option value="6">6th</option>
                             <option value="7">7th</option>
                             <option value="8">8th</option>

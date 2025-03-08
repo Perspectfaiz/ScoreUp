@@ -16,9 +16,7 @@
 }
 /* ///////////student profile///////////// */
 
-/* .details{
-    display: none;
-} */
+
 
 .studprofile{
     /* background-color: rgb(255, 153, 0); */
@@ -164,7 +162,7 @@ p {
 }
 .update .heading{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     font-size: 150%;
     font-weight: bold;
@@ -184,8 +182,19 @@ p {
 }
 
 .update .backbutton:hover{
+
+    background-color: #e0e0e0;
+}
+
+.update .editprofile{
+    position: relative;
+    left: 36%;
+}
+
+
     background-color: #e0e0e0;
 }
+
 .update .main{
     color: #000000;
     height: 76%;
@@ -237,11 +246,11 @@ p {
     display: none;
 }
 .update .dpimg:hover + .dpbtn{
-    display: unset;
+    display: block;
 }
 
 .update .dpbtn:hover{
-    display: unset;
+    display: block;
     /* background-color: #703ed1; */
 }
 

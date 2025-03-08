@@ -4,7 +4,12 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 import teacherModel from "../Models/teacherModel.js";
 import vision from '@google-cloud/vision';
+import testModel from "../Models/testModel.js";
 //const vision = require('@google-cloud/vision');
+
+// const client = new vision.ImageAnnotatorClient();
+// const together = new Together();
+=======
 const client = new vision.ImageAnnotatorClient();
 
 const signupTeacher= async (req,res)=>{
@@ -116,6 +121,42 @@ const getTeacherProfileData = async (req, res) => {
 //     res.json({success:false,message:error.message});
 // }
 // }
+
+// const extractText = async (req, res) => {
+//     try{
+//         const response = await together.chat.completions.create({
+//             messages: [{"role": "user", "content": "What are some fun things to do in New York?"}],
+//             model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+//         });
+        
+//         console.log(response.choices[0].message.content)
+//     }catch(error){
+//         console.log(error);
+//         res.json({success:false,message:error.message});
+//     }
+//     }
+
+
+const createTest = async(req,res)=>{
+    try {
+
+       
+        const test= req.body;
+        console.log(test);
+         const newTest= testModel(test);
+         await newTest.save();
+         res.json({
+            success:true,
+            message:"New test created"
+         })
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message})
+    }
+}
+
+export {signupTeacher,loginTeacher,createTest};
+
 const extractText = async (req, res) => {
       try {
         console.log(req);
@@ -126,3 +167,4 @@ const extractText = async (req, res) => {
       }
     }
 export {signupTeacher,loginTeacher,extractText,getTeacherProfileData};
+

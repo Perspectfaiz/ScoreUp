@@ -5,15 +5,19 @@
 
 * {
     font-family: 'Poppins';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .foot{
     background-color: #0e0e0f;
+    width: 100%;
     height: 50vh;
     display: flex;
     flex-direction: column;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .detail{
@@ -33,21 +37,23 @@
 .feedback{
     width: 30%;
     color: white;
-    position: relative;
-    left:62px;
+    padding-left: 3%;
 }
+/* .feedback > *{
+ margin-left: 62px;
+} */
 
 .comment{
     
     all:unset;
     word-break:break-all;
-    width: 70%;
+    width: 83%;
     display: block;
     height: 100px;
     resize: none;
     padding: 5px;
     border: 1px solid rgb(56, 56, 56);
-    border-radius: 7px;
+    border-radius: 9px;
     font-size: 16px;
     background-color: #1b1b1b;
     color: #dddddd;
@@ -112,6 +118,7 @@
     border-top: 1px solid rgb(38, 38, 38);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
 }
 
@@ -141,12 +148,12 @@
 }
 
 .social{
-    width: 44%;
+    /* width: 44%; */
     /* margin-top: 50px; */
     display: flex;
     align-items: center;
     position: relative;
-    left:448px;
+    right:3%;
 }
 
 .title{

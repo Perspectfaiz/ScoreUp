@@ -5,6 +5,10 @@ import authStudent from '../Middleware/authStudent.js';
 // studentRouter.use('/login',);
 studentRouter.use('/sign-up',signupStudent);
 studentRouter.use('/login',loginStudent);
+
+// studentRouter.use('/profile',updatestudentProfile)
+
 studentRouter.use('/get-profile-data',authStudent,getStudentProfileData);
 studentRouter.use('/update-profile-data',authStudent,updateStudentProfileData);
+
 export default studentRouter;
