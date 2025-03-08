@@ -58,5 +58,39 @@ const loginStudent = async (req, res) => {
         res.json({ success: false, message: error.message });
     }
 };
-export {signupStudent,loginStudent}
+const getStudentProfileData = async (req, res) => {
+    try {
+       const {studentId}=req.body;
+        const student = await studentModel.findById(studentId);
+        if (student) {
+            return res.json({ success: true, data: student });
+        } else {
+            return res.json({ success: false, message: "Student not found" });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
+//API to update student profile...
+
+const updateStudentProfileData = async (req, res) => {
+    try{
+        const {studentId, name,dob,username,stream,university,address,phone,email,description,classes } = req.body;
+        const student = await studentModel.findByIdAndUpdate(studentId, { name,dob,username,stream,university,address,phone,email,description,classes });
+        
+        if (student) {
+            return res.json({ success: true, message: "Student profile updated" });
+        } else {
+            return res.json({ success: false, message: "Student not found" });
+        }
+    }
+    catch(error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export {signupStudent,loginStudent,getStudentProfileData,updateStudentProfileData}
 

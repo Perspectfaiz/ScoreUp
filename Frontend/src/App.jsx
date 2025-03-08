@@ -13,6 +13,7 @@ import { Studentprofile } from './components/studentprofile'
 import Login from './pages/Login'
 import { ToastContainer, toast } from 'react-toastify'; 
 import Home from './pages/Home'
+
 function App() {
   
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/explore" element={<Explore></Explore>}></Route>
       <Route path="/studentprofile" element={<Studentprofile></Studentprofile>}></Route>
       <Route path="/login" element={<Login></Login>}></Route>
+   
     </Routes>
     <Footer></Footer>
     </>

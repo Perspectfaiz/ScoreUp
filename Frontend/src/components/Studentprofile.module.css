@@ -7,6 +7,13 @@
     font-family: 'Poppins';
 }
 
+.off{
+    display: none;
+}
+
+.on{
+    display: block;
+}
 /* ///////////student profile///////////// */
 
 /* .details{
@@ -162,6 +169,22 @@ p {
     font-size: 150%;
     font-weight: bold;
     height: 12%;
+}
+
+.update .backbutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 3%;
+    padding: 10px;
+    padding-left: 2px;
+    border-radius: 50px;
+    color: #616161;
+}
+
+.update .backbutton:hover{
+    background-color: #e0e0e0;
 }
 .update .main{
     color: #000000;

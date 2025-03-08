@@ -7,18 +7,19 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { TbSend } from "react-icons/tb";
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { AppContext } from '../Context/AppContext';
 import { set } from 'mongoose';
 export function Footer() {
     const [feedback, setfeedback] = useState('');
 
-    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false);
+    const {token,itoken}=useContext(AppContext);
     const navigate = useNavigate();
  const handleMouse=()=>{
-    if(!token){
+    if(!token && !itoken){
         toast.error("Please login to give feedback");
         navigate('/login');
     }
@@ -27,6 +28,7 @@ export function Footer() {
     event.preventDefault();
     try{
         const {data}= await axios.post('http://localhost:8080/api/admin/feedback',{user_id:'123456',message:feedback});
+        console.log(data);
         if(data.success){
             setfeedback('');
             toast.success(data.message);
@@ -81,7 +83,7 @@ export function Footer() {
                     </div>
                     <div className={styles.feedback}>
                         <p className={styles.head}>FEEDBACK</p>
-                        <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts' onClick={handleMouse} onChange={(e)=>setfeedback(e.target.value)}></textarea>
+                        <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts' onClick={handleMouse} onChange={(e)=>setfeedback(e.target.value)} value={feedback}></textarea>
                         <button className={styles.send} onClick={onSubmitHandler}>
                             <div className={styles.sendtxt}>Send</div>
                             <LiaLongArrowAltRightSolid className={styles.sendicon} size={25}/>
