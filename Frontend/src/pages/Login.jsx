@@ -10,6 +10,7 @@ const Login=()=>{
    const [name,setName]=useState('')
    const [username,setUserName]=useState('')
    const [token,setToken]=useState('')
+   const [itoken,setIToken]=useState('')
    const onSubmitHandler=async (event)=>{
     event.preventDefault();
 
@@ -18,8 +19,8 @@ const Login=()=>{
      if(isTeacher){
      const {data}= await axios.post('http://localhost:8080/api/teacher/sign-up',{name,email,username,password});
      if(data.success){
-        localStorage.setItem('token',data.token);
-        setToken(data.token);
+        localStorage.setItem('itoken',data.itoken);
+        setIToken(data.itoken);
         toast.success(data.message || "Teacher account created sucessfully");
      }else{
         toast.error(data.message);
@@ -35,8 +36,27 @@ const Login=()=>{
            toast.error(data.message);
         }
      }
+    }else{
+      if(isTeacher){
+        const {data}= await axios.post('http://localhost:8080/api/teacher/login',{usernameORemail:email,password});
+        if(data.success){
+           localStorage.setItem('itoken',data.itoken);
+           setIToken(data.itoken);
+           toast.success(data.message);
+        }else{
+           toast.error(data.message);
+        }
+        }else{
+           const {data}= await axios.post('http://localhost:8080/api/student/login',{usernameORemail:email,password});
+           if(data.success){
+              localStorage.setItem('token',data.token);
+              setToken(data.token);
+              toast.success(data.message);
+           }else{
+              toast.error(data.message);
+           }
     }
-
+   }
    }catch(error){
     console.log(error);
   toast.error(error.message);
