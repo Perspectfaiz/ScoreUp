@@ -19,16 +19,16 @@ function App() {
 
   return (
     <>
-    <ToastContainer />
+    {/* <ToastContainer /> */}
      <Login></Login>
     
       
-      <Alert></Alert>
+      {/* <Alert></Alert>
       <Hero></Hero>
       <Explore></Explore>
       
       <Navbar></Navbar>
-      <Studentprofile></Studentprofile>
+      <Studentprofile></Studentprofile> */}
    
     </>
   )
