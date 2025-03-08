@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -10,35 +9,41 @@ import { Hero } from './components/Hero'
 import { Explore } from './components/explore'
 import { Footer } from './components/footer'
 import { Studentprofile } from './components/studentprofile'
-
-
-import Login from './pages/Login'
-import { ToastContainer, toast } from 'react-toastify'; 
+import { Qnbtn } from './components/Qnbtn'
+import { Instruction } from './components/Instruction'
+import { Testpage } from './components/Testpage'
 function App() {
-  const [count, setCount] = useState(0)
+ const [showInstruct, setShowInstuct]=useState(true);
+ function hide(){
+  setShowInstuct(!showInstruct);
+ }
+
+// ///////////////////////////////////////////////////
+const [showAlert, setShowAlert]=useState(true);
+function hideAlert(){
+  setShowAlert(!showAlert);
+}
 
   return (
     <>
-    {/* <ToastContainer /> */}
-     <Login></Login>
-    
+      <Navbar></Navbar> 
+      {showAlert && <Alert hideAlert={hideAlert}></Alert>}
       
-      {/* <Alert></Alert>
       <Hero></Hero>
       <Explore></Explore>
+      <Footer></Footer>
       
-      <Navbar></Navbar>
-      <Studentprofile></Studentprofile> */}
-   
+            
+      
+      <Studentprofile hid={hide}></Studentprofile> 
+     
+      {showInstruct && <Instruction hide={hide}></Instruction>}
+
+      {/* <Qnbtn></Qnbtn> */}
+
+      <Testpage></Testpage>
     </>
   )
 }
 
 export default App
-
-
-
-
-
-
-

@@ -20,9 +20,7 @@
     position: relative;
 }
 
-.qnbtn:hover{
-    filter: brightness(0.9);
-}
+
 .bindi{
     height: 13px;
     width: 13px;
