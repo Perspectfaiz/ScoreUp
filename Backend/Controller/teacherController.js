@@ -1,13 +1,17 @@
 import validator from "validator"
-import Together from "together-ai";
+
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 import teacherModel from "../Models/teacherModel.js";
 import vision from '@google-cloud/vision';
 import testModel from "../Models/testModel.js";
 //const vision = require('@google-cloud/vision');
+
 // const client = new vision.ImageAnnotatorClient();
 // const together = new Together();
+=======
+const client = new vision.ImageAnnotatorClient();
+
 const signupTeacher= async (req,res)=>{
     try {
         const {name,username,password,email}= req.body;
@@ -41,9 +45,9 @@ const signupTeacher= async (req,res)=>{
     }
     const newTeacher = new teacherModel(teacherData);
     const user = await newTeacher.save();
-    const token = await jwt.sign({id:user._id},"homelander")
+    const itoken = await jwt.sign({id:user._id},"homelander")
     res.status(201).json({
-        success:true,token })
+        success:true,itoken })
 
     } catch (error) {
         res.status(404).json({
@@ -69,9 +73,9 @@ const loginTeacher= async(req,res)=>{
     }
     const match = await bcrypt.compare(password,user.password);
     if(match){
-        const token = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
+        const itoken = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
 
-       return res.json({success:true,token})
+       return res.json({success:true,itoken})
     }
     else{
         return res.status(404).json({
@@ -86,7 +90,25 @@ const loginTeacher= async(req,res)=>{
         })
     }
 }
+// Api to get teacher profile data
 
+
+const getTeacherProfileData = async (req, res) => {
+
+ try{
+   const {teacherId}=req.body;
+   const teacher = await teacherModel.findById(teacherId);
+   if(teacher){
+    return res.json({sucess:true,data:teacher});
+   }else{
+    return res.json({success:false,message:"Teacher not found"});
+   }
+ }catch(error){
+        console.log(error);
+        res.json({success:false,message:error.message});
+ }
+
+}
 // const extractText = async (req, res) => {
 // try{
 //     const fileName = 'C:/Users/verma/Documents/GitHub/ScoreUp/Backend/assets/textcheck.jpg';
@@ -99,6 +121,7 @@ const loginTeacher= async(req,res)=>{
 //     res.json({success:false,message:error.message});
 // }
 // }
+
 // const extractText = async (req, res) => {
 //     try{
 //         const response = await together.chat.completions.create({
@@ -133,3 +156,15 @@ const createTest = async(req,res)=>{
 }
 
 export {signupTeacher,loginTeacher,createTest};
+
+const extractText = async (req, res) => {
+      try {
+        console.log(req);
+        res.json({success:true,message:"jai Hind"})
+      } catch (error) {
+        console.log(error);
+     res.json({success:false,message:error.message});
+      }
+    }
+export {signupTeacher,loginTeacher,extractText,getTeacherProfileData};
+

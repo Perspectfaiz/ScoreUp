@@ -73,9 +73,9 @@ export function Instruction({hide}) {
                                 <li className={styles.liner}><Qnbtn num={1} btn={0}></Qnbtn> Not Visited (The question has not been viewed yet.)</li>
                                 <li className={styles.liner}><Qnbtn num={1} btn={1}></Qnbtn> Not Answered (The question has been viewed but not answered.)</li>
                                 <li className={styles.liner}><Qnbtn num={1} btn={2}></Qnbtn> Answered (The question has been answered and saved.)</li>
-                                <li className={styles.liner}><Qnbtn num={1} btn={3}></Qnbtn> Marked for Review & Not Answered (The question has been marked for review but has not been answered. It won’t be considered in evaluation unless answered later.)</li>
-                                <li className={styles.liner}><Qnbtn num={1} btn={4}></Qnbtn> Marked for Review & Answered (The question has been answered, but you have marked it for review. The answer will be considered in evaluation.)</li>
-                                <li className={styles.liner}><Qnbtn num={1} btn={5}></Qnbtn> Current Question (The question you are currently viewing.)</li>
+                                <li className={styles.liner}><Qnbtn num={1} btn={3}></Qnbtn> Current Question (The question you are currently viewing.)</li>
+                                <li className={styles.liner}><Qnbtn num={1} btn={4}></Qnbtn> Marked for Review & Not Answered (The question has been marked for review but has not been answered. It won’t be considered in evaluation unless answered later.)</li>
+                                <li className={styles.liner}><Qnbtn num={1} btn={5}></Qnbtn> Marked for Review & Answered (The question has been answered, but you have marked it for review. The answer will be considered in evaluation.)</li>
                             </ul>
                         </li>
                         </ul>

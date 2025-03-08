@@ -85,6 +85,9 @@
     margin: 0 7px;
     border: 1px solid #e5d8ff;
 }
+.instruct .general > *{
+    margin: 15px;
+}
 
 .instruct .liner{
     margin-bottom: 8px;
