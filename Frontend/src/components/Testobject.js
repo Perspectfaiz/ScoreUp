@@ -29,10 +29,17 @@ const sub2={
     list:[question,question2]
 };
 const testObj={
-    title:"Test Template",
-    id:"test_id.1",
-    teacherId:"T.userName",
-    time:90,
+    details:{
+        title:"Test Template ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec sapien ut ipsum tincidunt lacinia. Nullam nec purus auctor consectetur elit. Suspendisse nec sapien ut ipsum tincidunt lacinia. Nullam nec purus auctor",
+        id:"test_id.1",
+        teacherId:"T.userName",
+        teachername:"yajya parama",
+        time:90,
+        attempted:5,
+        avgScore: 69, 
+        tag:"All"
+    },
     section:[sub1, sub2, sub1]
+    
 };
 export default testObj;

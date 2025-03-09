@@ -16,6 +16,8 @@ import { Studentprofile } from './components/studentprofile'
 import { Qnbtn } from './components/Qnbtn'
 import { Instruction } from './components/Instruction'
 import { Testpage } from './components/Testpage'
+import { Tagcard } from './components/Tagcard'
+import { Examinterface } from './components/Examinterface'
 function App() {
  const [showInstruct, setShowInstuct]=useState(true);
  function hide(){
@@ -30,42 +32,27 @@ function hideAlert(){
 
   return (
     <>
-      <Navbar></Navbar> 
+      <Navbar></Navbar>
+{/*        
       {showAlert && <Alert hideAlert={hideAlert}></Alert>}
       
       <Hero></Hero>
       <Explore></Explore>
-      <Footer></Footer>
+      
       
             
       
-      <Studentprofile hid={hide}></Studentprofile> 
+      
      
       {showInstruct && <Instruction hide={hide}></Instruction>}
 
-      {/* <Qnbtn></Qnbtn> */}
+      <Qnbtn></Qnbtn>
 
-      <Testpage></Testpage>
-
-import Login from './pages/Login'
-import { ToastContainer, toast } from 'react-toastify'; 
-import Home from './pages/Home'
-
-function App() {
-  
-
-  return (
-    <>
-    <ToastContainer />
-    <Navbar></Navbar>
-    <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/explore" element={<Explore></Explore>}></Route>
-      <Route path="/studentprofile" element={<Studentprofile></Studentprofile>}></Route>
-      <Route path="/login" element={<Login></Login>}></Route>
-   
-    </Routes>
-    <Footer></Footer>
+      */}
+      <Examinterface></Examinterface>
+      {/* <Studentprofile hid={hide}></Studentprofile> 
+      <Testpage></Testpage>  */}
+      <Footer></Footer>
 
     </>
   )
