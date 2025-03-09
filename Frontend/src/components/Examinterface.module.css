@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.examface{
+    height: 91vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.examface .examhead{
+    /* background-color: rgb(255, 197, 197);
+     */
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    font-size: 17px;
+    font-weight: 300;
+    min-height:7vh;
+    background: linear-gradient(90deg, #573ed1 0%, #703ed1 20%);
+    color: rgb(240, 240, 240);
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.examface .examhead > *{
+    margin-right: 0.4%;
+}
+
+.examface .exammain{
+    height: 84vh;
+    display: flex;
+
+}
+
+.examface .left{
+    width: 75%;
+    height: 100%;
+    border-top-right-radius: 10px;
+}
+
+.examface .tags{
+    min-height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    overflow: scroll;
+}
+
+.examface .examlist{
+    width: 100%;
+    height: 79vh;
+    /* background-color: rgb(255, 255, 255); */
+}
+
+.examface .listhead{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 7vh;
+    background-color: #ececec;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.examface .listhead > *{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 1%;
+}
+
+.examface .listhead > * > *{
+    margin-left: 8px;
+}
+
+.examface .listhead .status{
+    width: 8%;
+}
+
+.examface .listhead .topic{
+    width: 43%;
+}
+
+.examface .listhead .duration{
+    width: 8%;
+}
+
+.examface .listhead .attempted{
+    width: 8%;
+}
+
+.examface .listhead .teacher{
+    min-width: 23%;
+}
+
+.examface .listlist{
+    width: 100%;
+    height: 72vh;
+    /* background-color: rgb(255, 255, 255); */
+    overflow: scroll;
+}
+
+.examface .right{
+    width: 25%;
+    height: 84vh;
+    border-left: 1px solid rgb(194, 194, 194);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #bfbfbf;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(194, 194, 194);
+    /* background-color: green; */
+}
+
+.space{
+    height: 10vh;
+    width: 100%;
+}
