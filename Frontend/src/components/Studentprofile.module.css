@@ -10,6 +10,7 @@
 .off{
     display: none;
 }
+
 .on{
     display: block;
 }
@@ -181,12 +182,17 @@ p {
 }
 
 .update .backbutton:hover{
+
     background-color: #e0e0e0;
 }
 
 .update .editprofile{
     position: relative;
     left: 36%;
+}
+
+
+    background-color: #e0e0e0;
 }
 
 .update .main{

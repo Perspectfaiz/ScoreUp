@@ -1,3 +1,6 @@
+
+import { Route, Routes} from 'react-router-dom'
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -9,6 +12,7 @@ import { Hero } from './components/Hero'
 import { Explore } from './components/explore'
 import { Footer } from './components/footer'
 import { Studentprofile } from './components/studentprofile'
+
 import { Qnbtn } from './components/Qnbtn'
 import { Instruction } from './components/Instruction'
 import { Testpage } from './components/Testpage'
@@ -49,6 +53,7 @@ function hideAlert(){
       {/* <Studentprofile hid={hide}></Studentprofile> 
       <Testpage></Testpage>  */}
       <Footer></Footer>
+
     </>
   )
 }
