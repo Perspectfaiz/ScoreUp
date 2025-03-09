@@ -12,6 +12,8 @@ import { Studentprofile } from './components/studentprofile'
 import { Qnbtn } from './components/Qnbtn'
 import { Instruction } from './components/Instruction'
 import { Testpage } from './components/Testpage'
+import { Tagcard } from './components/Tagcard'
+import { Examinterface } from './components/Examinterface'
 function App() {
  const [showInstruct, setShowInstuct]=useState(true);
  function hide(){
@@ -26,22 +28,27 @@ function hideAlert(){
 
   return (
     <>
-      <Navbar></Navbar> 
+      <Navbar></Navbar>
+{/*        
       {showAlert && <Alert hideAlert={hideAlert}></Alert>}
       
       <Hero></Hero>
       <Explore></Explore>
-      <Footer></Footer>
+      
       
             
       
-      <Studentprofile hid={hide}></Studentprofile> 
+      
      
       {showInstruct && <Instruction hide={hide}></Instruction>}
 
-      {/* <Qnbtn></Qnbtn> */}
+      <Qnbtn></Qnbtn>
 
-      <Testpage></Testpage>
+      */}
+      <Examinterface></Examinterface>
+      {/* <Studentprofile hid={hide}></Studentprofile> 
+      <Testpage></Testpage>  */}
+      <Footer></Footer>
     </>
   )
 }

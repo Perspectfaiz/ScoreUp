@@ -2,6 +2,7 @@ import styles from './Instruction.module.css'
 import { RxCross2 } from "react-icons/rx";
 import { Qnbtn } from './Qnbtn';
 
+
 {/* <Qnbtn num={3} btn = {btnobg[0]}></Qnbtn> */}
 
 
