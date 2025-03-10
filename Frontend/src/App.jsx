@@ -24,7 +24,7 @@ function App() {
   setShowInstuct(!showInstruct);
  }
 
-// ///////////////////////////////////////////////////
+
 const [showAlert, setShowAlert]=useState(true);
 function hideAlert(){
   setShowAlert(!showAlert);
@@ -46,16 +46,12 @@ function hideAlert(){
      
       {showInstruct && <Instruction hide={hide}></Instruction>}
 
-      <Qnbtn></Qnbtn>
 
-      */}
-      <Examinterface></Examinterface>
-      {/* <Studentprofile hid={hide}></Studentprofile> 
-      <Testpage></Testpage>  */}
-      <Footer></Footer>
+      {/* <Qnbtn></Qnbtn> */}
 
-    </>
-  )
+      <Testpage></Testpage>
+      </>
+)
 }
+export default App;
 
-export default App
