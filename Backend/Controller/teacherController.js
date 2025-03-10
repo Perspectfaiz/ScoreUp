@@ -9,7 +9,7 @@ import testModel from "../Models/testModel.js";
 
 // const client = new vision.ImageAnnotatorClient();
 // const together = new Together();
-=======
+
 const client = new vision.ImageAnnotatorClient();
 
 const signupTeacher= async (req,res)=>{
@@ -155,7 +155,7 @@ const createTest = async(req,res)=>{
     }
 }
 
-export {signupTeacher,loginTeacher,createTest};
+// export {signupTeacher,loginTeacher,createTest};
 
 const extractText = async (req, res) => {
       try {
@@ -166,5 +166,5 @@ const extractText = async (req, res) => {
      res.json({success:false,message:error.message});
       }
     }
-export {signupTeacher,loginTeacher,extractText,getTeacherProfileData};
+export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest};
 

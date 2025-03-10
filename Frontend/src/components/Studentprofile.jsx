@@ -3,18 +3,11 @@ import styles from './Studentprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
 import { IoIosArrowBack } from "react-icons/io";
 
-import { useState } from 'react'
-
-export function Studentprofile({hid}) {
-    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
-
-
 import { useContext, useState,useEffect } from 'react'
 import { AppContext } from '../Context/AppContext'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
 export function Studentprofile() {
     const [isDetailsVisible, setIsDetailsVisible] = useState(true);
     const {studentData}=useContext(AppContext);
@@ -106,7 +99,7 @@ export function Studentprofile() {
 
         </div> )}
 
-        {/* /////////////////////////////////////////////////////////////////////////////// */}
+        
         
         {!isDetailsVisible && (
         <div className={styles.update}>
@@ -181,7 +174,7 @@ export function Studentprofile() {
                     <div className={styles.class}>
                         <p>Class</p>
 
-                        <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`}>
+                   
 
                         <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`} value={classes} onChange={
                             (e) => {
@@ -199,13 +192,14 @@ export function Studentprofile() {
                         </select>
                     </div>
                     <div className={styles.stream}>
-                        <p>Stream</p>
-                        <input type="text" className={`${styles.input} ${styles.stream_input}`} placeholder="Stream" onChange={
-                            (e) => {
-                                setStream(e.target.value)
-                            }
-                        }/>
-                    </div>
+            <p>Stream</p>
+            <input 
+                type="text" 
+                className={`${styles.input} ${styles.stream_input}`} 
+                placeholder="Stream" 
+                onChange={(e) => setStream(e.target.value)}
+            />
+        </div>
                     <div className={styles.university}>
                         <p>University</p>
                         <input type="text" className={`${styles.input} ${styles.university_input}`} placeholder="University" onChange={

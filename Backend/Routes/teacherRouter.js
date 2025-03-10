@@ -1,9 +1,9 @@
 import express from 'express'
 
 
-import { loginTeacher, signupTeacher, createTest } from '../Controller/teacherController.js';
-=======
-import { loginTeacher, signupTeacher,extractText,getTeacherProfileData } from '../Controller/teacherController.js';
+// import { loginTeacher, signupTeacher, createTest } from '../Controller/teacherController.js';
+
+import { signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest} from '../Controller/teacherController.js';
 import authTeacher from '../Middleware/authTeacher.js';
 import { get } from 'mongoose';
 

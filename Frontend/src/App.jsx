@@ -22,7 +22,7 @@ function App() {
   setShowInstuct(!showInstruct);
  }
 
-// ///////////////////////////////////////////////////
+
 const [showAlert, setShowAlert]=useState(true);
 function hideAlert(){
   setShowAlert(!showAlert);
@@ -46,29 +46,7 @@ function hideAlert(){
       {/* <Qnbtn></Qnbtn> */}
 
       <Testpage></Testpage>
-
-import Login from './pages/Login'
-import { ToastContainer, toast } from 'react-toastify'; 
-import Home from './pages/Home'
-
-function App() {
-  
-
-  return (
-    <>
-    <ToastContainer />
-    <Navbar></Navbar>
-    <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
-      <Route path="/explore" element={<Explore></Explore>}></Route>
-      <Route path="/studentprofile" element={<Studentprofile></Studentprofile>}></Route>
-      <Route path="/login" element={<Login></Login>}></Route>
-   
-    </Routes>
-    <Footer></Footer>
-
-    </>
-  )
+      </>
+)
 }
-
-export default App
+export default App;
