@@ -15,9 +15,9 @@ export function Navbar() {
             </a>
             <div className={styles.field}>
                 <a href='#' className={styles.in} onClick={()=>navigate("/")}>Home</a>
-                <a href='#' className={styles.in}>Hunt Tests</a>
-                <a href='#' className={styles.in}>Free Resources</a>
-                <a href='#' className={styles.in}>About</a>
+                <a href='#' className={styles.in}  onClick={()=>navigate("/hunt-tests")} >Hunt Tests</a>
+                <a href='#' className={styles.in} onClick={()=>navigate("/")}>Free Resources</a>
+                <a href='#' className={styles.in} onClick={()=>navigate("/")}>About</a>
             </div>
             <a className={styles.profile} href='#'>
                  {
