@@ -155,7 +155,6 @@ const createTest = async(req,res)=>{
     }
 }
 
-// export {signupTeacher,loginTeacher,createTest};
 
 const extractText = async (req, res) => {
       try {
