@@ -10,14 +10,14 @@ export function Navbar() {
         <>
         <div className={styles.nav}>
             <a href='#' className={styles.brand} onClick={()=>navigate("/")}>
-                <img src="../public/6527325.png" alt="ScoreUp" />
+                <img src="/6527325.png" alt="ScoreUp" />
                 <div className={styles.txt}>ScoreUp</div>
             </a>
             <div className={styles.field}>
-                <a href='#' className={styles.in} onClick={()=>navigate("/")}>Home</a>
-                <a href='#' className={styles.in}  onClick={()=>navigate("/hunt-tests")} >Hunt Tests</a>
-                <a href='#' className={styles.in} onClick={()=>navigate("/")}>Free Resources</a>
-                <a href='#' className={styles.in} onClick={()=>navigate("/")}>About</a>
+                <a href='/' className={styles.in} >Home</a>
+                <a href='/hunt-tests' className={styles.in}   >Hunt Tests</a>
+                <a href='#' className={styles.in} >Free Resources</a>
+                <a href='#' className={styles.in} >About</a>
             </div>
             <a className={styles.profile} href='#'>
                  {
@@ -27,7 +27,10 @@ export function Navbar() {
               </div>
                 }
                 {
-                   token && <img src="../public/account.png" alt="X" />
+                   
+                         token && <div onClick={()=>navigate('/studentprofile')}><img src="../public/account.png" alt="X" /></div>
+                   
+                  
                 }
                 
                

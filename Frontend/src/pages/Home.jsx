@@ -4,7 +4,7 @@ import { Explore } from "../components/explore";
 import { Alert } from "../components/Alert";
 import { AppContext } from "../Context/AppContext";
 import { Instruction } from "../components/Instruction";
-import { Navbar } from "../components/navbar";
+import { Navbar } from "../components/Navbar";
 import { Footer } from '../components/footer';
 
 const Home=()=>{

@@ -4,7 +4,7 @@
 import { useState } from 'react'
 
 import './App.css'
-import { Navbar } from './components/navbar'
+import { Navbar } from './components/Navbar'
 import { Alert } from './components/Alert'
 import { Card } from './components/card'
 import { Hero } from './components/Hero'
@@ -23,6 +23,10 @@ import Home from './pages/Home'
 function App() {
  
 
+    //     const [showAlert, setShowAlert]=useState(true);
+    // function hideAlert(){
+    // setShowAlert(!showAlert);
+    // }
 
 
 
@@ -44,6 +48,7 @@ function App() {
        {/* <Navbar></Navbar> */}
        {/* <Examinterface/> */}
       {/* <List></List> */}
+      {/* <Instruction/> */}
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login />}/>
@@ -51,6 +56,7 @@ function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/testpage' element={<Testpage/>}/>
         <Route path='/hunt-tests' element={<Examinterface/>}/>
+        <Route path='/instruction' element={<Instruction/>}/>
       </Routes>
       
   

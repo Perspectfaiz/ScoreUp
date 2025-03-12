@@ -19,14 +19,14 @@ export function Testpage() {
     return (
         <>
             
-             {showInstruct && <Instruction hide={hide}></Instruction>}
+             {/* {showInstruct && <Instruction hide={hide}></Instruction>} */}
 
         <div className={styles.testpage}>
        
             <div className={styles.heading}>
           
                 <div className={styles.logo}>
-                    <img src="../public/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
+                    <img src="/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
                 </div>
                 <div className={styles.timer}>
                     <div className={styles.timelogo}><LuAlarmClock size={25}></LuAlarmClock></div>--:--:--
