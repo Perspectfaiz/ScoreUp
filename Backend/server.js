@@ -17,6 +17,7 @@ app.use(cors());
 app.use('/api/student',studentRouter);
 app.use('/api/teacher',teacherRouter);
 app.use('/api/admin',adminRouter);
+
 app.listen(8080,()=>{
 console.log(`app is listening at port ${port}`);
 })

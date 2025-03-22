@@ -142,7 +142,7 @@ const createTest = async(req,res)=>{
 
        
         const test= req.body;
-        console.log(test);
+      console.log(test);
          const newTest= testModel(test);
          await newTest.save();
          res.json({
