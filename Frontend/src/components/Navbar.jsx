@@ -9,17 +9,17 @@ export function Navbar() {
     return (
         <>
         <div className={styles.nav}>
-            <a href='#' className={styles.brand} onClick={()=>navigate("/")}>
+            <a href='/' className={styles.brand} onClick={()=>navigate("/")}>
                 <img src="/6527325.png" alt="ScoreUp" />
                 <div className={styles.txt}>ScoreUp</div>
             </a>
             <div className={styles.field}>
                 <a href='/' className={styles.in} >Home</a>
                 <a href='/hunt-tests' className={styles.in}   >Hunt Tests</a>
-                <a href='#' className={styles.in} >Free Resources</a>
-                <a href='#' className={styles.in} >About</a>
+                <a href='/free-resources' className={styles.in} >Free Resources</a>
+                <a href='/about' className={styles.in} >About</a>
             </div>
-            <a className={styles.profile} href='#'>
+            <a className={styles.profile} href='/login'>
                  {
                     !token &&
                  < div className={styles.box}>

@@ -19,6 +19,8 @@ import { Tagcard } from './components/Tagcard'
 import { Examinterface } from './components/Examinterface'
 import  Login  from './pages/Login'
 import Home from './pages/Home'
+import { About } from './components/About'
+import { FreeReso } from './components/resources'
 // import {List} from './components/List'
 function App() {
  
@@ -49,6 +51,8 @@ function App() {
        {/* <Examinterface/> */}
       {/* <List></List> */}
       {/* <Instruction/> */}
+      {/* <Card/> */}
+
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login />}/>
@@ -57,10 +61,12 @@ function App() {
         <Route path='/testpage' element={<Testpage/>}/>
         <Route path='/hunt-tests' element={<Examinterface/>}/>
         <Route path='/instruction' element={<Instruction/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/free-resources' element={<FreeReso/>}/>
       </Routes>
       
-  
-
+   
+      
       {/* <Testpage></Testpage> */}
       </>
 )

@@ -6,7 +6,8 @@ import { AppContext } from "../Context/AppContext";
 import { Instruction } from "../components/Instruction";
 import { Navbar } from "../components/Navbar";
 import { Footer } from '../components/footer';
-
+import { FreeReso } from "../components/resources";
+import { About } from "../components/About";
 const Home=()=>{
    const {token,itoken}=useContext(AppContext);
     const [alert,setAlert]=useState(true);
@@ -24,14 +25,16 @@ const Home=()=>{
   
     return (
         <>
+        <Navbar></Navbar>
         {
             alert && <Alert hideAlert={hideAlert}></Alert>
         }
-        <Navbar></Navbar>
-        <Alert></Alert>
+        
+        
         <Hero></Hero>
         <Explore></Explore>
         <Footer></Footer> 
+        
         </>
     )
 }
