@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { AppContext } from '../Context/AppContext';
-import { set } from 'mongoose';
+
 export function Footer() {
     const [feedback, setfeedback] = useState('');
 

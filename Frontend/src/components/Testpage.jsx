@@ -5,18 +5,28 @@ import { LuAlarmClock } from "react-icons/lu";
 import testObj from './Testobject.js';
 import { Section } from './section.jsx';
 import { useState } from "react";
-
+import { Instruction } from './Instruction.jsx';
 export function Testpage() {
     const sec=testObj.section;
 
     const [qn, setQn]=useState(sec[0].list[0]);
+
+        const [showInstruct, setShowInstuct]=useState(true);
+        function hide(){
+        setShowInstuct(!showInstruct);
+        }
     
     return (
         <>
+            
+             {/* {showInstruct && <Instruction hide={hide}></Instruction>} */}
+
         <div className={styles.testpage}>
+       
             <div className={styles.heading}>
+          
                 <div className={styles.logo}>
-                    <img src="../public/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
+                    <img src="/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
                 </div>
                 <div className={styles.timer}>
                     <div className={styles.timelogo}><LuAlarmClock size={25}></LuAlarmClock></div>--:--:--
