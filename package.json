@@ -1,0 +1,24 @@
+{
+  "name": "scoreup",
+  "version": "1.0.0",
+  "description": "Educational platform for JEE preparation",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd Backend && npm run start\" \"cd Frontend && npm run dev\"",
+    "install-all": "npm install && cd Frontend && npm install && cd ../Backend && npm install",
+    "build": "cd Frontend && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "education",
+    "jee",
+    "preparation",
+    "resources"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "pdfjs-dist": "^5.2.133"
+  }
+}
