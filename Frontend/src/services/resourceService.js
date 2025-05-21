@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getPDFUrl } from './supabaseStorageService';
 
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/resources';
 
@@ -68,4 +69,6 @@ export const resourceService = {
             throw error;
         }
     }
-}; 
+};
+
+export { getPDFUrl }; 

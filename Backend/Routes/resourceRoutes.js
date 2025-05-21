@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         console.log('Received resource submission:', req.body);
 
         // Validate required fields
-        const requiredFields = ['title', 'description', 'type', 'tags', 'fileUrl'];
+        const requiredFields = ['title', 'description', 'type', 'tags', 'fileUrl', 'publicId'];
         const missingFields = requiredFields.filter(field => !req.body[field]);
         
         if (missingFields.length > 0) {
@@ -63,6 +63,7 @@ router.post('/', async (req, res) => {
             type: req.body.type,
             tags: req.body.tags,
             fileUrl: req.body.fileUrl,
+            publicId: req.body.publicId,
             thumbnailUrl: req.body.thumbnailUrl || '',
             downloadCount: 0,
             uploadedBy: null // Default to anonymous

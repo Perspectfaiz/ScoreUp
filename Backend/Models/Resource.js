@@ -25,6 +25,11 @@ const resourceSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    publicId: {
+        type: String,
+        required: true,
+        trim: true
+    },
     thumbnailUrl: {
         type: String,
         trim: true,

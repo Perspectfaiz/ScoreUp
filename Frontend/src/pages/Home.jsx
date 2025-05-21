@@ -6,7 +6,7 @@ import { AppContext } from "../Context/AppContext";
 import { Instruction } from "../components/Instruction";
 import { Navbar } from "../components/Navbar";
 import { Footer } from '../components/footer';
-import { FreeReso } from "../components/resources";
+import { FreeReso } from "../components/resources/resources";
 import { About } from "../components/About";
 const Home=()=>{
    const {token,itoken}=useContext(AppContext);
