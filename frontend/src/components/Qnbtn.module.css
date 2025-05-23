@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+.line{
+    display: inline-block;
+}
+.qnbtn{
+    height: 40px;
+    width: 40px;
+    border-radius: 6px;
+    border: 1px solid rgb(181, 181, 181);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.bindi{
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    position :absolute;
+    background-color:purple;
+    top: 27px;
+    left: 25px;
+    border: 2px solid white;
+}
+
+.unseen{
+    background-color: #fff;
+}
+
+.seen{
+    background-color: rgb(255, 104, 62);
+}
+.save{
+    border-radius: 50%;
+    background-color: green;
+    color: #fff;
+}
+.curr{
+    /* border-radius: 50%; */
+    background-color: rgb(0, 76, 255);
+    color: #fff;
+}
+
+
+.dot{
+    display: none;
+}
