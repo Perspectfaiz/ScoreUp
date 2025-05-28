@@ -4,6 +4,7 @@ import styles from './Qnum.module.css'
 export function Qnum({qdata, idx, setQn}) {
     const btnState=qdata.state;
     const handle=()=>{
+        qn.state = qn.state > 3 ? 4 : 1;
         setQn(qdata);
         
     }

@@ -120,6 +120,36 @@
     /* background-color: green; */
 }
 
+.examface .loading{
+    display: flex;
+    align-items: center;
+}
+
+.examface .load {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.examface .loadicon{
+    margin-left: 10px;
+    opacity: 0.3;
+    height: 15px;
+    width: 15px;
+    animation: load 0.7s infinite linear;
+}
+
+@keyframes load{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+
 .space{
     height: 10vh;
     width: 100%;
