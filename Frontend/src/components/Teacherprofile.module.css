@@ -17,7 +17,7 @@
 
 
 
-.studprofile{
+.teacherprofile{
     /* background-color: rgb(255, 153, 0); */
     display: flex;
     width: 100%;
@@ -25,21 +25,21 @@
     
 }
 
-.studprofile .left{
+.teacherprofile .left{
     /* background-color: green; */
-    width: 30%;
+    width: 25%;
     display: flex;
     flex-direction: column;
 }
 
-.studprofile .profile{
+.teacherprofile .profile{
     height: 400px;
     background-color: white;
     display: flex;
     flex-direction: column;
 }
 
-.studprofile .personal{
+.teacherprofile .personal{
     width: 100%;
     height: 35%;
     display: flex;
@@ -51,7 +51,7 @@
     /* color: white; */
 }
 
-.studprofile .dp{
+.teacherprofile .dp{
     width: 33%;
     display: flex;
     justify-content: center;
@@ -60,7 +60,7 @@
     
 }
 
-.studprofile .dpimg{
+.teacherprofile .dpimg{
     background-color: rgb(0, 255, 174);
     width: 90px;
     height: 90px;
@@ -68,7 +68,7 @@
     border-radius: 100%;
 }
 
-.studprofile .txt{
+.teacherprofile .txt{
     padding-left: 15px;
     display: flex;
     width: 66%;
@@ -77,17 +77,21 @@
     justify-content: center;
 }
 
-.studprofile .name{
+.teacherprofile .name{
     font-size: 150%;
     font-weight: 500;
 }
-.studprofile .stream{
-    background-color: #f0edf7;
-    border: 1px solid #eae0ff;   
-    font-size: 90%;
+
+.teacherprofile .stream{
+    background-color: #e5d9ff;
+
+    color: #7248c4;
+    /* border: 1px solid #eae0ff;    */
+    font-size: 80%;
     width: fit-content;
-    padding: 2px 12px;
+    padding: 4px 14px;
     border-radius: 70px;
+    font-weight: 500;
 }
 
 /* .studprofile .description{
@@ -96,7 +100,7 @@
     font-size: 80%;
 } */
 
-.studprofile .edit{
+.teacherprofile .edit{
     margin-top: 5%;
     width: 100%;
     display: flex;
@@ -105,7 +109,7 @@
     height: 50px;
 }
 
-.studprofile .editbtn {
+.teacherprofile .editbtn {
     all: unset;
     height: 80%;
     width: 80%;
@@ -117,7 +121,7 @@
     border-radius: 5px;
     transition: all 100ms ease-out;
 }
-.studprofile .editbtn:hover {
+.teacherprofile .editbtn:hover {
     background-color: #5c33ae;
     height: 82%;
     width: 82%;
@@ -126,30 +130,74 @@
 
 }
 
-.studprofile .right{
+.teacherprofile .right{
     height: 100%;
-    width: 100%;
-    overflow: scroll;
+    width: 75%;
 }
 
-.studprofile .stats{
-    height: 70vh;
+.teacherprofile .filter{
+    height: 5vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.151);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
 }
 
-.studprofile .list{
-    height: 70vh;
+.teacherprofile .tag{
+    width: 80%;
+}
+.teacherprofile .examlist{
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.099);
+    height: 79vh;
+    /* background-color: rgb(255, 255, 255); */
+}
+
+.teacherprofile .listhead{
     display: flex;
-    justify-content: center;
     align-items: center;
-    
+    width: 100%;
+    height: 7vh;
+    background-color: #ececec;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.teacherprofile .listhead > *{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 1%;
+}
+
+.teacherprofile .listhead > * > *{
+    margin-left: 8px;
+}
+
+.teacherprofile .listhead .status{
+    width: 8%;
+}
+
+.teacherprofile .listhead .topic{
+    width: 43%;
+}
+
+.teacherprofile .listhead .duration{
+    width: 8%;
+}
+
+.teacherprofile .listhead .attempted{
+    width: 8%;
+}
+
+.teacherprofile .listhead .teacher{
+    min-width: 23%;
+}
+
+.teacherprofile .listlist{
+    width: 100%;
+    height: 79vh;
+    /* background-color: rgb(255, 255, 255); */
+    overflow: scroll;
 }
 
 /* /////////// Upadate ///////////// */

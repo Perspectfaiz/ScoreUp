@@ -1,17 +1,19 @@
-import { Footer } from './footer'
-import styles from './Studentprofile.module.css'
+import styles from './Teacherprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
 import { IoIosArrowBack } from "react-icons/io";
 import { useState } from 'react'
+import { Tagcard } from './Tagcard';
+import examObj from './Examobject.js';
+import { List } from './List.jsx';
 
-export function Studentprofile({hid}) {
+export function Teacherprofile({hid}) {
     const [isDetailsVisible, setIsDetailsVisible] = useState(true);
 
     return (
         <>
         {isDetailsVisible && (
         <div className={styles.details}>
-            <div className={styles.studprofile}>
+            <div className={styles.teacherprofile}>
                 <div className={styles.left}>
                     <div className={styles.profile}>
                         <div className={styles.personal}>
@@ -19,8 +21,8 @@ export function Studentprofile({hid}) {
                                 <img src="../../public/dp.jpeg" alt="imagine..." className={styles.dpimg}/>
                             </div>
                             <div className={styles.txt}>
-                                <div className={styles.name}>Sameer Mishra</div>
-                                <div className={styles.stream}>JEE</div>
+                                <p className={styles.name}>MKC</p>
+                                <p className={styles.stream}>JEE</p>
                             </div>
                         </div>
                         {/* <div className={styles.description}>
@@ -37,12 +39,40 @@ export function Studentprofile({hid}) {
                     </div>
                 </div> 
                 <div className={styles.right}>
-                    <div className={styles.stats}>Stats loading...</div>
-                    <div className={styles.list}>Lists loading...</div>
+                    <div className={styles.filter}>
+                        <div className={styles.tag}>
+                            <Tagcard></Tagcard>
+                            <Tagcard></Tagcard>
+                        </div>
+                        <div className={styles.search}>
+                            <select name="tag" className={styles.branch}>
+                                <option value="All">All</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Maths">Maths</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className={styles.examlist}> 
+                            <div className={styles.listhead}>
+                                <div className={styles.status}><div>Status</div></div>
+                                <div className={styles.topic}><div>Topic</div></div>
+                                <div className={styles.duration}><div>Duration</div></div>
+                                <div className={styles.attempted}><div>Visits</div></div>
+                                <div className={styles.teacher}><div>Teacher</div></div>
+                            </div>
+                            <div className={styles.listlist}> 
+                                {
+                                    examObj.testList.map((item,index)=>{
+                                        // console.log(item)
+                                        return <List info={item.details} key={index}></List>;
+                                    })
+                                }
+                            </div>
+                        </div>
                 </div>
                 
             </div>
-            <Footer></Footer>
         </div> )}
 
         {/* /////////////////////////////////////////////////////////////////////////////// */}

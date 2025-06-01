@@ -12,7 +12,9 @@ export function Section({setQn,sub}) {
             <div className={styles.sub}>
                 <p className={styles.secname} onClick={ () => {
                     setIsgridVisible(!isgridVisible)
-                }}>{sub.subName} <IoIosArrowDown className={`${styles.iconarrow} ${isgridVisible ? styles.rotate : ''}`}></IoIosArrowDown> </p>
+                    }}>
+                    {sub.subName} <IoIosArrowDown className={`${styles.iconarrow} ${isgridVisible ? styles.rotate : ''}`}/>
+                </p>
                 {isgridVisible && (<div className={styles.grid}>
                     {
                         qlist.map((item,index)=>{

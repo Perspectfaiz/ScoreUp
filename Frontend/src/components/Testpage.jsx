@@ -4,32 +4,71 @@ import { IoIosArrowBack } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import testObj from './Testobject.js';
 import { Section } from './section.jsx';
-import { useState } from "react";
-import { Instruction } from './Instruction.jsx';
+import { useState, useEffect } from "react";
+
+
 export function Testpage() {
     const sec=testObj.section;
+    const detail = testObj.details;
 
     const [qn, setQn]=useState(sec[0].list[0]);
 
-        const [showInstruct, setShowInstuct]=useState(true);
-        function hide(){
-        setShowInstuct(!showInstruct);
-        }
+    const [countdown, setCountdown] = useState(testObj.details.time);
+    const [hour, setHour] = useState(0);
+    const [min, setMin] = useState(0);
+    const [second, setSecond] = useState(0);
+
+    const [lastmin, setLastmin] = useState(false);
+    
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCountdown(prev => {
+                const newTime = prev - 1;
+                if(newTime < 60) setLastmin(true);
+                if (newTime <= 0) {
+                    clearInterval(timer);
+                    return 0;
+                }
+                return newTime;
+            });
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        setHour(Math.floor(countdown / 3600));
+        setMin(Math.floor((countdown % 3600) / 60));
+        setSecond(countdown % 60);
+    }, [countdown]);
+
     
     return (
         <>
-            
-             {/* {showInstruct && <Instruction hide={hide}></Instruction>} */}
-
+        {/* <button onClick={() => console.log(testObj)}>show test object</button> */}
         <div className={styles.testpage}>
-       
             <div className={styles.heading}>
-          
                 <div className={styles.logo}>
-                    <img src="/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
+                    <img src="../public/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
                 </div>
-                <div className={styles.timer}>
-                    <div className={styles.timelogo}><LuAlarmClock size={25}></LuAlarmClock></div>--:--:--
+                <div className={`${styles.timer} ${lastmin ? styles.lastminclr : ""}`}>
+                    <div className={styles.timelogo}><LuAlarmClock/></div>
+                    <div className={styles.time}>
+                        <div className={`${styles.timercontainer} `}>
+
+                            <div className={`${styles.hour} ${styles.timedisplay}`}>
+                                {hour < 10 ? "0"+hour : hour}
+                            </div>
+                            <span>:</span>
+                            <div className={`${styles.min} ${styles.timedisplay}`}>
+                                {min < 10 ? "0"+min : min}
+                            </div>
+                            <span>:</span>
+                            <div className={`${styles.sec} ${styles.timedisplay}`}>
+                                {second < 10 ? "0"+second : second}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.submit}>
                     <button className={styles.submitbtn}>Submit</button>
@@ -38,7 +77,7 @@ export function Testpage() {
             <div className={styles.main}>
                 <div className={styles.left}>
                     <div className={styles.panel}>
-                        <div className={styles.qntxt}> {qn.qstat} </div>
+                        <div className={styles.qntxt}> {qn.qnstat} </div>
                         {
                             qn.image!='#' && <div className={styles.qnimg}> <img src={qn.image} alt="imagine..." className={styles.objimg} /> </div>
                         }
@@ -54,7 +93,7 @@ export function Testpage() {
                     <div className={styles.all}>
                         {
                             sec.map((item,index)=>{
-                                return <Section sub={item} setQn={setQn} key={index}></Section>;
+                                return <Section sub={item} setQn={setQn}  key={index}></Section>;
                             })
                         }   
                     </div>
@@ -66,7 +105,12 @@ export function Testpage() {
                 <button className={`${styles.tsbtn} ${styles.next}`}>Next <IoIosArrowForward size={15}/></button>
                 <div className={styles.rule}></div>
                 <button className={`${styles.tsbtn} ${styles.save}`}>Save & Next</button>
-                <button className={`${styles.tsbtn} ${styles.review}`}>Mark for Review</button>
+                <button 
+                    className={`${styles.tsbtn} ${styles.review}`}
+                    onClick={() => {
+
+                    }}
+                    >Mark for Review</button>
             </div>
         </div>
         </>
