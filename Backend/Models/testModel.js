@@ -1,9 +1,17 @@
 import mongoose from "mongoose";
 
 const testSchema = new mongoose.Schema({
-    test_id: { type: String, required: true }, // Corrected 'require' to 'required'
-    teacher_id: { type: String },
-    time: { type: Number },
+    details:{
+    title: { type: String, required: true },
+    id: { type: String, required: true },
+    teacher_id: { type: String, required: true },
+    teacher_name: { type: String, required: true },
+    time: { type: Number, required: true },
+    attempted:{type:Number,default:0},
+    max_score:{type:Number,required:true},
+    avg_score:{type:Number,default:0},
+    tag: { type: String, required: true },
+    },
     section: [{
         subName: { type: String, required: true }, // Corrected 'require' to 'required'
         list: [{
