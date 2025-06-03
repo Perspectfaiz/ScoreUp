@@ -1,5 +1,5 @@
 import styles from './Qnbtn.module.css'
-export function Qnbtn({num,btn}) {
+export function Qnbtn({num,qdata}) {
     const btnobj = [
         {name:'unseen', review:'dot'},
         {name:'seen', review: 'dot'},
@@ -13,8 +13,8 @@ export function Qnbtn({num,btn}) {
     return (
         <>
             <div className={styles.line}>
-                <div className={`${styles.qnbtn} ${styles[btnobj[btn].name ]}`}>{num}
-                    <div className={`${styles[btnobj[btn ].review]}`}></div>
+                <div className={`${styles.qnbtn} ${styles[btnobj[qdata.state].name ]}`}>{num}
+                    <div className={`${styles[btnobj[qdata.state].review]}`}></div>
                 </div>
             </div>
         </>
