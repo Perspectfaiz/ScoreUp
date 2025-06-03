@@ -49,7 +49,7 @@ export function Testpage() {
         <div className={styles.testpage}>
             <div className={styles.heading}>
                 <div className={styles.logo}>
-                    <img src="../public/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
+                    <img src="/6527325.png" alt="ScoreUp" className={styles.logoimg}/>
                 </div>
                 <div className={`${styles.timer} ${lastmin ? styles.lastminclr : ""}`}>
                     <div className={styles.timelogo}><LuAlarmClock/></div>

@@ -19,12 +19,12 @@ export function ContributeForm({ onClose }) {
 
     // Exam image options (update these paths as needed)
     const examImages = [
-        { label: 'CAT', value: '/public/cat.png' },
-        { label: 'NEET', value: '/public/neet.png' },
-        { label: 'CLAT', value: '/public/clat.png' },
-        { label: 'UPSC', value: '/public/upsc.png' },
-        { label: 'CUET', value: '/public/cuet.png' },
-        { label: 'JEE', value: '/public/jee.png' },
+        { label: 'CAT', value: '/cat.png' },
+        { label: 'NEET', value: '/neet.png' },
+        { label: 'CLAT', value: '/clat.png' },
+        { label: 'UPSC', value: '/upsc.png' },
+        { label: 'CUET', value: '/cuet.png' },
+        { label: 'JEE', value: '/jee.png' },
     ];
 
     const handleChange = (e) => {
@@ -69,7 +69,7 @@ export function ContributeForm({ onClose }) {
             const filePath = await uploadPDF(formData.file);
             const fileUrl = filePath ? `https://jheytdveryzjwznjluwj.supabase.co/storage/v1/object/public/pdf/${filePath}` : '';
             const tagsArray = formData.tags.split(',').map(tag => tag.trim());
-            const response = await fetch('http://localhost:5000/api/resources', {
+            const response = await fetch('http://localhost:8080/api/resources', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
