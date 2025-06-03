@@ -18,7 +18,7 @@ export function Teacherprofile({hid}) {
                     <div className={styles.profile}>
                         <div className={styles.personal}>
                             <div className={styles.dp}>
-                                <img src="../../public/dp.jpeg" alt="imagine..." className={styles.dpimg}/>
+                                <img src="/dp.jpeg" alt="imagine..." className={styles.dpimg}/>
                             </div>
                             <div className={styles.txt}>
                                 <p className={styles.name}>MKC</p>
@@ -91,7 +91,7 @@ export function Teacherprofile({hid}) {
                 <div className={styles.left}>
                     <div className={styles.dpbox}>
                         <div className={styles.bccolor}>
-                            <img src="../../public/dp.jpeg" alt="imagine..." className={styles.dpimg} />
+                            <img src="/dp.jpeg" alt="imagine..." className={styles.dpimg} />
                             <button className={styles.dpbtn}><LiaEditSolid size={60}/></button>
                         </div>
                         

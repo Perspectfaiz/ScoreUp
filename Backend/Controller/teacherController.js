@@ -3,14 +3,9 @@ import validator from "validator"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 import teacherModel from "../Models/teacherModel.js";
-import vision from '@google-cloud/vision';
+
 import testModel from "../Models/testModel.js";
-//const vision = require('@google-cloud/vision');
 
-// const client = new vision.ImageAnnotatorClient();
-// const together = new Together();
-
-const client = new vision.ImageAnnotatorClient();
 
 const signupTeacher= async (req,res)=>{
     try {
@@ -157,13 +152,16 @@ const createTest = async(req,res)=>{
 
 
 const extractText = async (req, res) => {
-      try {
-        console.log(req);
-        res.json({success:true,message:"jai Hind"})
-      } catch (error) {
+    try {
+        // Temporarily returning a simple response
+        res.json({
+            success: true,
+            message: "Text extraction feature is currently disabled"
+        });
+    } catch (error) {
         console.log(error);
-     res.json({success:false,message:error.message});
-      }
+        res.json({success: false, message: error.message});
     }
+}
 export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest};
 

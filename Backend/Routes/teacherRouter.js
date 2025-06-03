@@ -17,7 +17,7 @@ teacherRouter.use('/login',loginTeacher);
 // teacherRouter.use('/text',extractText);
 // teacherRouter.use('/profile',updateTeacherProfile)
 teacherRouter.use('/create-test',createTest);
-teacherRouter.use('get-profile-data',authTeacher,getTeacherProfileData);
+teacherRouter.get('/get-profile-data',authTeacher,getTeacherProfileData);
 teacherRouter.use('/text',extractText);
 
 export default teacherRouter;
