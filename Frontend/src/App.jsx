@@ -20,6 +20,7 @@ import Home from './pages/Home'
 import { About } from './components/About'
 import { FreeReso } from './components/resources/resources'
 import { Createtest } from './components/upload test/Createtest'
+import { Qnform } from './components/upload test/Qnform'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Route path='/about' element={<About />} />
       <Route path='/free-resources' element={<FreeReso />} />
       <Route path='/upload-test' element={<Createtest />} />
+      {/* <Route path='/upload-test/qnform' element={<Qnform />} /> */}
 
     </Routes>
   )
