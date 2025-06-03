@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import {toast} from 'react-toastify';
 import axios from 'axios';
 const Login=()=>{
+   const backendUrl = import.meta.env.VITE_BACKEND_URL;
    const [signUp,setSignUp]=useState(true);
    const [isTeacher,setIsTeacher]=useState(false);
    const [email,setEmail]=useState('')
@@ -17,7 +18,7 @@ const Login=()=>{
    try{
     if(signUp){
      if(isTeacher){
-     const {data}= await axios.post('http://localhost:8080/api/teacher/sign-up',{name,email,username,password});
+     const {data}= await axios.post(`${backendUrl}/api/teacher/sign-up`,{name,email,username,password});
      if(data.success){
         localStorage.setItem('itoken',data.itoken);
         setIToken(data.itoken);
@@ -26,7 +27,7 @@ const Login=()=>{
         toast.error(data.message);
      }
      }else{
-        const {data}= await axios.post('http://localhost:8080/api/student/sign-up',{name,email,username,password});
+        const {data}= await axios.post(`${backendUrl}/api/student/sign-up`,{name,email,username,password});
 
         if(data.success){
            localStorage.setItem('token',data.token);
@@ -38,7 +39,7 @@ const Login=()=>{
      }
     }else{
       if(isTeacher){
-        const {data}= await axios.post('http://localhost:8080/api/teacher/login',{usernameORemail:email,password});
+        const {data}= await axios.post(`${backendUrl}/api/teacher/login`,{usernameORemail:email,password});
         if(data.success){
            localStorage.setItem('itoken',data.itoken);
            setIToken(data.itoken);
@@ -47,7 +48,7 @@ const Login=()=>{
            toast.error(data.message);
         }
         }else{
-           const {data}= await axios.post('http://localhost:8080/api/student/login',{usernameORemail:email,password});
+           const {data}= await axios.post(`${backendUrl}/api/student/login`,{usernameORemail:email,password});
            if(data.success){
               localStorage.setItem('token',data.token);
               setToken(data.token);

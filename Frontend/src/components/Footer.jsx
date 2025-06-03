@@ -62,7 +62,7 @@ export function Footer() {
                 </div>
                 <div className={styles.bottom}>
                     <a href='#' className={styles.brand}>
-                        <img src="../public/6527325.png" alt="ScoreUp" />
+                        <img src="/6527325.png" alt="ScoreUp" />
                         <div className={styles.brandname}>ScoreUp</div>
                     </a>
                     <div className={styles.social}>

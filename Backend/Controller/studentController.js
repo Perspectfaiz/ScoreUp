@@ -2,6 +2,7 @@ import validator from "validator";
 import studentModel from "../Models/studentModel.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
+import {v2 as cloudinary} from "cloudinary";
 //API to login
 
 const signupStudent=async (req,res)=>{
@@ -78,8 +79,17 @@ const getStudentProfileData = async (req, res) => {
 const updateStudentProfileData = async (req, res) => {
     try{
         const {studentId, name,dob,username,stream,university,address,phone,email,description,classes } = req.body;
-        const student = await studentModel.findByIdAndUpdate(studentId, { name,dob,username,stream,university,address,phone,email,description,classes });
         
+         const imageFile=req.file;
+
+        if(imageFile){
+      const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
+      var imageUrl = imageUpload.secure_url;
+      console.log(imageUrl);
+    }
+    
+        const student = await studentModel.findByIdAndUpdate(studentId, { name,dob,username,stream,university,address,phone,email,description,classes });
+       
         if (student) {
             return res.json({ success: true, message: "Student profile updated" });
         } else {

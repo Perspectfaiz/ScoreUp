@@ -28,7 +28,7 @@ export function Navbar() {
                 }
                 {
                    
-                         token && <div onClick={()=>navigate('/studentprofile')}><img src="../public/account.png" alt="X" /></div>
+                         token && <div onClick={()=>navigate('/studentprofile')}><img src="/account.png" alt="X" /></div>
                    
                   
                 }
