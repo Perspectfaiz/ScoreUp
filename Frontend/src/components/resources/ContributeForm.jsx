@@ -12,6 +12,7 @@ export function ContributeForm({ onClose }) {
         file: null,
         thumbnailUrl: ''
     });
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
