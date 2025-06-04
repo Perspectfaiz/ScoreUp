@@ -349,8 +349,13 @@ export function Testpage() {
         qnToUpdate.state = qnToUpdate.state < 4 ? 2 : 5;
         setSec(updatedSec);
         changeAns(ansIdx);
-        goToNext();
+        
     };
+
+    const Savennext = () => {
+        Save();
+        goToNext();
+    }
 
     const [countdown, setCountdown] = useState(testObj.details.time);
     const [hour, setHour] = useState(0);
@@ -383,7 +388,7 @@ export function Testpage() {
 
     return (
         <>
-        <button onClick={() => console.log(answer)}>show answers</button>
+        {/* <button onClick={() => console.log(answer)}>show answers</button> */}
         <div className={styles.testpage}>
             <div className={styles.heading}>
                 <div className={styles.logo}>
@@ -484,7 +489,9 @@ export function Testpage() {
                 <button className={`${styles.tsbtn} ${styles.back}`} onClick={goToBack}><IoIosArrowBack size={15} /> Back</button>
                 <button className={`${styles.tsbtn} ${styles.next}`} onClick={goToNext}>Next <IoIosArrowForward size={15} /></button>
                 <div className={styles.rule}></div>
-                <button className={`${styles.tsbtn} ${styles.save}`} onClick={Save} disabled={isDisable}>Save & Next</button>
+                <button className={`${styles.tsbtn} ${styles.save} ${styles.onlysave}`} onClick={Save} disabled={isDisable}>Save</button>
+                <div className={styles.rule}></div>
+                <button className={`${styles.tsbtn} ${styles.save}`} onClick={Savennext} disabled={isDisable}>Save & Next</button>
                 <button className={`${styles.tsbtn} ${styles.review}`} onClick={reviewMarker}>Mark for Review</button>
             </div>
         </div>

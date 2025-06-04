@@ -379,6 +379,11 @@ html, body {
     border-radius: 2px;
     background-color: rgb(240, 240, 240);
 }
+
+.testpage .onlysave{
+    margin-right: 30px;
+}
+
 .testpage .save{
     padding: 10px 4%;
     margin-left: 30px;
@@ -416,5 +421,5 @@ html, body {
 
 .testpage .review{
     position: relative;
-    left: 24%;
+    left: 8.5%;
 }
