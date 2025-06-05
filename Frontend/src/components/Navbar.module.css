@@ -117,3 +117,46 @@
     color: rgb(255, 255, 255);
     
 }
+
+.profileContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profileImage {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.profileImage:hover {
+    transform: scale(1.1);
+}
+
+.logout {
+    color: #fff;
+    background: linear-gradient(90deg, #703ed1 0%, #5d20d3 100%);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 7px 32px ;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(93,32,211,0.08);
+    margin-left: 8px;
+    margin-right: 28px;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout:hover {
+    background: linear-gradient(90deg, #5d20d3 0%, #703ed1 100%);
+    box-shadow: 0 4px 16px rgba(93,32,211,0.15);
+    transform: translateY(-1px) scale(1.004);
+}

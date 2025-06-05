@@ -3,7 +3,9 @@ import express from 'express'
 
 // import { loginTeacher, signupTeacher, createTest } from '../Controller/teacherController.js';
 
-import { loginTeacher, signupTeacher,extractText,getTeacherProfileData, createTest } from '../Controller/teacherController.js';
+
+import { signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest} from '../Controller/teacherController.js';
+
 import authTeacher from '../Middleware/authTeacher.js';
 import { get } from 'mongoose';
 
@@ -15,8 +17,7 @@ teacherRouter.use('/login',loginTeacher);
 // teacherRouter.use('/text',extractText);
 // teacherRouter.use('/profile',updateTeacherProfile)
 teacherRouter.use('/create-test',createTest);
-
-teacherRouter.use('get-profile-data',authTeacher,getTeacherProfileData);
+teacherRouter.get('/get-profile-data',authTeacher,getTeacherProfileData);
 teacherRouter.use('/text',extractText);
 
 export default teacherRouter;

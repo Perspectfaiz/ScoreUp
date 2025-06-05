@@ -10,7 +10,6 @@
 .off{
     display: none;
 }
-
 .on{
     display: block;
 }
@@ -81,6 +80,14 @@
 .studprofile .name{
     font-size: 150%;
     font-weight: 500;
+}
+.studprofile .stream{
+    background-color: #f0edf7;
+    border: 1px solid #eae0ff;   
+    font-size: 90%;
+    width: fit-content;
+    padding: 2px 12px;
+    border-radius: 70px;
 }
 
 /* .studprofile .description{
@@ -182,17 +189,12 @@ p {
 }
 
 .update .backbutton:hover{
-
     background-color: #e0e0e0;
 }
 
 .update .editprofile{
     position: relative;
     left: 36%;
-}
-
-
-    background-color: #e0e0e0;
 }
 
 .update .main{

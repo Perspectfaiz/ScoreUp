@@ -8,7 +8,7 @@ export function Hero() {
                     <p className={styles.bottom}>you need for Tomorrow.</p>
                 </div>
                 <div className={styles.image}>
-                    <img src="../../public/student.png" alt="students" />
+                    <img src="/student.png" alt="students" />
                 </div>
             </div>
         </>
