@@ -302,3 +302,258 @@ p {
     background-color:#5c33ae;
 }
 
+/* --- LeetCode-Inspired Student Profile Styles --- */
+
+.leftPanel {
+  width: 320px;
+  min-width: 280px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(112,62,209,0.07);
+  padding: 32px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 32px 24px 32px 32px;
+  align-items: center;
+}
+
+.profileCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: #f8f6fc;
+  border-radius: 14px;
+  padding: 24px 12px 18px 12px;
+  box-shadow: 0 1px 8px 0 rgba(112,62,209,0.04);
+}
+
+.profilePic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #703ed1;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.profileInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.name {
+  color: #2d2d2d;
+}
+
+.stream {
+  background: #eae0ff;
+  color: #703ed1;
+  font-size: 0.9rem;
+  padding: 2px 12px;
+  border-radius: 70px;
+  font-weight: 500;
+}
+
+.desc {
+  font-size: 0.98rem;
+  color: #616161;
+  margin: 2px 0 4px 0;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.97rem;
+  color: #703ed1;
+  margin-bottom: 2px;
+}
+
+.editBtn {
+  margin-top: 10px;
+  background: #703ed1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.editBtn:hover {
+  background: #5c33ae;
+}
+
+.statsCard {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px 0 rgba(112,62,209,0.04);
+  padding: 18px 12px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.statsHeader {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #703ed1;
+  margin-bottom: 8px;
+}
+.statsGrid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.statsValue {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+.statsLabel {
+  font-size: 0.9rem;
+  color: #616161;
+  text-align: center;
+}
+.rankRow, .percentileRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-top: 2px;
+}
+.rankValue {
+  color: #703ed1;
+  font-weight: 600;
+}
+.percentileValue {
+  color: #00b894;
+  font-weight: 600;
+}
+
+.mainPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 32px 32px 32px 0;
+}
+
+.chartCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px 0 rgba(112,62,209,0.04);
+  padding: 18px 24px 12px 24px;
+  margin-bottom: 0;
+}
+.chartHeader {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #703ed1;
+  margin-bottom: 8px;
+}
+
+.lastTestCard {
+  background: #f8f6fc;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px 0 rgba(112,62,209,0.04);
+  padding: 18px 24px 12px 24px;
+  margin-bottom: 0;
+}
+.lastTestHeader {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #703ed1;
+  margin-bottom: 8px;
+}
+.lastTestInfo {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.lastTestLabel {
+  font-size: 0.95rem;
+  color: #616161;
+}
+.lastTestValue {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.historyCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px 0 rgba(112,62,209,0.04);
+  padding: 18px 24px 18px 24px;
+}
+.historyHeader {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #703ed1;
+  margin-bottom: 8px;
+}
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+.historyTable th, .historyTable td {
+  padding: 8px 10px;
+  text-align: left;
+}
+.historyTable th {
+  background: #f0edf7;
+  color: #703ed1;
+  font-weight: 600;
+}
+.historyTable tr:nth-child(even) {
+  background: #f8f6fc;
+}
+.viewBtn {
+  background: #703ed1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 14px;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.viewBtn:hover {
+  background: #5c33ae;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .studprofile {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mainPanel {
+    margin: 24px 0 0 0;
+  }
+  .leftPanel {
+    margin: 24px 0 0 0;
+  }
+}
+
+/* Keep existing styles for edit section, etc. */
+
