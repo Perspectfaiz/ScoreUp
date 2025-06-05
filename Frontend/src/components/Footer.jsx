@@ -7,11 +7,53 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { TbSend } from "react-icons/tb";
-
-
+import { use } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 export function Footer() {
+    const [message,setMessage]=useState("");
+
+     const onSubmitHandler = async (event) => {
+    event.preventDefault();
+message.trim() === "" && toast.error("Please enter a message before sending feedback.");
+console.log("Message:", message);
+    try {
+        const token = localStorage.getItem("token");     
+  const itoken = localStorage.getItem("itoken"); 
+  
+  if(token){
+const {data}=  await axios.post('http://localhost:8080/api/admin/feedback', {message},{headers: {token } });
+  if (data.success) {
+                    toast.success("your feedback has been sent successfully!");
+                    setMessage(""); 
+                } else {
+                    toast.error(data.message || "Failed to create teacher account");
+                }
+  }else if(itoken){
+const { data } =  await axios.post('http://localhost:8080/api/admin/feedback', {message},{headers: {itoken } });
+  if (data.success) {
+                    toast.success("your feedback has been sent successfully!");
+                    setMessage(""); 
+                } else {
+                    toast.error(data.message || "Failed to create teacher account");
+                }
+  }else{
+    toast.error("Please log in to send feedback.");
+    return;
+  }
+                
+              
+            
+        
+    } catch (error) {
+        console.error("Error:", error);
+        toast.error(error.response?.data?.message || "An error occurred. Please try again.");
+    }
+   }
     return(
         <>
+        <ToastContainer /> {/* <-- Add this line */}
             <div className={styles.foot}>
                 <div className={styles.detail}>
                     <div className={styles.links}>
@@ -53,11 +95,14 @@ export function Footer() {
                     </div>
                     <div className={styles.feedback}>
                         <p className={styles.head}>FEEDBACK</p>
-                        <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts'></textarea>
-                        <button className={styles.send}>
+                        <form onSubmit={onSubmitHandler}>
+                           <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+                        <button className={styles.send} type="submit"   >
                             <div className={styles.sendtxt}>Send</div>
                             <LiaLongArrowAltRightSolid className={styles.sendicon} size={25}/>
                         </button>
+                        </form>
+                        
                     </div>
                 </div>
                 <div className={styles.bottom}>

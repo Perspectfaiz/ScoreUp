@@ -12,7 +12,7 @@
 .qnbtn{
     height: 40px;
     width: 40px;
-    border-radius: 6px;
+    border-radius: 7px;
     border: 1px solid rgb(181, 181, 181);
     display: flex;
     justify-content: center;
@@ -22,14 +22,14 @@
 
 
 .bindi{
-    height: 13px;
-    width: 13px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
     position :absolute;
-    background-color:purple;
-    top: 27px;
-    left: 25px;
-    border: 2px solid white;
+    background-color: #703ed1;
+    top: 23px;
+    left: 23px;
+    border: 3px solid white;
 }
 
 .unseen{
@@ -37,11 +37,14 @@
 }
 
 .seen{
-    background-color: rgb(255, 104, 62);
+    background-color: #f54a3a;
+    color: #fff;
+    border: 1px solid #f49087;
 }
 .save{
     border-radius: 50%;
-    background-color: green;
+    background-color: #11b73d;
+    border: 1px solid #b0eebf;
     color: #fff;
 }
 .curr{
