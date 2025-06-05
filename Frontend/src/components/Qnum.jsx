@@ -1,17 +1,17 @@
+import { useState } from 'react';
 import { Qnbtn } from './Qnbtn'
 import styles from './Qnum.module.css'
 
-export function Qnum({qdata, idx, setQn}) {
-    const btnState=qdata.state;
+export function Qnum({qdata, idx, secIdx, setQn, setSecIdx, setQnIdx}) {
     const handle=()=>{
-        qn.state = qn.state > 3 ? 4 : 1;
         setQn(qdata);
-        
+        setQnIdx(idx);
+        setSecIdx(secIdx);
     }
     return (
         <>
             <div className={styles.line} onClick={handle}>
-                <Qnbtn num={idx+1} btn={btnState} ></Qnbtn>
+                <Qnbtn num={idx+1} qdata={qdata} ></Qnbtn>
             </div>
         </>
     )
