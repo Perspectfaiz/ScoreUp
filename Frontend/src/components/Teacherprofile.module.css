@@ -1,0 +1,352 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.off{
+    display: none;
+}
+.on{
+    display: block;
+}
+/* ///////////student profile///////////// */
+
+
+
+.teacherprofile{
+    /* background-color: rgb(255, 153, 0); */
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.teacherprofile .left{
+    /* background-color: green; */
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.teacherprofile .profile{
+    height: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.teacherprofile .personal{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    /* background-color: #703ed1; */
+    border-bottom: 1px solid rgb(225, 225, 225);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* color: white; */
+}
+
+.teacherprofile .dp{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    
+}
+
+.teacherprofile .dpimg{
+    background-color: rgb(0, 255, 174);
+    width: 90px;
+    height: 90px;
+    border: 2px solid white;
+    border-radius: 100%;
+}
+
+.teacherprofile .txt{
+    padding-left: 15px;
+    display: flex;
+    width: 66%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacherprofile .name{
+    font-size: 150%;
+    font-weight: 500;
+}
+
+.teacherprofile .stream{
+    background-color: #e5d9ff;
+
+    color: #7248c4;
+    /* border: 1px solid #eae0ff;    */
+    font-size: 80%;
+    width: fit-content;
+    padding: 4px 14px;
+    border-radius: 70px;
+    font-weight: 500;
+}
+
+/* .studprofile .description{
+    height: 50%;
+    padding: 15px 10px;
+    font-size: 80%;
+} */
+
+.teacherprofile .edit{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+.teacherprofile .editbtn {
+    all: unset;
+    height: 80%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #703ed1;
+    color: white;
+    border-radius: 5px;
+    transition: all 100ms ease-out;
+}
+.teacherprofile .editbtn:hover {
+    background-color: #5c33ae;
+    height: 82%;
+    width: 82%;
+    border-radius: 8px;
+    color: #eeeeee;
+
+}
+
+.teacherprofile .right{
+    height: 100%;
+    width: 75%;
+}
+
+.teacherprofile .filter{
+    height: 5vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.151);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.teacherprofile .tag{
+    width: 80%;
+}
+.teacherprofile .examlist{
+    width: 100%;
+    height: 79vh;
+    /* background-color: rgb(255, 255, 255); */
+}
+
+.teacherprofile .listhead{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 7vh;
+    background-color: #ececec;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+.teacherprofile .listhead > *{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 1%;
+}
+
+.teacherprofile .listhead > * > *{
+    margin-left: 8px;
+}
+
+.teacherprofile .listhead .status{
+    width: 8%;
+}
+
+.teacherprofile .listhead .topic{
+    width: 43%;
+}
+
+.teacherprofile .listhead .duration{
+    width: 8%;
+}
+
+.teacherprofile .listhead .attempted{
+    width: 8%;
+}
+
+.teacherprofile .listhead .teacher{
+    min-width: 23%;
+}
+
+.teacherprofile .listlist{
+    width: 100%;
+    height: 79vh;
+    /* background-color: rgb(255, 255, 255); */
+    overflow: scroll;
+}
+
+/* /////////// Upadate ///////////// */
+p {
+    margin-left: 0;
+}
+/* input{
+    all: unset;
+} */
+
+.update{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 100%;
+    /* display: none; */
+}
+.update .heading{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 150%;
+    font-weight: bold;
+    height: 12%;
+}
+
+.update .backbutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 3%;
+    padding: 10px;
+    padding-left: 2px;
+    border-radius: 50px;
+    color: #616161;
+}
+
+.update .backbutton:hover{
+    background-color: #e0e0e0;
+}
+
+.update .editprofile{
+    position: relative;
+    left: 36%;
+}
+
+.update .main{
+    color: #000000;
+    height: 76%;
+    display: flex;
+    border-top: 1px solid rgb(191, 191, 191);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.update .left{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5%;
+}
+.update .dpbox{
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.update .bccolor{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.611);
+    background-color: #000000;
+}
+.update .dpimg{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.update .dpimg:hover{
+    opacity: 50%;
+}
+
+.update .dpbtn{
+    position: absolute;
+    left: 13.25%;
+    top: 34.3vh;
+    width: 60px;
+    height: 60px;
+    z-index: 5;
+    color: white;
+    border-radius: 50%;
+    display: none;
+}
+.update .dpimg:hover + .dpbtn{
+    display: block;
+}
+
+.update .dpbtn:hover{
+    display: block;
+    /* background-color: #703ed1; */
+}
+
+.update .dpbtn:hover + .dpimg{
+    opacity: 50%;
+}
+
+.update .description{
+    margin-top: 10%;
+
+}
+.update .dtxt{
+    all: unset;
+    height: 160%;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 5px;
+    word-break: break-all;
+    padding: 10px;
+}
+
+
+
+.update .base{
+    height: 12%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.update .savebtn{
+    all: unset;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #703ed1;
+    width: 12%;
+    color: #fff;
+    border-radius: 5px;
+    transition: all 100ms ease-in-out;
+}
+.update .savebtn:hover{
+    border-radius: 6px;
+    width: 13%;
+    height: 57%;
+    background-color:#5c33ae;
+}
+

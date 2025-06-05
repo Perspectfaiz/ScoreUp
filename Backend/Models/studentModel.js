@@ -18,7 +18,11 @@ const studentSchema = new mongoose.Schema({
     address: { type: String, default: "Not Updated" },
     gender: { type: String, default: "Not Selected" },
     dob: { type: String, default: "Not Selected" },
-    phone: { type: String, default: "0000000000" }
+    phone: { type: String, default: "0000000000" },
+    stream:{ type:String, default:"Not Selected"},
+    university:{ type:String, default:"Not Selected"},
+    description:{ type:String, default:"...."},
+    classes:{ type:String, default:"12"},
 });
 
 

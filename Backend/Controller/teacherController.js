@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt";
 import teacherModel from "../Models/teacherModel.js";
 
+import testModel from "../Models/testModel.js";
+
 
 const signupTeacher= async (req,res)=>{
     try {
@@ -38,9 +40,9 @@ const signupTeacher= async (req,res)=>{
     }
     const newTeacher = new teacherModel(teacherData);
     const user = await newTeacher.save();
-    const token = await jwt.sign({id:user._id},"homelander")
+    const itoken = await jwt.sign({id:user._id},"homelander")
     res.status(201).json({
-        success:true,token })
+        success:true,itoken })
 
     } catch (error) {
         res.status(404).json({
@@ -66,9 +68,9 @@ const loginTeacher= async(req,res)=>{
     }
     const match = await bcrypt.compare(password,user.password);
     if(match){
-        const token = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
+        const itoken = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
 
-       return res.json({success:true,token})
+       return res.json({success:true,itoken})
     }
     else{
         return res.status(404).json({
@@ -83,5 +85,83 @@ const loginTeacher= async(req,res)=>{
         })
     }
 }
+// Api to get teacher profile data
 
-export {signupTeacher,loginTeacher};
+
+const getTeacherProfileData = async (req, res) => {
+
+ try{
+   const {teacherId}=req.body;
+   const teacher = await teacherModel.findById(teacherId);
+   if(teacher){
+    return res.json({sucess:true,data:teacher});
+   }else{
+    return res.json({success:false,message:"Teacher not found"});
+   }
+ }catch(error){
+        console.log(error);
+        res.json({success:false,message:error.message});
+ }
+
+}
+// const extractText = async (req, res) => {
+// try{
+//     const fileName = 'C:/Users/verma/Documents/GitHub/ScoreUp/Backend/assets/textcheck.jpg';
+//     const [result] = await client.textDetection(fileName);
+//     const detections = result.textAnnotations;
+//     console.log('Text:');
+//     detections.forEach(text => console.log(text));
+// }catch(error){
+//     console.log(error);
+//     res.json({success:false,message:error.message});
+// }
+// }
+
+// const extractText = async (req, res) => {
+//     try{
+//         const response = await together.chat.completions.create({
+//             messages: [{"role": "user", "content": "What are some fun things to do in New York?"}],
+//             model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+//         });
+        
+//         console.log(response.choices[0].message.content)
+//     }catch(error){
+//         console.log(error);
+//         res.json({success:false,message:error.message});
+//     }
+//     }
+
+
+const createTest = async(req,res)=>{
+    try {
+
+       
+        const test= req.body;
+      console.log(test);
+         const newTest= testModel(test);
+         await newTest.save();
+         res.json({
+            success:true,
+            message:"New test created"
+         })
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:error.message})
+    }
+}
+
+
+const extractText = async (req, res) => {
+    try {
+        // Temporarily returning a simple response
+        res.json({
+            success: true,
+            message: "Text extraction feature is currently disabled"
+        });
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest};
+

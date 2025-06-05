@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'pop'; 
+    src: local('Poppins'); 
+}
+
+* {
+    font-family: 'Poppins';
+}
+.sub{
+    border-bottom: 1px solid rgb(226, 226, 226);
+    padding: 10px 0;
+}
+.sub .secname{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.sub .secname:hover{
+    background-color: rgb(240, 240, 240);
+}
+.sub .iconarrow{
+    margin-left: 10px;
+    rotate: 270deg;
+    transition: transform 300ms ease-in-out;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid > *{
+    margin: 10px;
+}
+
