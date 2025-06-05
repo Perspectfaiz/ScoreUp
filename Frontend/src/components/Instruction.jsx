@@ -1,13 +1,14 @@
 import styles from './Instruction.module.css'
 import { RxCross2 } from "react-icons/rx";
 import { Qnbtn } from './Qnbtn';
+import { useNavigate } from 'react-router-dom';
 
 
 {/* <Qnbtn num={3} btn = {btnobg[0]}></Qnbtn> */}
 
 
 export function Instruction({hide}) {
-
+    const navigate=useNavigate();
     return (
         <>
             <div className={styles.fixed}>         
@@ -118,7 +119,13 @@ export function Instruction({hide}) {
                         <p><strong>Best of luck!</strong></p>
                     </div> 
                     <div className={styles.start}>
-                        <button className={styles.startbtn}>Start Test</button>
+                        <button className={styles.startbtn} onClick={
+                            
+                            ()=>{
+                            // console.log("naviagte is triggerd")
+                            hide();
+                            navigate('/testpage')
+                        }}>Start Test</button>
                     </div>  
                 </div> 
             </div>

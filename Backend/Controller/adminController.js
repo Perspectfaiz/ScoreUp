@@ -1,16 +1,24 @@
 
 import feedbackModel from "../Models/feedbackModel.js";
-
+import studentModel from "../Models/studentModel.js";
 const addFeedback= async (req,res)=>{
   try{
-   const {user_id,message}=req.body;
-   if(!user_id || !message){
+   const {message,studentId,teacherId}=req.body;
+  
+   if(!message){
      res.json({success:false,message:"missing information"});
    }
+   var username = "";
+ if(studentId){
+ username = await studentModel.findById(studentId).select("username");
+ }else{
+ username = await studentModel.findById(teacherId).select("username");
+ }
    const feedbackData={
-     user_id,
+     username,
      message
    }
+   console.log(feedbackData);
     const newFeedback=new feedbackModel(feedbackData);
       await newFeedback.save();
     res.json({success:true,message:"Feedback Added"});

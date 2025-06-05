@@ -7,41 +7,53 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import { TbSend } from "react-icons/tb";
-import { useState,useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { use } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { AppContext } from '../Context/AppContext';
-import { set } from 'mongoose';
+import { toast, ToastContainer } from 'react-toastify';
 export function Footer() {
-    const [feedback, setfeedback] = useState('');
+    const [message,setMessage]=useState("");
 
-    const {token,itoken}=useContext(AppContext);
-    const navigate = useNavigate();
- const handleMouse=()=>{
-    if(!token && !itoken){
-        toast.error("Please login to give feedback");
-        navigate('/login');
-    }
- }
- const onSubmitHandler=async (event)=>{
+     const onSubmitHandler = async (event) => {
     event.preventDefault();
-    try{
-        const {data}= await axios.post('http://localhost:8080/api/admin/feedback',{user_id:'123456',message:feedback});
-        console.log(data);
-        if(data.success){
-            setfeedback('');
-            toast.success(data.message);
-        }else{
-            toast.error(data.message);
-        }   
- }catch(error){
-    console.log(error);
-    toast.error(error.message);
- }
- }
+message.trim() === "" && toast.error("Please enter a message before sending feedback.");
+console.log("Message:", message);
+    try {
+        const token = localStorage.getItem("token");     
+  const itoken = localStorage.getItem("itoken"); 
+  
+  if(token){
+const {data}=  await axios.post('http://localhost:8080/api/admin/feedback', {message},{headers: {token } });
+  if (data.success) {
+                    toast.success("your feedback has been sent successfully!");
+                    setMessage(""); 
+                } else {
+                    toast.error(data.message || "Failed to create teacher account");
+                }
+  }else if(itoken){
+const { data } =  await axios.post('http://localhost:8080/api/admin/feedback', {message},{headers: {itoken } });
+  if (data.success) {
+                    toast.success("your feedback has been sent successfully!");
+                    setMessage(""); 
+                } else {
+                    toast.error(data.message || "Failed to create teacher account");
+                }
+  }else{
+    toast.error("Please log in to send feedback.");
+    return;
+  }
+                
+              
+            
+        
+    } catch (error) {
+        console.error("Error:", error);
+        toast.error(error.response?.data?.message || "An error occurred. Please try again.");
+    }
+   }
     return(
         <>
+        <ToastContainer /> {/* <-- Add this line */}
             <div className={styles.foot}>
                 <div className={styles.detail}>
                     <div className={styles.links}>
@@ -83,16 +95,19 @@ export function Footer() {
                     </div>
                     <div className={styles.feedback}>
                         <p className={styles.head}>FEEDBACK</p>
-                        <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts' onClick={handleMouse} onChange={(e)=>setfeedback(e.target.value)} value={feedback}></textarea>
-                        <button className={styles.send} onClick={onSubmitHandler}>
+                        <form onSubmit={onSubmitHandler}>
+                           <textarea className={styles.comment} rows={4} cols={10} placeholder='Share your thoughts' value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
+                        <button className={styles.send} type="submit"   >
                             <div className={styles.sendtxt}>Send</div>
                             <LiaLongArrowAltRightSolid className={styles.sendicon} size={25}/>
                         </button>
+                        </form>
+                        
                     </div>
                 </div>
                 <div className={styles.bottom}>
                     <a href='#' className={styles.brand}>
-                        <img src="../public/6527325.png" alt="ScoreUp" />
+                        <img src="/6527325.png" alt="ScoreUp" />
                         <div className={styles.brandname}>ScoreUp</div>
                     </a>
                     <div className={styles.social}>
