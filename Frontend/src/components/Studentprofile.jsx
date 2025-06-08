@@ -5,7 +5,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useState } from 'react'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { FaMapMarkerAlt, FaUniversity, FaLinkedin, FaUserGraduate } from 'react-icons/fa';
-
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import ProgressBar from './ProgressBar';
+import { Navbar } from './Navbar';
 // Mock data for chart and stats
 const performanceData = [
   { month: 'Jan', score: 80 },
@@ -17,13 +21,15 @@ const performanceData = [
 ];
 
 const stats = {
-  solved: 235,
-  total: 3571,
+  solved: 735,
+  total: 1000,
   easy: 118,
   medium: 104,
   hard: 13,
   rank: 498604,
   percentile: 90.44,
+  testsGiven: 5,
+  totalTests: 10,
 };
 
 const lastTest = {
@@ -41,6 +47,36 @@ const testHistory = [
   { name: 'JEE Main Mock 1', date: '2025-03-20', score: 75, status: 'Completed' },
 ];
 
+const favoriteTestsData = [
+    { id: 1, name: 'Physics Mock 1', subject: 'Physics', date: '2024-06-01' },
+    { id: 2, name: 'Chemistry Mock 2', subject: 'Chemistry', date: '2024-06-05' },
+    { id: 3, name: 'Math Mock 3', subject: 'Math', date: '2024-06-10' },
+    { id: 4, name: 'JEE Advanced Mock 1', subject: 'Combined', date: '2024-06-15' },
+    { id: 5, name: 'NEET Mock 1', subject: 'Biology', date: '2024-06-20' },
+    { id: 6, name: 'Aptitude Test', subject: 'General', date: '2024-06-25' },
+    { id: 7, name: 'Verbal Reasoning', subject: 'English', date: '2024-06-30' },
+    { id: 8, name: 'NEET Mock 1', subject: 'Biology', date: '2024-06-20' },
+    
+];
+
+// Helper to create SVG arc path
+function describeArc(cx, cy, r, startAngle, endAngle) {
+    const start = polarToCartesian(cx, cy, r, endAngle);
+    const end = polarToCartesian(cx, cy, r, startAngle);
+    const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+    return [
+        "M", start.x, start.y,
+        "A", r, r, 0, largeArcFlag, 0, end.x, end.y
+    ].join(" ");
+}
+function polarToCartesian(cx, cy, r, angleInDegrees) {
+    const angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+    return {
+        x: cx + (r * Math.cos(angleInRadians)),
+        y: cy + (r * Math.sin(angleInRadians))
+    };
+}
+
 export function Studentprofile() {
     const [isDetailsVisible, setIsDetailsVisible] = useState(true);
 
@@ -57,44 +93,27 @@ export function Studentprofile() {
                                 <span className={styles.name}>Sameer Mishra</span>
                                 <span className={styles.stream}>JEE</span>
                             </div>
-                            <div className={styles.desc}>Directing stories on screen, debugging code off-screen</div>
+                            <div className={styles.desc}>Basket Ball is my dream, but I'm coding off-screen</div>
                             <div className={styles.infoRow}><FaMapMarkerAlt /> India</div>
                             <div className={styles.infoRow}><FaUniversity /> NIT Warangal</div>
-                            <div className={styles.infoRow}><FaLinkedin /> akash-jha-6026062b5</div>
-                            <div className={styles.infoRow}><FaUserGraduate /> C++</div>
+                            <div className={styles.infoRow}><FaLinkedin /> Sexy Sam</div>
+                            <div className={styles.infoRow}><FaUserGraduate /> Cse Minor</div>
                         </div>
                         <button className={styles.editBtn} onClick={() => setIsDetailsVisible(false)}>
                             <LiaEditSolid size={20} /> Edit Profile
                         </button>
                     </div>
-                    <div className={styles.statsCard}>
-                        <div className={styles.statsHeader}>Stats</div>
-                        <div className={styles.statsGrid}>
-                            <div>
-                                <div className={styles.statsValue}>{stats.solved}/{stats.total}</div>
-                                <div className={styles.statsLabel}>Solved</div>
+                    
+                    <hr className={styles.sectionDivider} />
+
+                    <div className={styles.favoriteTestsHeader}>Favorite Tests</div>
+                    <div className={styles.favoriteTestsList}>
+                        {favoriteTestsData.map((test) => (
+                            <div key={test.id} className={styles.favoriteTestsItem}>
+                                <span className={styles.testName}>{test.name}</span>
+                                <span className={styles.testSubject}>{test.subject}</span>
                             </div>
-                            <div>
-                                <div className={styles.statsValue} style={{ color: '#00b894' }}>{stats.easy}</div>
-                                <div className={styles.statsLabel}>Easy</div>
-                            </div>
-                            <div>
-                                <div className={styles.statsValue} style={{ color: '#fdcb6e' }}>{stats.medium}</div>
-                                <div className={styles.statsLabel}>Medium</div>
-                            </div>
-                            <div>
-                                <div className={styles.statsValue} style={{ color: '#d63031' }}>{stats.hard}</div>
-                                <div className={styles.statsLabel}>Hard</div>
-                            </div>
-                        </div>
-                        <div className={styles.rankRow}>
-                            <span>Rank</span>
-                            <span className={styles.rankValue}>{stats.rank}</span>
-                        </div>
-                        <div className={styles.percentileRow}>
-                            <span>Top</span>
-                            <span className={styles.percentileValue}>{stats.percentile}%</span>
-                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className={styles.mainPanel}>
@@ -110,24 +129,37 @@ export function Studentprofile() {
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
-                    <div className={styles.lastTestCard}>
-                        <div className={styles.lastTestHeader}>Last Test Performance</div>
-                        <div className={styles.lastTestInfo}>
-                            <div>
-                                <div className={styles.lastTestLabel}>Test</div>
-                                <div className={styles.lastTestValue}>{lastTest.name}</div>
-                            </div>
-                            <div>
-                                <div className={styles.lastTestLabel}>Score</div>
-                                <div className={styles.lastTestValue}>{lastTest.score}</div>
-                            </div>
-                            <div>
-                                <div className={styles.lastTestLabel}>Percentile</div>
-                                <div className={styles.lastTestValue}>{lastTest.percentile}%</div>
-                            </div>
-                            <div>
-                                <div className={styles.lastTestLabel}>Date</div>
-                                <div className={styles.lastTestValue}>{lastTest.date}</div>
+                    <div className={styles.summaryRow}>
+                        <div className={styles.statsCard}>
+                            <ProgressBar
+                                solved={stats.solved}
+                                total={stats.total}
+                                attempting={5}
+                                rank={stats.rank}
+                                percentile={stats.percentile}
+                                testsGiven={stats.testsGiven}
+                                totalTests={stats.totalTests}
+                            />
+                        </div>
+                        <div className={styles.lastTestCard}>
+                            <div className={styles.lastTestHeader}>Last Test Performance</div>
+                            <div className={styles.lastTestInfo}>
+                                <div>
+                                    <div className={styles.lastTestLabel}>Test</div>
+                                    <div className={styles.lastTestValue}>{lastTest.name}</div>
+                                </div>
+                                <div className={styles.rightAlignedInfo}>
+                                    <div className={styles.lastTestLabel}>Score</div>
+                                    <div className={styles.lastTestValue}>{lastTest.score}</div>
+                                </div>
+                                <div>
+                                    <div className={styles.lastTestLabel}>Percentile</div>
+                                    <div className={styles.lastTestValue}>{lastTest.percentile}%</div>
+                                </div>
+                                <div className={styles.rightAlignedInfo}>
+                                    <div className={styles.lastTestLabel}>Date</div>
+                                    <div className={styles.lastTestValue}>{lastTest.date}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,7 +187,7 @@ export function Studentprofile() {
                                 ))}
                             </tbody>
                         </table>
-                </div> 
+                    </div>
                 </div>
             </div>
             {/* <Footer></Footer> */}
@@ -169,7 +201,7 @@ export function Studentprofile() {
             <div className={styles.heading}>
                 <div className={styles.backbutton} onClick={ () => {
                     setIsDetailsVisible(!isDetailsVisible)
-                }}><IoIosArrowBack className={styles.iconback} size={18}/><p className={styles.txtback}>Back</p>
+                }}><IoIosArrowBack className={styles.iconback} size={28}/><p className={styles.txtback}>Back</p>
                 </div>
                 <p className={styles.editprofile}>Edit Profile</p>
             </div>
@@ -184,7 +216,7 @@ export function Studentprofile() {
                     </div>
                     <div className={styles.description}>
                         <p>Description</p>
-                        <textarea name="description" className={styles.dtxt}></textarea>
+                        <textarea name="description" className={styles.dtxt} placeholder="Tell us something about yourself"></textarea>
                     </div>
                 </div>
 
@@ -194,14 +226,6 @@ export function Studentprofile() {
                         <p>Name</p>
                         <input type="text" className={`${styles.input} ${styles.name_input}`} placeholder="Name"/>
                     </div>
-                    <div className={styles.dob}>
-                        <p>Date of birth</p>
-                        <input type="date" className={`${styles.input} ${styles.dob_input}`} placeholder="Date"/>
-                    </div>
-                    <div className={styles.username}>
-                        <p>Username</p>
-                        <input type="text" className={`${styles.input} ${styles.username_input}`} placeholder="Username"/>
-                    </div>
                     <div className={styles.gender}>
                         <p>Gender</p>
                         <select name="Gender" id={styles.gender} className={`${styles.input} ${styles.gender_select}`}>
@@ -210,9 +234,47 @@ export function Studentprofile() {
                             <option value="O">Others</option>
                         </select>
                     </div>
+                    <div className={styles.location}>
+                        <p>Location</p>
+                        <input type="text" className={`${styles.input} ${styles.location_input}`} placeholder="e.g., India"/>
+                    </div>
+                    <div className={styles.dob}>
+                        <p>Date of Birth</p>
+                        <input type="date" className={`${styles.input} ${styles.dob_input}`} placeholder="Date"/>
+                    </div>
+                    <div className={styles.username}>
+                        <p>Username</p>
+                        <input type="text" className={`${styles.input} ${styles.username_input}`} placeholder="Username"/>
+                    </div>
+                    <div className={styles.email}>
+                        <p>Email</p>
+                        <input type="email" className={`${styles.input} ${styles.email_input}`} placeholder="Email"/>
+                    </div>
+                    <div className={styles.password}>
+                        <p>Password</p>
+                        <input type="password" className={`${styles.input} ${styles.password_input}`} placeholder="Password"/>
+                    </div>
+                    <div className={styles.phone}>
+                        <p>Mobile Number</p>
+                        <input type="text" className={`${styles.input} ${styles.phone_input}`} placeholder="Mobile Number"/>
+                    </div>
                 </div>
 
+             
+
                 <div className={styles.other}>
+                    <div className={styles.address}>
+                        <p>Address</p>
+                        <input type="text" className={`${styles.input} ${styles.address_input}`} placeholder="Address"/>
+                    </div>
+                    <div className={styles.stream}>
+                        <p>Stream</p>
+                        <input type="text" className={`${styles.input} ${styles.stream_input}`} placeholder="Stream"/>
+                    </div>
+                    <div className={styles.university}>
+                        <p>University</p>
+                        <input type="text" className={`${styles.input} ${styles.university_input}`} placeholder="University"/>
+                    </div>
                     <div className={styles.class}>
                         <p>Class</p>
                         <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`}>
@@ -223,31 +285,11 @@ export function Studentprofile() {
                             <option value="10">10th</option>
                             <option value="11">11th</option>
                             <option value="12">12th</option>
+                            <option value="13">Dropper</option>
+
                         </select>
                     </div>
-                    <div className={styles.stream}>
-                        <p>Stream</p>
-                        <input type="text" className={`${styles.input} ${styles.stream_input}`} placeholder="Stream"/>
-                    </div>
-                    <div className={styles.university}>
-                        <p>University</p>
-                        <input type="text" className={`${styles.input} ${styles.university_input}`} placeholder="University"/>
-                    </div>
-                    <div className={styles.address}>
-                        <p>Address</p>
-                        <input type="text" className={`${styles.input} ${styles.address_input}`} placeholder="Address"/>
-                    </div>
-                </div>
-
-                <div className={styles.contact}>
-                    <div className={styles.phone}>
-                        <p>Phone No.</p>
-                        <input type="number" className={`${styles.input} ${styles.phone_input}`} placeholder="Phone No."/>
-                    </div>
-                    <div className={styles.email}>
-                        <p>Email</p>
-                        <input type="email" className={`${styles.input} ${styles.email_input}`} placeholder="Email"/>
-                    </div>
+                   
                 </div>
 
                 </div>
@@ -255,7 +297,8 @@ export function Studentprofile() {
             <div className={styles.base}>
                 <button className={styles.savebtn}>Save Changes</button>
             </div>
-        </div> )}
+        </div>
+        )}
         </>
     )
 }
