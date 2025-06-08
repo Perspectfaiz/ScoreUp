@@ -16,6 +16,7 @@ import { Tagcard } from './components/Tagcard'
 import { Examinterface } from './components/Examinterface'
 import { Teacherprofile } from './components/Teacherprofile'
 import { Createtest } from './components/upload test/Createtest'
+import { Aboutus } from './components/Aboutus'
 function App() {
  const [showInstruct, setShowInstuct]=useState(true);
  function hide(){
@@ -35,7 +36,7 @@ const [text2, setText2] = useState("");
 
   return (
     <>
-      {/* <Navbar></Navbar> */}
+      <Navbar></Navbar>
        
       {/* {showAlert && <Alert hideAlert={hideAlert}></Alert>} */}
       
@@ -54,11 +55,13 @@ const [text2, setText2] = useState("");
      
       {/* <Examinterface></Examinterface> */}
       {/* <Studentprofile hid={hide}></Studentprofile> */}
-      <Testpage></Testpage>  
-      {/* <Footer></Footer> */}
+      {/* <Testpage></Testpage>   */}
+      
       {/* <Studentprofile></Studentprofile> */}
       {/* <Teacherprofile></Teacherprofile> */}
-      <Createtest></Createtest>
+      {/* <Createtest></Createtest> */}
+      <Aboutus></Aboutus>
+      <Footer></Footer>
      
 
 
