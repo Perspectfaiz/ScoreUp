@@ -40,7 +40,13 @@
     height: 40px;
     width: 40px;
     margin-left: 20px;
+    transition: transform 0.3s ease-in-out;
 }
+
+.brand img:hover{
+    transform: rotate(45deg);
+}
+
 .brand .txt{
     margin-left: 5px;
     color: rgb(0, 0, 0);
