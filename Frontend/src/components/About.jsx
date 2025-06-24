@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import styles from './Aboutus.module.css';
+import styles from './About.module.css';
 import { AiOutlineDeploymentUnit } from "react-icons/ai";
+import { Navbar } from './Navbar';
+import { Footer } from './footer';
 
-export function Aboutus() {
+export function About() {
 	const text =
 		"From cluttered notes to cleaner code, ScoreUp was born not in a lab, but in lived experience — built by students who refused to settle for stress. What we faced, we fixed — with intent, empathy, and sleepless dedication. Let’s grow together — because ScoreUp is the only test you need for tomorrow.";
 
@@ -11,6 +13,7 @@ export function Aboutus() {
 
 	return (
 		<>
+			<Navbar></Navbar>
 			<div className={styles.aboutus}>
 				<div className={styles.contents}>
 					<div className={styles.header}>
@@ -186,6 +189,7 @@ export function Aboutus() {
                     
 				</div>
 			</div>
+			<Footer></Footer>
 		</>
 	);
 }
