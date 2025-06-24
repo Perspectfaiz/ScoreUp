@@ -2,20 +2,26 @@ import { Footer } from './footer'
 import styles from './Studentprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
 import { IoIosArrowBack } from "react-icons/io";
-import { useState } from 'react'
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { FaMapMarkerAlt, FaUniversity, FaLinkedin, FaUserGraduate } from 'react-icons/fa';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import { useState, useContext } from 'react'
+
 import 'react-circular-progressbar/dist/styles.css';
 import ProgressBar from './ProgressBar';
 import { Navbar } from './Navbar';
+import ProfileCard from './studprof/ProfileCard';
+import FavoriteTests from './studprof/FavoriteTests';
+import PerformanceChart from './studprof/PerformanceChart';
+import StatsSummary from './studprof/StatsSummary';
+import LastTestPerformance from './studprof/LastTestPerformance';
+import TestHistory from './studprof/TestHistory';
+import EditProfileForm from './studprof/EditProfileForm';
+import { AppContext } from '../Context/AppContext';
+
 // Mock data for chart and stats
 const performanceData = [
   { month: 'Jan', score: 80 },
-  { month: 'Feb', score: 90 },
+  { month: 'Feb', score: 30 },
   { month: 'Mar', score: 75 },
-  { month: 'Apr', score: 95 },
+  { month: 'Apr', score: 35 },
   { month: 'May', score: 85 },
   { month: 'Jun', score: 92 },
 ];
@@ -79,225 +85,46 @@ function polarToCartesian(cx, cy, r, angleInDegrees) {
 
 export function Studentprofile() {
     const [isDetailsVisible, setIsDetailsVisible] = useState(true);
-
+    const { studentData, testHistory, favoriteTests, performanceData } = useContext(AppContext);
+    // You may want to compute stats and lastTest from testHistory or performanceData
+    // For now, fallback to empty/default if not available
+    const stats = {
+        solved: testHistory?.length || 0,
+        total: 1000,
+        easy: 0,
+        medium: 0,
+        hard: 0,
+        rank: 0,
+        percentile: 0,
+        testsGiven: testHistory?.length || 0,
+        totalTests: 10,
+    };
+    const lastTest = testHistory && testHistory.length > 0 ? testHistory[testHistory.length - 1] : { name: '', date: '', score: 0, percentile: 0 };
     return (
         <>
         {isDetailsVisible && (
         <div className={styles.details}>
+            <>
+                <Navbar/>
+            </>
             <div className={styles.studprofile}>
                 <div className={styles.leftPanel}>
-                    <div className={styles.profileCard}>
-                        <img src="/dp.jpeg" alt="Profile" className={styles.profilePic} />
-                        <div className={styles.profileInfo}>
-                            <div className={styles.nameRow}>
-                                <span className={styles.name}>Sameer Mishra</span>
-                                <span className={styles.stream}>JEE</span>
-                            </div>
-                            <div className={styles.desc}>Basket Ball is my dream, but I'm coding off-screen</div>
-                            <div className={styles.infoRow}><FaMapMarkerAlt /> India</div>
-                            <div className={styles.infoRow}><FaUniversity /> NIT Warangal</div>
-                            <div className={styles.infoRow}><FaLinkedin /> Sexy Sam</div>
-                            <div className={styles.infoRow}><FaUserGraduate /> Cse Minor</div>
-                        </div>
-                        <button className={styles.editBtn} onClick={() => setIsDetailsVisible(false)}>
-                            <LiaEditSolid size={20} /> Edit Profile
-                        </button>
-                    </div>
-                    
+                    <ProfileCard onEdit={() => setIsDetailsVisible(false)} studentData={studentData} />
                     <hr className={styles.sectionDivider} />
-
-                    <div className={styles.favoriteTestsHeader}>Favorite Tests</div>
-                    <div className={styles.favoriteTestsList}>
-                        {favoriteTestsData.map((test) => (
-                            <div key={test.id} className={styles.favoriteTestsItem}>
-                                <span className={styles.testName}>{test.name}</span>
-                                <span className={styles.testSubject}>{test.subject}</span>
-                            </div>
-                        ))}
-                    </div>
+                    <FavoriteTests favoriteTestsData={favoriteTests} />
                 </div>
                 <div className={styles.mainPanel}>
-                    <div className={styles.chartCard}>
-                        <div className={styles.chartHeader}>Performance Over Time</div>
-                        <ResponsiveContainer width="100%" height={200}>
-                            <LineChart data={performanceData} margin={{ left: 10, right: 10, top: 10, bottom: 10 }}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="month" />
-                                <YAxis />
-                                <Tooltip />
-                                <Line type="monotone" dataKey="score" stroke="#703ed1" strokeWidth={2} dot={{ r: 4 }} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
+                    <PerformanceChart performanceData={performanceData} />
                     <div className={styles.summaryRow}>
-                        <div className={styles.statsCard}>
-                            <ProgressBar
-                                solved={stats.solved}
-                                total={stats.total}
-                                attempting={5}
-                                rank={stats.rank}
-                                percentile={stats.percentile}
-                                testsGiven={stats.testsGiven}
-                                totalTests={stats.totalTests}
-                            />
-                        </div>
-                        <div className={styles.lastTestCard}>
-                            <div className={styles.lastTestHeader}>Last Test Performance</div>
-                            <div className={styles.lastTestInfo}>
-                                <div>
-                                    <div className={styles.lastTestLabel}>Test</div>
-                                    <div className={styles.lastTestValue}>{lastTest.name}</div>
-                                </div>
-                                <div className={styles.rightAlignedInfo}>
-                                    <div className={styles.lastTestLabel}>Score</div>
-                                    <div className={styles.lastTestValue}>{lastTest.score}</div>
-                                </div>
-                                <div>
-                                    <div className={styles.lastTestLabel}>Percentile</div>
-                                    <div className={styles.lastTestValue}>{lastTest.percentile}%</div>
-                                </div>
-                                <div className={styles.rightAlignedInfo}>
-                                    <div className={styles.lastTestLabel}>Date</div>
-                                    <div className={styles.lastTestValue}>{lastTest.date}</div>
-                                </div>
-                            </div>
-                        </div>
+                        <StatsSummary stats={stats} />
+                        <LastTestPerformance lastTest={lastTest} />
                     </div>
-                    <div className={styles.historyCard}>
-                        <div className={styles.historyHeader}>Test History</div>
-                        <table className={styles.historyTable}>
-                            <thead>
-                                <tr>
-                                    <th>Test Name</th>
-                                    <th>Date</th>
-                                    <th>Score</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {testHistory.map((test, idx) => (
-                                    <tr key={idx}>
-                                        <td>{test.name}</td>
-                                        <td>{test.date}</td>
-                                        <td>{test.score}</td>
-                                        <td>{test.status}</td>
-                                        <td><button className={styles.viewBtn}>View</button></td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                    <TestHistory testHistory={testHistory} />
                 </div>
             </div>
-            {/* <Footer></Footer> */}
         </div> )}
-
-        {/* /////////////////////////////////////////////////////////////////////////////// */}
-        
         {!isDetailsVisible && (
-        <div className={styles.update}>
-
-            <div className={styles.heading}>
-                <div className={styles.backbutton} onClick={ () => {
-                    setIsDetailsVisible(!isDetailsVisible)
-                }}><IoIosArrowBack className={styles.iconback} size={28}/><p className={styles.txtback}>Back</p>
-                </div>
-                <p className={styles.editprofile}>Edit Profile</p>
-            </div>
-            <div className={styles.main}>
-                <div className={styles.left}>
-                    <div className={styles.dpbox}>
-                        <div className={styles.bccolor}>
-                            <img src="/dp.jpeg" alt="imagine..." className={styles.dpimg} />
-                            <button className={styles.dpbtn}><LiaEditSolid size={60}/></button>
-                        </div>
-                        
-                    </div>
-                    <div className={styles.description}>
-                        <p>Description</p>
-                        <textarea name="description" className={styles.dtxt} placeholder="Tell us something about yourself"></textarea>
-                    </div>
-                </div>
-
-                <div className={styles.detail}>
-                <div className={styles.basic}>
-                    <div className={styles.name}>
-                        <p>Name</p>
-                        <input type="text" className={`${styles.input} ${styles.name_input}`} placeholder="Name"/>
-                    </div>
-                    <div className={styles.gender}>
-                        <p>Gender</p>
-                        <select name="Gender" id={styles.gender} className={`${styles.input} ${styles.gender_select}`}>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                            <option value="O">Others</option>
-                        </select>
-                    </div>
-                    <div className={styles.location}>
-                        <p>Location</p>
-                        <input type="text" className={`${styles.input} ${styles.location_input}`} placeholder="e.g., India"/>
-                    </div>
-                    <div className={styles.dob}>
-                        <p>Date of Birth</p>
-                        <input type="date" className={`${styles.input} ${styles.dob_input}`} placeholder="Date"/>
-                    </div>
-                    <div className={styles.username}>
-                        <p>Username</p>
-                        <input type="text" className={`${styles.input} ${styles.username_input}`} placeholder="Username"/>
-                    </div>
-                    <div className={styles.email}>
-                        <p>Email</p>
-                        <input type="email" className={`${styles.input} ${styles.email_input}`} placeholder="Email"/>
-                    </div>
-                    <div className={styles.password}>
-                        <p>Password</p>
-                        <input type="password" className={`${styles.input} ${styles.password_input}`} placeholder="Password"/>
-                    </div>
-                    <div className={styles.phone}>
-                        <p>Mobile Number</p>
-                        <input type="text" className={`${styles.input} ${styles.phone_input}`} placeholder="Mobile Number"/>
-                    </div>
-                </div>
-
-             
-
-                <div className={styles.other}>
-                    <div className={styles.address}>
-                        <p>Address</p>
-                        <input type="text" className={`${styles.input} ${styles.address_input}`} placeholder="Address"/>
-                    </div>
-                    <div className={styles.stream}>
-                        <p>Stream</p>
-                        <input type="text" className={`${styles.input} ${styles.stream_input}`} placeholder="Stream"/>
-                    </div>
-                    <div className={styles.university}>
-                        <p>University</p>
-                        <input type="text" className={`${styles.input} ${styles.university_input}`} placeholder="University"/>
-                    </div>
-                    <div className={styles.class}>
-                        <p>Class</p>
-                        <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`}>
-                            <option value="6">6th</option>
-                            <option value="7">7th</option>
-                            <option value="8">8th</option>
-                            <option value="9">9th</option>
-                            <option value="10">10th</option>
-                            <option value="11">11th</option>
-                            <option value="12">12th</option>
-                            <option value="13">Dropper</option>
-
-                        </select>
-                    </div>
-                   
-                </div>
-
-                </div>
-            </div>
-            <div className={styles.base}>
-                <button className={styles.savebtn}>Save Changes</button>
-            </div>
-        </div>
+            <EditProfileForm onBack={() => setIsDetailsVisible(true)} studentData={studentData} />
         )}
         </>
     )

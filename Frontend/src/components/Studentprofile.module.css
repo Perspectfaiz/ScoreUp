@@ -20,6 +20,7 @@
 .studprofile{
     /* background-color: rgb(255, 153, 0); */
     display: flex;
+    /* overflow-x: hidden; */
     width: 100%;
     height: 100vh;
     
@@ -415,7 +416,7 @@ p {
   padding: 32px 24px 24px 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
   margin: 32px 24px 32px 32px;
   align-items: flex-start;
 }
@@ -688,7 +689,7 @@ p {
 .lastTestCard {
   flex: 1;
   min-width: 0;
-  background: #f8f6fc;
+  background: #cccad2;
   border-radius: 12px;
   box-shadow: 0 1px 8px 0 rgba(112,62,209,0.04);
   padding: 18px 24px 12px 24px;
