@@ -10,11 +10,27 @@ export function Qnbtn({num,qdata}) {
         {name:'curr', review:'bindi'}
     ];
     
+    // Add error handling for undefined qdata or state
+    if (!qdata || typeof qdata.state === 'undefined') {
+        console.warn('Qnbtn: qdata or qdata.state is undefined', { num, qdata });
+        return (
+            <div className={styles.line}>
+                <div className={`${styles.qnbtn} ${styles.unseen}`}>{num}
+                    <div className={`${styles.dot}`}></div>
+                </div>
+            </div>
+        );
+    }
+    
+    // Ensure state is within bounds
+    const state = Math.min(Math.max(qdata.state, 0), btnobj.length - 1);
+    const btnData = btnobj[state];
+    
     return (
         <>
             <div className={styles.line}>
-                <div className={`${styles.qnbtn} ${styles[btnobj[qdata.state].name ]}`}>{num}
-                    <div className={`${styles[btnobj[qdata.state].review]}`}></div>
+                <div className={`${styles.qnbtn} ${styles[btnData.name]}`}>{num}
+                    <div className={`${styles[btnData.review]}`}></div>
                 </div>
             </div>
         </>
