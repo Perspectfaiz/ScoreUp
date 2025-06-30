@@ -7,13 +7,6 @@
     font-family: 'Poppins';
 }
 
-.off{
-    display: none;
-}
-.on{
-    display: block;
-}
-
 .container {
    display: flex;
    gap: 2rem;

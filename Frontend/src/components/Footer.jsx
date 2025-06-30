@@ -11,9 +11,12 @@ import { use } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 export function Footer() {
     const [message,setMessage]=useState("");
 
+    const navigate = useNavigate();
      const onSubmitHandler = async (event) => {
     event.preventDefault();
 message.trim() === "" && toast.error("Please enter a message before sending feedback.");
@@ -106,7 +109,7 @@ const { data } =  await axios.post('http://localhost:8080/api/admin/feedback', {
                     </div>
                 </div>
                 <div className={styles.bottom}>
-                    <a href='#' className={styles.brand}>
+                    <a href='#' className={styles.brand} onClick={()=>navigate("/")}>
                         <img src="/6527325.png" alt="ScoreUp" />
                         <div className={styles.brandname}>ScoreUp</div>
                     </a>

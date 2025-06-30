@@ -68,7 +68,7 @@ const loginTeacher= async(req,res)=>{
     }
     const match = await bcrypt.compare(password,user.password);
     if(match){
-        const itoken = jwt.sign({id:user._id},'homelander',{expiresIn:'1h'})
+        const itoken = jwt.sign({id:user._id},'homelander',{expiresIn:'24h'})
 
        return res.json({success:true,itoken})
     }
@@ -91,10 +91,16 @@ const loginTeacher= async(req,res)=>{
 const getTeacherProfileData = async (req, res) => {
 
  try{
-   const {teacherId}=req.body;
-   const teacher = await teacherModel.findById(teacherId);
+   const {itoken}=req.headers;
+   if(!itoken){
+        return res.json({success:false, message:"Not Authorized Login Again"})
+    }
+
+    const token_decode=jwt.verify(itoken, process.env.JWT_SECRET);
+   
+    const teacher = await teacherModel.findById(token_decode.id);
    if(teacher){
-    return res.json({sucess:true,data:teacher});
+    return res.json({success:true,data:teacher});
    }else{
     return res.json({success:false,message:"Teacher not found"});
    }
@@ -163,5 +169,24 @@ const extractText = async (req, res) => {
         res.json({success: false, message: error.message});
     }
 }
-export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest};
+
+const getTeacherTests = async(req, res) => {
+    try{
+        const {itoken}=req.headers;
+        if(!itoken){
+            return res.json({success:false, message:"Not Authorized Login Again"})
+        }
+
+        const token_decode=jwt.verify(itoken, process.env.JWT_SECRET);
+        const teacherId = token_decode.id;
+
+        const tests = await testModel.find({ "details.teacherId" : teacherId });
+        res.json({ success:true, tests });
+    } catch(err) {
+        console.log(err);
+        res.json({success:false,message:err.message});
+    };
+}
+
+export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest,getTeacherTests};
 

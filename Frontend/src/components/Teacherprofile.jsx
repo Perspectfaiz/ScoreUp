@@ -6,8 +6,9 @@ import { Footer } from './footer';
 import { IoIosAdd } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaPen } from "react-icons/fa";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export function Teacherprofile() {
    
@@ -38,12 +39,76 @@ export function Teacherprofile() {
          { name: "Math Mock Test 2", date: "2024-06-07", score: 82 }
       ]
    };
+
+
    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
    const fileInputRef = useRef();  
    const handleImageChange = (e) => {
         setImage(e.target.files[0]);
     }; 
     const navigate = useNavigate();
+    const [teacher, setTeacher] = useState(null);
+
+    useEffect(() => {
+        const fetchTeacherprofile = async() => {
+            const itoken = localStorage.getItem('itoken');
+            if(!itoken) return;
+
+            try{
+                const { data } = await axios.get('http://localhost:8080/api/teacher/get-profile-data', {
+                    headers: { itoken }
+                });
+                if (data.success && data.data) {
+                    setTeacher(data.data);
+                }
+                else{
+                    console.log(data.success, data.data);
+                }
+            } catch(err) {
+                console.log("Failed to fetch Teacher Profile: ", err);
+            }
+        };
+
+        fetchTeacherprofile();
+    }, []);
+
+    const [teacherName, setTeacherName] = useState('Name not set');
+    const [teacherField, setTeacherField] = useState('Not Specified');
+
+    useEffect(() => {
+        if(teacher && teacher.name) setTeacherName(teacher.name);
+        if(teacher && teacher.field) setTeacherField(teacher.field)
+
+    }, [teacher]);
+
+    const [teacherTests, setTeacherTests] = useState([]);
+
+    useEffect(() => {
+      const fetchTeacherTests =  async() => {
+        const itoken = localStorage.getItem('itoken');
+         if(!itoken || !teacher) return;
+         try{
+            const { data } = await axios.get('http://localhost:8080/api/tests/my-tests', {
+               headers: {itoken}
+            });
+            if(data.success && data.tests) {
+               console.log("Teacher Tests: ", data);
+               setTeacherTests(data.tests);
+            }
+            else{
+               console.log("Full response: ", data);
+            }
+
+         } catch(err) {
+            console.log("Failed to fetch Teacher Tests: ", err);
+         }
+      }
+
+      fetchTeacherTests();
+    }, [teacher]);
+
+
+   
 
    return (
     <>
@@ -53,7 +118,7 @@ export function Teacherprofile() {
          <div className={styles.sidebar}>
             <div className={styles.sidebarbox}>
                 <img src="https://i.imgur.com/Cw8g8Xx.png" className={styles.avatar} alt="Avatar" />
-                <h2>{student.name} <span className={styles.tag}>{student.tag}</span></h2>
+                <h2>{teacherName} <span className={styles.tag}>{teacherField}</span></h2>
                 <p className={styles.bio}>{student.bio}</p>
                 <p>{student.location}</p>
                 <p>{student.institute}</p>
@@ -72,7 +137,7 @@ export function Teacherprofile() {
                 <div className={styles.countTest}>
                     <div className={styles.box}>
                         <div className={styles.head}>Total Tests Contributed</div>
-                        <div className={styles.count}>0</div>
+                        <div className={styles.count}>{teacherTests.length<10? `0${teacherTests.length}`:teacherTests.length}</div>
                     </div>
                 </div>                
                 <div className={styles.addTest}>
@@ -91,18 +156,18 @@ export function Teacherprofile() {
                   <thead>
                      <tr>
                         <th>Test Name</th>
-                        <th>Date</th>
+                        <th>Stream/Tag</th>
                         <th>Duration</th>
                         <th>Total Marks</th>
                         <th>Action</th>
                      </tr>
                   </thead>
                   <tbody>
-                     {student.tests.map((test, index) => (
+                     {teacherTests.map((test, index) => (
                         <tr key={index}>
-                           <td>{test.name}</td>
-                           <td>{test.date}</td>
-                           <td>{test.score}</td>
+                           <td>{test.details.title}</td>
+                           <td>{test.details.stream} / {test.details.tag}</td>
+                           <td>{test.details.time / 60} minutes</td>
                            <td>Completed</td>
                            <td><button className={styles.viewBtn}>View</button></td>
                         </tr>

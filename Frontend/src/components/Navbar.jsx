@@ -1,6 +1,7 @@
 import styles from './Navbar.module.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IoIosAdd } from "react-icons/io";
 
 export function Navbar() {
     const [token, setToken] = useState(false);
@@ -37,7 +38,16 @@ export function Navbar() {
                 <a href='/free-resources' className={styles.in} >Free Resources</a>
                 <a href='/about' className={styles.in} >About</a>
             </div>
+            
             <div className={styles.profile}>
+                {itoken && 
+                <>
+                <button className={styles.addTestBtn} onClick={()=>navigate('/upload-test')}>
+                    <IoIosAdd className={styles.pluslogo}/> Create Test
+                </button>
+                <div className={styles.verline}></div>
+                </>
+                }
                 {!isLoggedIn ? (
                     <div className={styles.box}>
                         <div className={styles.txt} onClick={()=>navigate('/login')}>SignUp/Login</div>
@@ -45,7 +55,7 @@ export function Navbar() {
                 ) : (
                     <div className={styles.profileContainer}>
                         <img 
-                            src="/account.png" 
+                            src="/pic.jpg" 
                             alt="Profile" 
                             onClick={()=>navigate(token ? '/studentprofile' : '/teacherprofile')}
                             className={styles.profileImage}

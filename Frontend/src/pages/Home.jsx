@@ -38,10 +38,10 @@ const Home=()=>{
         <Hero></Hero>
         <Explore></Explore>
         <Footer></Footer> 
-        <Createtest></Createtest>
+        {/* <Createtest></Createtest>
         <Teacherprofile></Teacherprofile>
         <Studentprofile></Studentprofile>
-        <Testpage></Testpage>
+        <Testpage></Testpage> */}
         
         </>
     )
