@@ -2,8 +2,8 @@ export const Testtemp={
     details:{
         title:"",
         testId:"test_id.1",
-        teacherId:"",
-        teacherName:"",
+        teacherId:"@",
+        teacherName:"Dummy",
         time:0,
         attempted:0,
         avgScore: 0, 

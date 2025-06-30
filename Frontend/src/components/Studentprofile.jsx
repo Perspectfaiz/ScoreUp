@@ -62,7 +62,7 @@ const favoriteTestsData = [
     { id: 6, name: 'Aptitude Test', subject: 'General', date: '2024-06-25' },
     { id: 7, name: 'Verbal Reasoning', subject: 'English', date: '2024-06-30' },
     { id: 8, name: 'NEET Mock 1', subject: 'Biology', date: '2024-06-20' },
-    
+
 ];
 
 // Helper to create SVG arc path
@@ -122,6 +122,7 @@ export function Studentprofile() {
                     <TestHistory testHistory={testHistory} />
                 </div>
             </div>
+            <Footer></Footer>
         </div> )}
         {!isDetailsVisible && (
             <EditProfileForm onBack={() => setIsDetailsVisible(true)} studentData={studentData} />

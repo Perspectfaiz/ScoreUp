@@ -134,11 +134,11 @@ const getTeacherProfileData = async (req, res) => {
 
 const createTest = async(req,res)=>{
     try {
-
-       
         const test= req.body;
-      console.log(test);
-         const newTest= testModel(test);
+         console.log(test);
+         const newTest= new testModel(test);
+         
+         newTest.details.testId = newTest._id;
          await newTest.save();
          res.json({
             success:true,
