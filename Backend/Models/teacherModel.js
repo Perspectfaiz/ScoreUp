@@ -20,6 +20,7 @@ const teacherSchema = new mongoose.Schema({
     gender: { type: String, default: "Not Selected" },
     dob: { type: String, default: "Not Selected" },
     phone: { type: String, default: "0000000000" },
+    description: {type: String, default: "Not Set"}
 });
 
 const teacherModel = mongoose.model('Teacher', teacherSchema);
