@@ -117,7 +117,20 @@ const updateStudentProfileData = async (req, res) => {
         console.log('updateStudentProfileData called');
         console.log('req.body:', req.body);
         console.log('req.file:', req.file);
-        const { studentId, name, dob, username, stream, university, address, phone, email, description, classes, gender, location } = req.body;
+        const { studentId, 
+            name, 
+            dob, 
+            username, 
+            stream, 
+            university, 
+            address, 
+            phone, 
+            email, 
+            description, 
+            classes, 
+            gender, 
+            location 
+        } = req.body;
         const imageFile = req.file;
 
         // Build update object only with provided fields

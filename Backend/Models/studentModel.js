@@ -29,7 +29,7 @@ const studentSchema = new mongoose.Schema({
         name: { type: String },
         date: { type: String },
         score: { type: Number },
-        status: { type: String }
+        status: { type: String },
     }],
     favoriteTests: [{ type: String }], // Array of test IDs
     performanceData: [{

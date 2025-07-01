@@ -36,7 +36,9 @@ export function Navbar() {
                 <a href='/' className={styles.in} >Home</a>
                 <a href='/hunt-tests' className={styles.in}   >Hunt Tests</a>
                 <a href='/free-resources' className={styles.in} >Free Resources</a>
-                <a href='/about' className={styles.in} >About</a>
+                <a href='/about' className={`${styles.in} ${styles.about}`} >
+                    About <img src="/6527325.png" alt="Scoreup" />
+                </a>
             </div>
             
             <div className={styles.profile}>

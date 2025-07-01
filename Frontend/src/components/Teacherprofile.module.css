@@ -79,6 +79,10 @@
    gap: 0.4rem;
 }
 
+.editBtn:hover{
+   filter: brightness(0.9);
+}
+
 .favoriteTests {
    margin-top: 2rem;
    text-align: left;
