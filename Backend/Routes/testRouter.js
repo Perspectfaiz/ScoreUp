@@ -1,5 +1,7 @@
 import express from 'express';
 import testModel from '../Models/testModel.js';
+import { createTest, getTeacherTests } from '../Controller/teacherController.js';
+import authTeacher from '../Middleware/authTeacher.js';
 
 const testRouter = express.Router();
 
@@ -17,5 +19,8 @@ testRouter.post('/bulk-details', async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 });
+
+testRouter.post('/add', authTeacher, createTest);
+testRouter.get('/my-tests', getTeacherTests)
 
 export default testRouter; 

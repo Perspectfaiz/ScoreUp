@@ -7,346 +7,364 @@
     font-family: 'Poppins';
 }
 
-.off{
-    display: none;
+.container {
+   display: flex;
+   gap: 2rem;
+   padding: 2rem;
+   background-color: #f9f9fb;
+   height: 90vh;
+   font-family: 'Segoe UI', sans-serif;
 }
-.on{
-    display: block;
+
+.sidebar {
+   flex: 0 0 370px;
+   /* background-color: #f0eaff; */
+   background-color: #fff;
+   border-radius: 16px;
+   padding: 1.5rem;
+   text-align: center;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-/* ///////////student profile///////////// */
 
+.sidebarbox{
+    background-color: #faf6fe;
+    padding: 1.5rem;
+    /* height: 100%; */
+    border-radius: 12px;
+}
 
+.avatar {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-bottom: 1rem;
+}
 
-.teacherprofile{
-    /* background-color: rgb(255, 153, 0); */
+.tag {
+   background-color: #d9b4fc;
+   color: #5c27c0;
+   padding: 0.2rem 0.6rem;
+   border-radius: 12px;
+   font-size: 0.75rem;
+   margin-left: 0.5rem;
+}
+
+.bio {
+   margin: 0.5rem 0 1rem;
+   font-size: 0.95rem;
+   color: #444;
+}
+
+.sidebar p {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   font-size: 0.9rem;
+   margin: 0.3rem 0;
+   color: #333;
+}
+
+.editBtn {
+   margin-top: 1rem;
+   background-color: #7a3ff2;
+   color: white;
+   border: none;
+   padding: 0.5rem 1rem;
+   border-radius: 8px;
+   cursor: pointer;
+   font-weight: 500;
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+}
+
+.favoriteTests {
+   margin-top: 2rem;
+   text-align: left;
+}
+
+.favoriteTests h4 {
+   color: #6b4acf;
+   margin-bottom: 0.3rem;
+}
+
+.dashboard {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+   overflow: scroll;
+}
+
+.testInfo{
     display: flex;
-    width: 100%;
-    height: 100vh;
-    
 }
 
-.teacherprofile .left{
-    /* background-color: green; */
-    width: 25%;
+.countTest {
+   flex: 1;
+   margin-right: 0.75rem;
+   background: white;
+   padding: 1.5rem;
+   height: 30vh;
+   border-radius: 16px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+   line-height: 1.8;
+}
+
+.countTest .box {
     display: flex;
-    flex-direction: column;
-}
-
-.teacherprofile .profile{
-    height: 400px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.teacherprofile .personal{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    align-items: center;
-    /* background-color: #703ed1; */
-    border-bottom: 1px solid rgb(225, 225, 225);
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    /* color: white; */
-}
-
-.teacherprofile .dp{
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 15px;
-    
-}
-
-.teacherprofile .dpimg{
-    background-color: rgb(0, 255, 174);
-    width: 90px;
-    height: 90px;
-    border: 2px solid white;
-    border-radius: 100%;
-}
-
-.teacherprofile .txt{
-    padding-left: 15px;
-    display: flex;
-    width: 66%;
     height: 100%;
     flex-direction: column;
-    justify-content: center;
-}
-
-.teacherprofile .name{
-    font-size: 150%;
-    font-weight: 500;
-}
-
-.teacherprofile .stream{
-    background-color: #e5d9ff;
-
-    color: #7248c4;
-    /* border: 1px solid #eae0ff;    */
-    font-size: 80%;
-    width: fit-content;
-    padding: 4px 14px;
-    border-radius: 70px;
-    font-weight: 500;
-}
-
-/* .studprofile .description{
-    height: 50%;
-    padding: 15px 10px;
-    font-size: 80%;
-} */
-
-.teacherprofile .edit{
-    margin-top: 5%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    height: 50px;
+    justify-content: center;
 }
 
-.teacherprofile .editbtn {
+.countTest .head{
+    font-size: larger;
+}
+
+.countTest .count{
+    font-size: 70px;
+    color: #7a3ff2;
+}
+
+.addTest {
+   flex: 1;
+   margin-left: 0.75rem;
+   background: white;
+   padding: 2rem;
+   height: 30vh;
+   border-radius: 16px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+   line-height: 1.8;
+}
+
+.addTest .box {
+   border: 2px dotted #c4c4c4;
+   height: 100%;
+   border-radius: 7px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #fbfbfb;
+   transition: all 150ms ease-in-out;
+}
+
+.addTest .box:hover{
+   border-radius: 9px;
+   border: 2px dashed #ad84ff;
+   background-color: #fdfbff;
+}
+
+.addTestBtn {
     all: unset;
-    height: 80%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #703ed1;
-    color: white;
-    border-radius: 5px;
-    transition: all 100ms ease-out;
-}
-.teacherprofile .editbtn:hover {
-    background-color: #5c33ae;
-    height: 82%;
-    width: 82%;
-    border-radius: 8px;
-    color: #eeeeee;
-
-}
-
-.teacherprofile .right{
-    height: 100%;
-    width: 75%;
-}
-
-.teacherprofile .filter{
-    height: 5vh;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.151);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.teacherprofile .tag{
-    width: 80%;
-}
-.teacherprofile .examlist{
-    width: 100%;
-    height: 79vh;
-    /* background-color: rgb(255, 255, 255); */
-}
-
-.teacherprofile .listhead{
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 7vh;
-    background-color: #ececec;
-    border-bottom: 1px solid #c2c2c2;
-}
-
-.teacherprofile .listhead > *{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin: 0 1%;
-}
-
-.teacherprofile .listhead > * > *{
-    margin-left: 8px;
-}
-
-.teacherprofile .listhead .status{
-    width: 8%;
-}
-
-.teacherprofile .listhead .topic{
-    width: 43%;
-}
-
-.teacherprofile .listhead .duration{
-    width: 8%;
-}
-
-.teacherprofile .listhead .attempted{
-    width: 8%;
-}
-
-.teacherprofile .listhead .teacher{
-    min-width: 23%;
-}
-
-.teacherprofile .listlist{
-    width: 100%;
-    height: 79vh;
-    /* background-color: rgb(255, 255, 255); */
-    overflow: scroll;
-}
-
-/* /////////// Upadate ///////////// */
-p {
-    margin-left: 0;
-}
-/* input{
-    all: unset;
-} */
-
-.update{
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
-    width: 100%;
-    /* display: none; */
-}
-.update .heading{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    font-size: 150%;
-    font-weight: bold;
-    height: 12%;
-}
-
-.update .backbutton{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    margin-left: 3%;
-    padding: 10px;
-    padding-left: 2px;
-    border-radius: 50px;
-    color: #616161;
-}
-
-.update .backbutton:hover{
-    background-color: #e0e0e0;
-}
-
-.update .editprofile{
-    position: relative;
-    left: 36%;
-}
-
-.update .main{
-    color: #000000;
-    height: 76%;
-    display: flex;
-    border-top: 1px solid rgb(191, 191, 191);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-.update .left{
-    width: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 2.5%;
-}
-.update .dpbox{
-    height: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.update .bccolor{
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.611);
-    background-color: #000000;
-}
-.update .dpimg{
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-}
-
-.update .dpimg:hover{
-    opacity: 50%;
-}
-
-.update .dpbtn{
-    position: absolute;
-    left: 13.25%;
-    top: 34.3vh;
-    width: 60px;
-    height: 60px;
-    z-index: 5;
-    color: white;
-    border-radius: 50%;
-    display: none;
-}
-.update .dpimg:hover + .dpbtn{
-    display: block;
-}
-
-.update .dpbtn:hover{
-    display: block;
-    /* background-color: #703ed1; */
-}
-
-.update .dpbtn:hover + .dpimg{
-    opacity: 50%;
-}
-
-.update .description{
-    margin-top: 10%;
-
-}
-.update .dtxt{
-    all: unset;
-    height: 160%;
-    width: 90%;
-    border: 1px solid black;
-    border-radius: 5px;
-    word-break: break-all;
-    padding: 10px;
-}
-
-
-
-.update .base{
-    height: 12%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.update .savebtn{
-    all: unset;
-    height: 55%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #703ed1;
-    width: 12%;
+    font-size: 20px ;
+    padding: 1rem 1.5rem;
+    background-color: #7a3ff2;
     color: #fff;
-    border-radius: 5px;
-    transition: all 100ms ease-in-out;
+    border-radius: 12px;
+    transition: all 150ms ease-in;
 }
-.update .savebtn:hover{
-    border-radius: 6px;
-    width: 13%;
-    height: 57%;
-    background-color:#5c33ae;
+.pluslogo{
+    font-size: 30px !important;
+    margin-right: 0.9rem;
+    background-color: #fdfbff;
+    color: #414141;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addTestBtn:hover{
+    border-radius: 70px;
+    background-color: #8345ff;
+}
+
+.addTestBtn:active{
+    border-radius: 70px;
+    filter: brightness(0.8);
+}
+
+.testHistory {
+   background: white;
+   padding: 1.5rem;
+   border-radius: 16px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.testHistory h4 {
+   color: #7a3ff2;
+   margin-bottom: 1rem;
+}
+
+.testHistory table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+.testHistory th,
+.testHistory td {
+   padding: 0.75rem;
+   text-align: left;
+   border-bottom: 1px solid #eee;
+   font-size: 0.95rem;
+}
+
+.testHistory th {
+   color: #999;
+   font-weight: 600;
+}
+
+.viewBtn {
+   background-color: #7a3ff2;
+   color: white;
+   border: none;
+   padding: 0.4rem 0.8rem;
+   border-radius: 6px;
+   font-size: 0.85rem;
+   cursor: pointer;
+}
+
+/* edit details */
+
+.profileWrapper {
+   padding: 30px;
+   height: 100vh;
+   font-family: 'Segoe UI', sans-serif;
+}
+
+.backButton {
+   display: flex;
+   align-items: center;
+   font-weight: 600;
+   font-size: 18px;
+   margin-bottom: 20px;
+   cursor: pointer;
+   color: #333;
+}
+
+.backButton svg {
+   margin-right: 6px;
+}
+
+.editTitle {
+   text-align: center;
+   font-size: 24px;
+   font-weight: 700;
+   margin-bottom: 25px;
+}
+
+.profileSection {
+   display: flex;
+   gap: 50px;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.imageSection {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.imageContainer {
+   position: relative;
+   width: 160px;
+   height: 160px;
+}
+
+.profilePic {
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 2px solid #ddd;
+}
+
+.editIcon {
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
+   background: white;
+   border-radius: 50%;
+   padding: 6px;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+   cursor: pointer;
+}
+
+.descLabel {
+   margin-top: 20px;
+   font-weight: 600;
+}
+
+.descriptionBox {
+   width: 240px;
+   height: 120px;
+   margin-top: 10px;
+   padding: 10px;
+   border-radius: 8px;
+   border: 1px solid #ccc;
+   resize: none;
+   font-size: 14px;
+}
+
+.formSection {
+   flex: 1;
+   max-width: 650px;
+}
+
+.inputPair {
+   display: flex;
+   justify-content: space-between;
+   gap: 20px;
+   margin-bottom: 20px;
+}
+
+.inputPair > div {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+}
+
+.inputPair label,
+.singleInput label {
+   font-weight: 600;
+   margin-bottom: 6px;
+}
+
+.inputPair input,
+.singleInput input,
+.inputPair select,
+.singleInput select {
+   padding: 10px;
+   border-radius: 6px;
+   border: 1px solid #ccc;
+   font-size: 14px;
+}
+
+.singleInput {
+   margin-bottom: 20px;
+   display: flex;
+   flex-direction: column;
+}
+
+.saveBtn {
+   background-color: #7a3ff3;
+   color: white;
+   padding: 12px 24px;
+   font-size: 16px;
+   font-weight: 600;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.2s ease;
+}
+
+.saveBtn:hover {
+   background-color: #692be5;
 }
 

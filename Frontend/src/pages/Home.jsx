@@ -8,6 +8,10 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from '../components/footer';
 import { FreeReso } from "../components/resources/resources";
 import { About } from "../components/About";
+import { Createtest } from "../components/upload test/Createtest";
+import { Teacherprofile } from "../components/Teacherprofile";
+import { Studentprofile } from "../components/Studentprofile";
+import { Testpage } from "../components/Testpage";
 const Home=()=>{
    const {token,itoken}=useContext(AppContext);
     const [alert,setAlert]=useState(true);
@@ -34,6 +38,10 @@ const Home=()=>{
         <Hero></Hero>
         <Explore></Explore>
         <Footer></Footer> 
+        {/* <Createtest></Createtest>
+        <Teacherprofile></Teacherprofile>
+        <Studentprofile></Studentprofile>
+        <Testpage></Testpage> */}
         
         </>
     )
