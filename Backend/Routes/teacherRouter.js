@@ -19,6 +19,6 @@ teacherRouter.use('/login',loginTeacher);
 teacherRouter.use('/create-test',createTest);
 teacherRouter.get('/get-profile-data',getTeacherProfileData);
 teacherRouter.use('/text',extractText);
-teacherRouter.use('/update-profile-data',authTeacher,upload.single('image'),updateTeacherProfileData);
+teacherRouter.put('/update-profile-data',authTeacher,upload.single('image'),updateTeacherProfileData);
 
 export default teacherRouter;

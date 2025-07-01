@@ -1,6 +1,6 @@
+import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
-import dotenv from 'dotenv';
 import connectDB from './Config/MongoDB.js';
 import studentRouter from './Routes/studentRouter.js';
 import teacherRouter from './Routes/teacherRouter.js';
@@ -8,7 +8,7 @@ import adminRouter from './Routes/adminRouter.js';
 import resourceRouter from './Routes/resourceRoutes.js';
 import testRouter from './Routes/testRouter.js';
 
-dotenv.config();
+dotenv.config(); // Place this at the top before anything else
 console.log('Cloudinary ENV:', process.env.CLOUDINARY_CLOUD_NAME, process.env.CLOUDINARY_API_KEY, process.env.CLOUDINARY_API_SECRET);
 const app = express();
 const PORT = process.env.PORT || 8080;

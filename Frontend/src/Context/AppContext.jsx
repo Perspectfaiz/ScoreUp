@@ -103,7 +103,7 @@ export const AppContextProvider=(props)=>{
 
     const updateTeacherProfile = async (formData) => {
         try{
-            const { data } = await axios.post('http://localhost:8080/api/teacher/update-profile-data', formData, {
+            const { data } = await axios.put('http://localhost:8080/api/teacher/update-profile-data', formData, {
                 headers: {
                     itoken,
                     'Content-Type': 'multipart/form-data'

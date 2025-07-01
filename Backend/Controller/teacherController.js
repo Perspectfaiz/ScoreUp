@@ -6,6 +6,17 @@ import teacherModel from "../Models/teacherModel.js";
 
 import testModel from "../Models/testModel.js";
 
+import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Ensure .env is loaded early
+
+cloudinary.config({
+   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+   api_key: process.env.CLOUDINARY_API_KEY,
+   api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 
 const signupTeacher= async (req,res)=>{
     try {
@@ -222,10 +233,23 @@ const updateTeacherProfileData = async (req, res) => {
       if (description) updateObj.description = description;
 
       if (imageFile) {
-         console.log('Uploading image to Cloudinary:', imageFile.path);
-         const imageUpload = await cloudinary.uploader.upload(imageFile.path, {
-            resource_type: "image"
-         });
+         console.log('Uploading image from memory buffer to Cloudinary');
+
+         // Upload from memory buffer
+         const streamUpload = (buffer) => {
+            return new Promise((resolve, reject) => {
+               const stream = cloudinary.uploader.upload_stream(
+                  { resource_type: "image" },
+                  (error, result) => {
+                     if (result) resolve(result);
+                     else reject(error);
+                  }
+               );
+               stream.end(buffer);
+            });
+         };
+
+         const imageUpload = await streamUpload(imageFile.buffer);
          console.log('Cloudinary upload result:', imageUpload);
          updateObj.image = imageUpload.secure_url;
       }
