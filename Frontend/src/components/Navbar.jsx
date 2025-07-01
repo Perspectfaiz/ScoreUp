@@ -76,7 +76,7 @@ export function Navbar() {
                 ) : (
                     <div className={styles.profileContainer}>
                         <img 
-                            src={imgLink !== '' ? imgLink : "/dp.jpg"}
+                            src={imgLink !== '' ? imgLink : "/pic.jpg"}
                             alt="Profile" 
                             onClick={()=>navigate(token ? '/studentprofile' : '/teacherprofile')}
                             className={styles.profileImage}
