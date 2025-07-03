@@ -125,7 +125,7 @@ export function About() {
                         <div className={styles.teamtray}>
                             <div className={`${styles.teamtrayleft} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../public/faiz.png" alt="imagine" />
+                                    <img className={styles.teampic} src="../../faiz.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Md Faiz</p>
@@ -139,7 +139,7 @@ export function About() {
                             </div>
                             <div className={`${styles.teamtrayright} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../public/manish.png" alt="imagine" />
+                                    <img className={styles.teampic} src="../../manish.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Manish Verma</p>
@@ -155,7 +155,7 @@ export function About() {
                         <div className={styles.teamtray}>
                             <div className={`${styles.teamtrayleft} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../public/akash.png" alt="imagine" />
+                                    <img className={styles.teampic} src="../../akash.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Akash Jha</p>
@@ -169,7 +169,7 @@ export function About() {
                             </div>
                             <div className={`${styles.teamtrayright} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../public/pratik.png" alt="imagine" />
+                                    <img className={styles.teampic} src="../../pratik.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Pratik Soni</p>

@@ -298,9 +298,11 @@ export function Createtest() {
                         </button>
                         <button 
                             className={styles.submitbtn}
-                            onClick={ (e) => {
-                                handleSubmitData(e);
-                                navigate('/teacherprofile');
+                            onClick={ async (e) => {
+                                const success = await handleSubmitData(e);
+                                navigate('/teacherprofile', {state: {refreshTests : true}});
+                                
+                                
                             }
                                 
                             }>Submit</button>

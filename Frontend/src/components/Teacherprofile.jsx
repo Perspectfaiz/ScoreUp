@@ -10,10 +10,12 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../Context/AppContext';
 import { LiaEditSolid } from "react-icons/lia";
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 export function Teacherprofile() {
    const { teacherData, updateTeacherProfile } = useContext(AppContext);
    const navigate = useNavigate();
+   const location = useLocation();
 
    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
    const fileInputRef = useRef();
@@ -69,7 +71,7 @@ export function Teacherprofile() {
    }, []);
 
    // Fetch teacher tests
-   useEffect(() => {
+
       const fetchTeacherTests = async () => {
          const itoken = localStorage.getItem('itoken');
          if (!itoken || !teacher) return;
@@ -85,8 +87,16 @@ export function Teacherprofile() {
          }
       };
 
+   useEffect(() => {
       fetchTeacherTests();
    }, [teacher]);
+
+   useEffect(() => {
+      if(location.state?.refreshTests) {
+         fetchTeacherTests();
+         window.history.replaceState({}, document.title);
+      }
+   }, [location.state])
 
    // Image change
    const handleImageChange = (e) => {
@@ -174,7 +184,7 @@ export function Teacherprofile() {
                               </tr>
                            </thead>
                            <tbody>
-                              {teacherTests.map((test, index) => (
+                              {[...teacherTests].reverse().map((test, index) => (
                                  <tr key={index}>
                                     <td>{test.details.title}</td>
                                     <td>{test.details.stream} / {test.details.tag}</td>
