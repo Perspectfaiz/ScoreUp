@@ -239,8 +239,6 @@ p {
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.611);
-    background-color: #000000;
 }
 .update .dpimg{
     height: 200px;
@@ -396,6 +394,20 @@ p {
     /* height: 54px; */
     background-color:#5c33ae;
     box-shadow: 0 6px 16px rgba(112,62,209,0.3);
+}
+
+.update .savebtn:disabled{
+  cursor: not-allowed;
+   animation: blinkk 1s ease-in-out infinite;
+}
+
+@keyframes blinkk {
+   50%{
+      opacity: 0.4;
+   }
+   0%, 100%{
+      opacity: 0.6;
+   }
 }
 
 .update .sectionSeparator {

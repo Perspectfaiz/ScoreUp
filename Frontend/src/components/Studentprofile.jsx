@@ -85,6 +85,7 @@ function polarToCartesian(cx, cy, r, angleInDegrees) {
 
 export function Studentprofile() {
     const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+    const [isDisable, setIsDisable] = useState(false);
     const { studentData, testHistory, favoriteTests, performanceData } = useContext(AppContext);
     // You may want to compute stats and lastTest from testHistory or performanceData
     // For now, fallback to empty/default if not available
@@ -125,7 +126,15 @@ export function Studentprofile() {
             <Footer></Footer>
         </div> )}
         {!isDetailsVisible && (
-            <EditProfileForm onBack={() => setIsDetailsVisible(true)} studentData={studentData} />
+            <EditProfileForm onBack={
+                () => {
+                    setIsDetailsVisible(true);
+                    setIsDisable(false);
+            }} 
+                studentData={studentData} 
+                isDisable={isDisable} 
+                setIsDisable={setIsDisable}
+            />
         )}
         </>
     )

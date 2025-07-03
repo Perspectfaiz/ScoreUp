@@ -45,7 +45,7 @@ export default function ProfileCard({ onEdit, studentData }) {
    return (
       <div className={styles.profileCard}>
          <img
-            src={profile.image || "/dp.jpeg"}
+            src={profile.image || "/pic.jpg"}
             alt={`${profile.name}'s profile`}
             className={styles.profilePic}
          />
