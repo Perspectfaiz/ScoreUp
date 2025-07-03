@@ -65,7 +65,7 @@
    color: #333;
 }
 
-.editBtn {
+/* .editBtn {
    margin-top: 1rem;
    background-color: #7a3ff2;
    color: white;
@@ -77,6 +77,34 @@
    display: flex;
    align-items: center;
    gap: 0.4rem;
+}
+
+.editBtn:hover{
+   filter: brightness(0.9);
+} */
+
+.editBtn {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #703ed1;
+    color: white;
+    border-radius: 8px;
+    transition: all 100ms ease-out;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+.editBtn:hover {
+    background-color: #5c33ae;
+    border-radius: 8px;
+    color: #eeeeee;
+    
+}
+
+.editicon{
+   margin-right: 0.5rem;
+   font-size: 20px;
 }
 
 .favoriteTests {
@@ -232,7 +260,6 @@
 /* edit details */
 
 .profileWrapper {
-   padding: 30px;
    height: 100vh;
    font-family: 'Segoe UI', sans-serif;
 }
@@ -249,13 +276,6 @@
 
 .backButton svg {
    margin-right: 6px;
-}
-
-.editTitle {
-   text-align: center;
-   font-size: 24px;
-   font-weight: 700;
-   margin-bottom: 25px;
 }
 
 .profileSection {
@@ -367,4 +387,49 @@
 .saveBtn:hover {
    background-color: #692be5;
 }
+
+.backbutton {
+   display: flex;
+   /* justify-content: center; */
+   width: fit-content;
+   align-items: center;
+   font-size: 18px;
+   margin-left: 2%;
+   padding: 10px;
+   padding-left: 2px;
+   border-radius: 50px;
+   transition: transform 0.3s ease;
+   color: #616161;
+}
+
+.backbutton:hover {
+   transform: skew(1.5deg) translateX(-10px);
+}
+
+.txtback {
+   /* margin-top: 8px; */
+   font-size: large;
+   font-weight: 500;
+   color: #383838;
+}
+
+.edittop{
+   display: flex;
+   align-items: center;
+   margin-bottom: 4rem;
+   padding: 0.6rem 0;
+   border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.edittitlecontainer{
+   display: flex;
+
+}
+
+.editTitle{
+   margin-left: 37.5vw;
+   font-weight: 600;
+   color: #333;
+}
+
 

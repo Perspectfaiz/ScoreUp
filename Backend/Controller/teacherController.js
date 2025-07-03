@@ -6,6 +6,17 @@ import teacherModel from "../Models/teacherModel.js";
 
 import testModel from "../Models/testModel.js";
 
+import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Ensure .env is loaded early
+
+cloudinary.config({
+   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+   api_key: process.env.CLOUDINARY_API_KEY,
+   api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 
 const signupTeacher= async (req,res)=>{
     try {
@@ -188,5 +199,84 @@ const getTeacherTests = async(req, res) => {
     };
 }
 
-export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest,getTeacherTests};
+const updateTeacherProfileData = async (req, res) => {
+   try {
+      console.log('updateTeacherProfileData called');
+      console.log('req.body:', req.body);
+      console.log('req.file:', req.file);
+
+      const {
+         teacherId,
+         name,
+         gender,
+         address,
+         dob,
+         username,
+         email,
+         phone,
+         field,
+         description
+      } = req.body;
+
+      const imageFile = req.file;
+
+      const updateObj = {};
+
+      if (name) updateObj.name = name;
+      if (gender) updateObj.gender = gender;
+      if (address) updateObj.address = address;
+      if (dob) updateObj.dob = dob;
+      if (username) updateObj.username = username;
+      if (email) updateObj.email = email;
+      if (phone) updateObj.phone = phone;
+      if (field) updateObj.field = field;
+      if (description) updateObj.description = description;
+
+      if (imageFile) {
+         console.log('Uploading image from memory buffer to Cloudinary');
+
+         // Upload from memory buffer
+         const streamUpload = (buffer) => {
+            return new Promise((resolve, reject) => {
+               const stream = cloudinary.uploader.upload_stream(
+                  { resource_type: "image" },
+                  (error, result) => {
+                     if (result) resolve(result);
+                     else reject(error);
+                  }
+               );
+               stream.end(buffer);
+            });
+         };
+
+         const imageUpload = await streamUpload(imageFile.buffer);
+         console.log('Cloudinary upload result:', imageUpload);
+         updateObj.image = imageUpload.secure_url;
+      }
+
+      const teacher = await teacherModel.findByIdAndUpdate(teacherId, updateObj, { new: true });
+
+      if (teacher) {
+         return res.json({
+            success: true,
+            message: "Teacher profile updated",
+            data: teacher
+         });
+      } else {
+         return res.json({
+            success: false,
+            message: "Teacher not found"
+         });
+      }
+
+   } catch (error) {
+      console.error('Error in updateTeacherProfileData:', error);
+      return res.json({
+         success: false,
+         message: error.message
+      });
+   }
+};
+
+export {signupTeacher,loginTeacher,extractText,getTeacherProfileData,createTest,getTeacherTests, updateTeacherProfileData};
 

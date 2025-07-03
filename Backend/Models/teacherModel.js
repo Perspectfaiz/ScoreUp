@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const teacherSchema = new mongoose.Schema({
     name: { type: String, required: true },
-     username: { type: String, required: true,unique:true },
+    username: { type: String, required: true,unique:true },
     password: { type: String, required: true },
     email: {
         type: String,
@@ -19,7 +19,8 @@ const teacherSchema = new mongoose.Schema({
     address: { type: String, default: "Not Updated" },
     gender: { type: String, default: "Not Selected" },
     dob: { type: String, default: "Not Selected" },
-    phone: { type: String, default: "0000000000" }
+    phone: { type: String, default: "0000000000" },
+    description: {type: String, default: "Not Set"}
 });
 
 const teacherModel = mongoose.model('Teacher', teacherSchema);

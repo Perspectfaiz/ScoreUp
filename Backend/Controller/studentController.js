@@ -2,13 +2,15 @@ import validator from 'validator';
 import studentModel from "../Models/studentModel.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import {v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
 
-// Cloudinary configuration
+dotenv.config(); // Ensure .env is loaded early
+
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+   api_key: process.env.CLOUDINARY_API_KEY,
+   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 //API to login
@@ -117,7 +119,20 @@ const updateStudentProfileData = async (req, res) => {
         console.log('updateStudentProfileData called');
         console.log('req.body:', req.body);
         console.log('req.file:', req.file);
-        const { studentId, name, dob, username, stream, university, address, phone, email, description, classes, gender, location } = req.body;
+        const { studentId, 
+            name, 
+            dob, 
+            username, 
+            stream, 
+            university, 
+            address, 
+            phone, 
+            email, 
+            description, 
+            classes, 
+            gender, 
+            location 
+        } = req.body;
         const imageFile = req.file;
 
         // Build update object only with provided fields
@@ -136,11 +151,26 @@ const updateStudentProfileData = async (req, res) => {
         if (location) updateObj.location = location;
 
         if (imageFile) {
-            console.log('Uploading image to Cloudinary:', imageFile.path);
-      const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
-            console.log('Cloudinary upload result:', imageUpload);
-            updateObj.image = imageUpload.secure_url;
-    }
+        console.log('Uploading image to Cloudinary from buffer');
+
+        const uploadFromBuffer = (buffer) => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    { resource_type: "image" },
+                    (error, result) => {
+                    if (result) resolve(result);
+                    else reject(error);
+                    }
+                );
+                stream.end(buffer); // Use buffer instead of file path
+            });
+        };
+
+        const imageUpload = await uploadFromBuffer(imageFile.buffer);
+        console.log('Cloudinary upload result:', imageUpload);
+        updateObj.image = imageUpload.secure_url;
+        }
+
     
         const student = await studentModel.findByIdAndUpdate(studentId, updateObj, { new: true });
        
