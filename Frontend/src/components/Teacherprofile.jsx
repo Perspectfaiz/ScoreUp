@@ -18,6 +18,7 @@ export function Teacherprofile() {
    const location = useLocation();
 
    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+   const [isDisable, setIsDisable] = useState(false);
    const fileInputRef = useRef();
    const [image, setImage] = useState(null);
    const [teacher, setTeacher] = useState(null);
@@ -38,8 +39,7 @@ export function Teacherprofile() {
    });
 
    // Fetch profile data
-   useEffect(() => {
-      const fetchTeacherprofile = async () => {
+         const fetchTeacherprofile = async () => {
          const itoken = localStorage.getItem('itoken');
          if (!itoken) return;
 
@@ -66,7 +66,7 @@ export function Teacherprofile() {
             console.log("Failed to fetch Teacher Profile: ", err);
          }
       };
-
+   useEffect(() => {
       fetchTeacherprofile();
    }, []);
 
@@ -111,6 +111,7 @@ export function Teacherprofile() {
 
    // handleSubmit logic
    const handleSubmit = async (e) => {
+      setIsDisable(true);
       e.preventDefault();
       const formData = new FormData();
       const itoken = localStorage.getItem('itoken');
@@ -128,6 +129,8 @@ export function Teacherprofile() {
 
       await updateTeacherProfile(formData);
       setIsDetailsVisible(true);
+      fetchTeacherprofile();
+      setIsDisable(false);
    };
 
    // console.log(data.data);
@@ -141,7 +144,7 @@ export function Teacherprofile() {
                   <div className={styles.sidebar}>
                      <div className={styles.sidebarbox}>
                         <img 
-                           src={form.image || "/dp.jpeg"}
+                           src={form.image || "/pic.jpg"}
                            className={styles.avatar} alt="Avatar" />
                         <h2>{form.name} <span className={styles.tag}>{form.field}</span></h2>
                         <p>{form.description}</p>
@@ -220,7 +223,7 @@ export function Teacherprofile() {
                   <div className={styles.imageSection}>
                      <div className={styles.imageContainer}>
                         <img
-                           src={image ? URL.createObjectURL(image) : (form?.image || "/dp.jpeg")}
+                           src={image ? URL.createObjectURL(image) : (form?.image || "/pic.jpg")}
                            alt="Profile"
                            className={styles.profilePic}
                         />
@@ -295,7 +298,7 @@ export function Teacherprofile() {
                         </div>
                      </div>
 
-                     <button type="submit" className={styles.saveBtn} >Save Changes</button>
+                     <button type="submit" className={styles.saveBtn} disabled={isDisable}>Save Changes</button>
                   </form>
                </div>
             </div>
