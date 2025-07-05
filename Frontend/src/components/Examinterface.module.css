@@ -123,6 +123,32 @@
 .examface .loading{
     display: flex;
     align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 16px;
+    color: #666;
+}
+
+.examface .error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 16px;
+    color: #d32f2f;
+    text-align: center;
+    padding: 20px;
+}
+
+.examface .noTests{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    padding: 20px;
 }
 
 .examface .load {

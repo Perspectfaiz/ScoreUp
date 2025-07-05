@@ -423,3 +423,28 @@ html, body {
     position: relative;
     left: 8.5%;
 }
+
+/* Loading, Error, and No Test States */
+.testpage .loading,
+.testpage .error,
+.testpage .noTest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.testpage .loading {
+    color: #666;
+}
+
+.testpage .error {
+    color: #d32f2f;
+}
+
+.testpage .noTest {
+    color: #666;
+}

@@ -2,19 +2,53 @@ import styles from './Testpage.module.css'
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
-import testObj from './Testobject.js';
 import { Section } from './section.jsx';
 import { Qnbtn } from './Qnbtn'
 import { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export function Testpage() {
-    const [sec, setSec] = useState(testObj.section);
-    const detail = testObj.details;
+    const location = useLocation();
+    const navigate = useNavigate();
+    const testId = location.state?.testId;
+    
+    const [sec, setSec] = useState([]);
+    const [detail, setDetail] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    // Fetch test data from backend
+    useEffect(() => {
+        const fetchTest = async () => {
+            try {
+                setLoading(true);
+                if (testId) {
+                    const response = await axios.get(`http://localhost:8080/api/tests/${testId}`);
+                    if (response.data.success) {
+                        const testData = response.data.test;
+                        setSec(testData.section);
+                        setDetail(testData.details);
+                    } else {
+                        setError('Failed to fetch test data');
+                    }
+                } else {
+                    setError('No testId provided');
+                }
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchTest();
+    }, [testId]);
+
+    // Answer state
     const [answer, setAnswer] = useState({
-        _id: detail.id,
-        sec: testObj.section.map((sec) => ({
+        _id: detail.id || testId,
+        sec: sec.map((sec) => ({
             name: sec.subName,
             list: sec.list.map(() => null)
         }))
@@ -22,9 +56,29 @@ export function Testpage() {
 
     const [secIdx, setSecIdx] = useState(0);
     const [qnIdx, setQnIdx] = useState(0);
-    const [qn, setQn] = useState(sec[0].list[0]);
+    const [qn, setQn] = useState(sec[0]?.list[0] || {});
     const [isDisable, setIsDisable] = useState(true);
     const [ansIdx, setAnsIdx] = useState(null);
+
+    // Update answer structure when sec changes
+    useEffect(() => {
+        if (sec.length > 0) {
+            setAnswer({
+                _id: detail.id || testId,
+                sec: sec.map((sec) => ({
+                    name: sec.subName,
+                    list: sec.list.map(() => null)
+                }))
+            });
+        }
+    }, [sec, detail, testId]);
+
+    // Update current question when sec or indices change
+    useEffect(() => {
+        if (sec.length > 0 && sec[secIdx] && sec[secIdx].list[qnIdx]) {
+            setQn(sec[secIdx].list[qnIdx]);
+        }
+    }, [sec, secIdx, qnIdx]);
 
     useEffect(() => {
         setIsDisable(ansIdx === null);
@@ -38,7 +92,7 @@ export function Testpage() {
     };
 
     useEffect(() => {
-        setAnsIdx(answer.sec[secIdx].list[qnIdx]);
+        setAnsIdx(answer.sec[secIdx]?.list[qnIdx]);
 
         if (qn.state === 0) {
             const updatedSec = [...sec];
@@ -96,7 +150,6 @@ export function Testpage() {
         qnToUpdate.state = qnToUpdate.state < 4 ? 2 : 5;
         setSec(updatedSec);
         changeAns(ansIdx);
-        
     };
 
     const Savennext = () => {
@@ -104,11 +157,16 @@ export function Testpage() {
         goToNext();
     }
 
-    const [countdown, setCountdown] = useState(testObj.details.time);
+    const [countdown, setCountdown] = useState(detail.time);
     const [hour, setHour] = useState(0);
     const [min, setMin] = useState(0);
     const [second, setSecond] = useState(0);
     const [lastmin, setLastmin] = useState(false);
+
+    // Update countdown when detail changes
+    useEffect(() => {
+        setCountdown(Number(detail.time) || 0);
+    }, [detail]);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -133,9 +191,20 @@ export function Testpage() {
 
     const [isBelowVisible, setIsBelowVisible] = useState(false);
 
+    if (loading) {
+        return <div className={styles.loading}>Loading test...</div>;
+    }
+
+    if (error) {
+        return <div className={styles.error}>Error: {error}</div>;
+    }
+
+    if (sec.length === 0) {
+        return <div className={styles.noTest}>No test data available</div>;
+    }
+
     return (
         <>
-        {/* <button onClick={() => console.log(answer)}>show answers</button> */}
         <div className={styles.testpage}>
             <div className={styles.heading}>
                 <div className={styles.logo}>
@@ -145,11 +214,11 @@ export function Testpage() {
                     <div className={styles.timelogo}><LuAlarmClock /></div>
                     <div className={styles.time}>
                         <div className={styles.timercontainer}>
-                            <div className={`${styles.hour} ${styles.timedisplay}`}>{hour < 10 ? "0" + hour : hour}</div>
+                            <div className={`${styles.hour} ${styles.timedisplay}`}>{isNaN(hour) ? "00" : hour < 10 ? "0" + hour : hour}</div>
                             <span>:</span>
-                            <div className={`${styles.min} ${styles.timedisplay}`}>{min < 10 ? "0" + min : min}</div>
+                            <div className={`${styles.min} ${styles.timedisplay}`}>{isNaN(min) ? "00" : min < 10 ? "0" + min : min}</div>
                             <span>:</span>
-                            <div className={`${styles.sec} ${styles.timedisplay}`}>{second < 10 ? "0" + second : second}</div>
+                            <div className={`${styles.sec} ${styles.timedisplay}`}>{isNaN(second) ? "00" : second < 10 ? "0" + second : second}</div>
                         </div>
                     </div>
                 </div>
@@ -161,18 +230,18 @@ export function Testpage() {
                 <div className={styles.left}>
                     <div className={styles.containQnData}>
                         <div className={styles.qndata}>
-                            {detail.id} <IoIosArrowForward /> <b>{sec[secIdx].subName}</b> <IoIosArrowForward /> <b>Q. {qnIdx + 1}</b>
+                            {detail.id || detail.testId} <IoIosArrowForward /> <b>{sec[secIdx]?.subName}</b> <IoIosArrowForward /> <b>Q. {qnIdx + 1}</b>
                         </div>
                     </div>
                     <div className={styles.panel}>
-                        <div className={styles.qntxt}>{qn.qnstat}</div>
+                        <div className={styles.qntxt}>{qn.qstat}</div>
                         {qn.image !== '#' && <div className={styles.qnimg}><img src={qn.image} alt="imagine..." className={styles.objimg} /></div>}
                         <div className={styles.option}>
-                            {qn.options.map((opt, index) => (
+                            {qn.options?.map((opt, index) => (
                                 <label key={index} className={`${styles.choose} ${ansIdx === index ? styles.selected : ''}`}>
                                     <input
                                         type="radio"
-                                        name={`question-${qn.id}`}
+                                        name={`question-${qn.id || index}`}
                                         value={opt}
                                         onChange={() => setAnsIdx(index)}
                                         checked={ansIdx === index}

@@ -1,14 +1,19 @@
 import styles from './Instruction.module.css'
 import { RxCross2 } from "react-icons/rx";
 import { Qnbtn } from './Qnbtn';
-import { useNavigate } from 'react-router-dom';
 
+export function Instruction({hide, testData, onStartTest}) {
+    // Format time from seconds to HH:MM:SS
+    const formatTime = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
 
-{/* <Qnbtn num={3} btn = {btnobg[0]}></Qnbtn> */}
+    // Calculate total questions
+    const totalQuestions = testData?.section?.reduce((total, section) => total + section.list.length, 0) || 0;
 
-
-export function Instruction({hide}) {
-    const navigate=useNavigate();
     return (
         <>
             <div className={styles.fixed}>         
@@ -19,11 +24,12 @@ export function Instruction({hide}) {
                     <div className={styles.general}>
                         <h2>Instructions 📋: </h2>
                         <hr />
-                        <p><strong>Test Duration: </strong>You have --:-- to complete the test. A countdown timer will be displayed on the screen.</p>
+                        <p><strong>Test Title: </strong>{testData?.details?.title || 'Untitled Test'}</p>
+                        <p><strong>Test Duration: </strong>You have {formatTime(testData?.details?.time || 0)} to complete the test. A countdown timer will be displayed on the screen.</p>
 
                         <p><strong>Test Structure: </strong></p>
                         <ul>
-                        <li>The test comprises [Number] questions, divided into various sections.</li>
+                        <li>The test comprises {totalQuestions} questions, divided into {testData?.section?.length || 0} sections.</li>
                         <li>Each section may includes a variety of question types:
                             <div style={{marginLeft: '20px'}}>
                                 <div>• Multiple Choice Questions (MCQs) with a single correct answer.</div>
@@ -119,13 +125,7 @@ export function Instruction({hide}) {
                         <p><strong>Best of luck!</strong></p>
                     </div> 
                     <div className={styles.start}>
-                        <button className={styles.startbtn} onClick={
-                            
-                            ()=>{
-                            // console.log("naviagte is triggerd")
-                            hide();
-                            navigate('/testpage')
-                        }}>Start Test</button>
+                        <button className={styles.startbtn} onClick={onStartTest}>Start Test</button>
                     </div>  
                 </div> 
             </div>
