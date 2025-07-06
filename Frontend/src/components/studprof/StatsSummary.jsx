@@ -39,7 +39,7 @@ export default function StatsSummary({ stats }) {
          <ProgressBar
             solved={summary.solved}
             total={summary.total}
-            attempting={5} // Hardcoded? Consider making this dynamic
+            
             rank={summary.rank}
             percentile={summary.percentile}
             testsGiven={summary.testsGiven}

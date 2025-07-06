@@ -35,7 +35,21 @@ export default function PerformanceChart({ performanceData }) {
    }, [performanceData]);
 
    if (!data) {
-      return <div className={styles.loading}>Loading performance chart...</div>;
+      return (
+        <div className={styles.chartCard}>
+          <div className={styles.chartHeader}>Performance Over Time</div>
+          <div className={styles.noDataContainer}>
+            <svg className={styles.noDataIcon} width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="12" width="40" height="32" rx="6" fill="#f3f0fa" stroke="#703ed1" strokeWidth="2"/>
+              <path d="M16 36C20 28 36 28 40 36" stroke="#703ed1" strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="16" cy="36" r="2" fill="#703ed1"/>
+              <circle cx="40" cy="36" r="2" fill="#703ed1"/>
+            </svg>
+            <div className={styles.noDataText}>No performance data found</div>
+            <div className={styles.noDataSubtext}>Your performance chart will appear here after you attempt some tests.</div>
+          </div>
+        </div>
+      );
    }
 
    return (
