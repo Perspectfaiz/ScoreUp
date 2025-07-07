@@ -48,7 +48,21 @@ export default function TestHistory({ testHistory }) {
    }
 
    if (history.length === 0) {
-      return <div className={styles.noHistory}>No tests attempted yet.</div>;
+      return (
+        <div className={styles.historyCard}>
+          <div className={styles.historyHeader}>Test History</div>
+          <div className={styles.noDataContainer}>
+            <svg className={styles.noDataIcon} width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="12" width="40" height="32" rx="6" fill="#f3f0fa" stroke="#703ed1" strokeWidth="2"/>
+              <rect x="16" y="20" width="24" height="4" rx="2" fill="#e0d7fa"/>
+              <rect x="16" y="28" width="16" height="4" rx="2" fill="#e0d7fa"/>
+              <rect x="16" y="36" width="12" height="4" rx="2" fill="#e0d7fa"/>
+            </svg>
+            <div className={styles.noDataText}>No test history found</div>
+            <div className={styles.noDataSubtext}>Start attempting tests to see your progress here!</div>
+          </div>
+        </div>
+      );
    }
 
    return (

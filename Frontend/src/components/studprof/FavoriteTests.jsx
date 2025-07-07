@@ -91,7 +91,15 @@ export default function FavoriteTests({ favoriteTestsData }) {
             {loading ? (
                <div className={styles.loading}>Loading favorite tests...</div>
             ) : testDetails.length === 0 ? (
-               <div className={styles.noHistory}>No favorite tests found.</div>
+               <div className={styles.noDataContainer}>
+                 <svg className={styles.noDataIcon} width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <circle cx="28" cy="28" r="20" fill="#f3f0fa" stroke="#703ed1" strokeWidth="2"/>
+                   <path d="M28 18L28 34" stroke="#703ed1" strokeWidth="2" strokeLinecap="round"/>
+                   <path d="M22 28L28 34L34 28" stroke="#703ed1" strokeWidth="2" strokeLinecap="round"/>
+                 </svg>
+                 <div className={styles.noDataText}>No favorite tests found</div>
+                 <div className={styles.noDataSubtext}>Mark tests as favorite to see them here!</div>
+               </div>
             ) : (
                testDetails.map((test, idx) => (
                   <div key={test._id || idx} className={styles.favoriteTestsItem}>

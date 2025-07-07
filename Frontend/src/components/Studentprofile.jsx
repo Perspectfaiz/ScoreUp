@@ -2,7 +2,7 @@ import { Footer } from './footer'
 import styles from './Studentprofile.module.css'
 import { LiaEditSolid } from "react-icons/lia";
 import { IoIosArrowBack } from "react-icons/io";
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 import 'react-circular-progressbar/dist/styles.css';
 import ProgressBar from './ProgressBar';
@@ -15,6 +15,7 @@ import LastTestPerformance from './studprof/LastTestPerformance';
 import TestHistory from './studprof/TestHistory';
 import EditProfileForm from './studprof/EditProfileForm';
 import { AppContext } from '../Context/AppContext';
+import { getAllTests } from '../services/testService';
 
 // Mock data for chart and stats
 const performanceData = [
@@ -86,19 +87,42 @@ function polarToCartesian(cx, cy, r, angleInDegrees) {
 export function Studentprofile() {
     const [isDetailsVisible, setIsDetailsVisible] = useState(true);
     const [isDisable, setIsDisable] = useState(false);
+    const [totalTests, setTotalTests] = useState(0);
     const { studentData, testHistory, favoriteTests, performanceData } = useContext(AppContext);
-    // You may want to compute stats and lastTest from testHistory or performanceData
-    // For now, fallback to empty/default if not available
+
+    // Fetch total number of tests on mount
+    useEffect(() => {
+        async function fetchTotalTests() {
+            try {
+                const res = await getAllTests();
+                if (res && Array.isArray(res.tests)) {
+                    setTotalTests(res.tests.length);
+                } else if (Array.isArray(res)) {
+                    setTotalTests(res.length);
+                } else {
+                    setTotalTests(0);
+                }
+            } catch (err) {
+                setTotalTests(0);
+            }
+        }
+        fetchTotalTests();
+    }, []);
+
+    // Calculate testsGiven and attempting from testHistory
+    const testsGiven = Array.isArray(testHistory) ? testHistory.filter(t => t.status === 'Completed').length : 0;
+
     const stats = {
         solved: testHistory?.length || 0,
-        total: 1000,
+        total: totalTests || 0,
         easy: 0,
         medium: 0,
         hard: 0,
         rank: 0,
         percentile: 0,
-        testsGiven: testHistory?.length || 0,
-        totalTests: 10,
+        testsGiven: testsGiven,
+       
+        totalTests: totalTests || 0,
     };
     const lastTest = testHistory && testHistory.length > 0 ? testHistory[testHistory.length - 1] : { name: '', date: '', score: 0, percentile: 0 };
     return (
@@ -123,7 +147,7 @@ export function Studentprofile() {
                     <TestHistory testHistory={testHistory} />
                 </div>
             </div>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div> )}
         {!isDetailsVisible && (
             <EditProfileForm onBack={
