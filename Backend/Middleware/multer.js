@@ -2,15 +2,15 @@ import multer from 'multer';
 import path from 'path';
 
 // Set up storage configuration
-const storage = multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, 'uploads/'); // Specify the directory to save the files
-  },
-  filename: function (req, file, callback) {
-    callback(null, file.originalname); // Keep the original file name
-  }
-});
-
+// const storage = multer.diskStorage({
+//   destination: function (req, file, callback) {
+//     callback(null, 'uploads/'); // Specify the directory to save the files
+//   },
+//   filename: function (req, file, callback) {
+//     callback(null, file.originalname); // Keep the original file name
+//   }
+// });
+const storage = multer.memoryStorage();
 // File filter to validate file types
 const fileFilter = (req, file, callback) => {
   const allowedTypes = /jpeg|jpg|png|gif/;

@@ -20,9 +20,22 @@ const studentSchema = new mongoose.Schema({
     dob: { type: String, default: "Not Selected" },
     phone: { type: String, default: "0000000000" },
     stream:{ type:String, default:"Not Selected"},
+    location:{ type:String, default:"Not Selected"},
     university:{ type:String, default:"Not Selected"},
     description:{ type:String, default:"...."},
     classes:{ type:String, default:"12"},
+    testHistory: [{
+        testId: { type: String },
+        name: { type: String },
+        date: { type: String },
+        score: { type: Number },
+        status: { type: String },
+    }],
+    favoriteTests: [{ type: String }], // Array of test IDs
+    performanceData: [{
+        month: { type: String },
+        score: { type: Number }
+    }]
 });
 
 

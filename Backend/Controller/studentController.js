@@ -2,7 +2,17 @@ import validator from 'validator';
 import studentModel from "../Models/studentModel.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import {v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Ensure .env is loaded early
+
+cloudinary.config({
+   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+   api_key: process.env.CLOUDINARY_API_KEY,
+   api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 //API to login
 
 const signupStudent=async (req,res)=>{
@@ -77,7 +87,7 @@ const loginStudent = async (req, res) => {
 
         const match = await bcrypt.compare(password, user.password);
         if (match) {
-            const token = jwt.sign({ id: user._id }, 'homelander', { expiresIn: '1h' }); // Include expiration for security
+            const token = jwt.sign({ id: user._id }, 'homelander', { expiresIn: '24h' }); // Include expiration for security
             return res.json({ success: true, token });
         } else {
             return res.json({ success: false, message: "Invalid credentials" });
@@ -105,30 +115,160 @@ const getStudentProfileData = async (req, res) => {
 //API to update student profile...
 
 const updateStudentProfileData = async (req, res) => {
-    try{
-        const {studentId, name,dob,username,stream,university,address,phone,email,description,classes } = req.body;
-        
-         const imageFile=req.file;
+    try {
+        console.log('updateStudentProfileData called');
+        console.log('req.body:', req.body);
+        console.log('req.file:', req.file);
+        const { studentId, 
+            name, 
+            dob, 
+            username, 
+            stream, 
+            university, 
+            address, 
+            phone, 
+            email, 
+            description, 
+            classes, 
+            gender, 
+            location 
+        } = req.body;
+        const imageFile = req.file;
 
-        if(imageFile){
-      const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" });
-      var imageUrl = imageUpload.secure_url;
-      console.log(imageUrl);
-    }
+        // Build update object only with provided fields
+        const updateObj = {};
+        if (name) updateObj.name = name;
+        if (dob) updateObj.dob = dob;
+        if (username) updateObj.username = username;
+        if (stream) updateObj.stream = stream;
+        if (university) updateObj.university = university;
+        if (address) updateObj.address = address;
+        if (phone) updateObj.phone = phone;
+        if (email) updateObj.email = email;
+        if (description) updateObj.description = description;
+        if (classes) updateObj.classes = classes;
+        if (gender) updateObj.gender = gender;
+        if (location) updateObj.location = location;
+
+        if (imageFile) {
+        console.log('Uploading image to Cloudinary from buffer');
+
+        const uploadFromBuffer = (buffer) => {
+            return new Promise((resolve, reject) => {
+                const stream = cloudinary.uploader.upload_stream(
+                    { resource_type: "image" },
+                    (error, result) => {
+                    if (result) resolve(result);
+                    else reject(error);
+                    }
+                );
+                stream.end(buffer); // Use buffer instead of file path
+            });
+        };
+
+        const imageUpload = await uploadFromBuffer(imageFile.buffer);
+        console.log('Cloudinary upload result:', imageUpload);
+        updateObj.image = imageUpload.secure_url;
+        }
+
     
-        const student = await studentModel.findByIdAndUpdate(studentId, { name,dob,username,stream,university,address,phone,email,description,classes });
+        const student = await studentModel.findByIdAndUpdate(studentId, updateObj, { new: true });
        
         if (student) {
-            return res.json({ success: true, message: "Student profile updated" });
+            return res.json({ success: true, message: "Student profile updated", data: student });
         } else {
             return res.json({ success: false, message: "Student not found" });
         }
-    }
-    catch(error) {
-        console.log(error);
+    } catch (error) {
+        console.log('Error in updateStudentProfileData:', error);
         res.json({ success: false, message: error.message });
     }
 }
 
-export {signupStudent,loginStudent,getStudentProfileData,updateStudentProfileData}
+const getTestHistory = async (req, res) => {
+    try {
+        const { studentId } = req.body;
+        const student = await studentModel.findById(studentId);
+        if (student) {
+            return res.json({ success: true, testHistory: student.testHistory });
+        } else {
+            return res.json({ success: false, message: "Student not found" });
+        }
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
+const addTestHistory = async (req, res) => {
+    try {
+        const { studentId, test } = req.body; // test: { testId, name, date, score, status }
+        const student = await studentModel.findById(studentId);
+        if (student) {
+            student.testHistory.push(test);
+            await student.save();
+            return res.json({ success: true, message: "Test history updated" });
+        } else {
+            return res.json({ success: false, message: "Student not found" });
+        }
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
+const getFavoriteTests = async (req, res) => {
+    try {
+        const { studentId } = req.body;
+        const student = await studentModel.findById(studentId);
+        if (student) {
+            return res.json({ success: true, favoriteTests: student.favoriteTests });
+        } else {
+            return res.json({ success: false, message: "Student not found" });
+        }
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
+const setFavoriteTests = async (req, res) => {
+    try {
+        const { studentId, favoriteTests } = req.body; // favoriteTests: array of test IDs
+        const student = await studentModel.findByIdAndUpdate(
+            studentId,
+            { $addToSet: { favoriteTests: { $each: favoriteTests } } },
+            { new: true }
+        );
+        if (student) {
+            return res.json({ success: true, message: "Favorite tests updated", favoriteTests: student.favoriteTests });
+        } else {
+            return res.json({ success: false, message: "Student not found" });
+        }
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
+const getPerformanceData = async (req, res) => {
+    try {
+        const { studentId } = req.body;
+        const student = await studentModel.findById(studentId);
+        if (!student) {
+            return res.json({ success: false, message: "Student not found" });
+        }
+
+        // Sort testHistory by date
+        const sortedHistory = [...student.testHistory].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        // Build performance data: each point is the score after each test
+        const performanceData = sortedHistory.map((test, idx) => ({
+            month: test.date || `Test ${idx + 1}`,
+            score: test.score
+        }));
+
+        return res.json({ success: true, performanceData });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
+export {signupStudent,loginStudent,getStudentProfileData,updateStudentProfileData,getTestHistory,addTestHistory,getFavoriteTests,setFavoriteTests,getPerformanceData}
 

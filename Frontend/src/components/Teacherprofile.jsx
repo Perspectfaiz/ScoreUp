@@ -1,175 +1,308 @@
-import styles from './Teacherprofile.module.css'
+import styles from './Teacherprofile.module.css';
+import { FaEdit, FaUniversity, FaLinkedin, FaUserGraduate } from 'react-icons/fa';
+import { IoLocationSharp } from 'react-icons/io5';
+import { Navbar } from './Navbar';
+import { Footer } from './footer';
+import { IoIosAdd, IoIosArrowBack } from "react-icons/io";
+import { FaPen } from "react-icons/fa";
+import { useState, useRef, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../Context/AppContext';
 import { LiaEditSolid } from "react-icons/lia";
-import { IoIosArrowBack } from "react-icons/io";
-import { useState } from 'react'
-import { Tagcard } from './Tagcard';
-import examObj from './Examobject.js';
-import { List } from './List.jsx';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
-export function Teacherprofile({hid}) {
-    const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+export function Teacherprofile() {
+   const { teacherData, updateTeacherProfile } = useContext(AppContext);
+   const navigate = useNavigate();
+   const location = useLocation();
 
-    return (
-        <>
-        {isDetailsVisible && (
-        <div className={styles.details}>
-            <div className={styles.teacherprofile}>
-                <div className={styles.left}>
-                    <div className={styles.profile}>
-                        <div className={styles.personal}>
-                            <div className={styles.dp}>
-                                <img src="/dp.jpeg" alt="imagine..." className={styles.dpimg}/>
-                            </div>
-                            <div className={styles.txt}>
-                                <p className={styles.name}>MKC</p>
-                                <p className={styles.stream}>JEE</p>
-                            </div>
+   const [isDetailsVisible, setIsDetailsVisible] = useState(true);
+   const [isDisable, setIsDisable] = useState(false);
+   const fileInputRef = useRef();
+   const [image, setImage] = useState(null);
+   const [teacher, setTeacher] = useState(null);
+   const [teacherTests, setTeacherTests] = useState([]);
+
+   // Form states
+   const [form, setForm] = useState({
+      name: '',
+      gender: '',
+      address: '',
+      dob: '',
+      username: '',
+      email: '',
+      phone: '',
+      field: '',
+      description: '',
+      image: ''
+   });
+
+   // Fetch profile data
+         const fetchTeacherprofile = async () => {
+         const itoken = localStorage.getItem('itoken');
+         if (!itoken) return;
+
+         try {
+            const { data } = await axios.get('http://localhost:8080/api/teacher/get-profile-data', {
+               headers: { itoken }
+            });
+            if (data.success && data.data) {
+               setTeacher(data.data);
+               setForm({
+                  name: data.data.name || '',
+                  gender: data.data.gender || '',
+                  address: data.data.address || '',
+                  dob: data.data.dob ? data.data.dob.slice(0, 10) : '',
+                  username: data.data.username || '',
+                  email: data.data.email || '',
+                  phone: data.data.phone || '',
+                  field: data.data.field || '',
+                  description: data.data.description || '',
+                  image: data.data.image || ''
+               });
+            }
+         } catch (err) {
+            console.log("Failed to fetch Teacher Profile: ", err);
+         }
+      };
+   useEffect(() => {
+      fetchTeacherprofile();
+   }, []);
+
+   // Fetch teacher tests
+
+      const fetchTeacherTests = async () => {
+         const itoken = localStorage.getItem('itoken');
+         if (!itoken || !teacher) return;
+         try {
+            const { data } = await axios.get('http://localhost:8080/api/tests/my-tests', {
+               headers: { itoken }
+            });
+            if (data.success && data.tests) {
+               setTeacherTests(data.tests);
+            }
+         } catch (err) {
+            console.log("Failed to fetch Teacher Tests: ", err);
+         }
+      };
+
+   useEffect(() => {
+      fetchTeacherTests();
+   }, [teacher]);
+
+   useEffect(() => {
+      if(location.state?.refreshTests) {
+         fetchTeacherTests();
+         window.history.replaceState({}, document.title);
+      }
+   }, [location.state])
+
+   // Image change
+   const handleImageChange = (e) => {
+      setImage(e.target.files[0]);
+   };
+
+   // Input change
+   const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setForm(prev => ({ ...prev, [name]: value }));
+   };
+
+   // handleSubmit logic
+   const handleSubmit = async (e) => {
+      setIsDisable(true);
+      e.preventDefault();
+      const formData = new FormData();
+      const itoken = localStorage.getItem('itoken');
+
+      if (!itoken) return alert("Login again");
+
+      formData.append('teacherId', teacherData._id);
+      Object.entries(form).forEach(([key, value]) => {
+         formData.append(key, value);
+      });
+
+      if (image) {
+         formData.append("image", image);
+      }
+
+      await updateTeacherProfile(formData);
+      setIsDetailsVisible(true);
+      fetchTeacherprofile();
+      setIsDisable(false);
+   };
+
+   // console.log(data.data);
+
+   return (
+      <>
+         {isDetailsVisible && (
+            <>
+               <Navbar />
+               <div className={styles.container}>
+                  <div className={styles.sidebar}>
+                     <div className={styles.sidebarbox}>
+                        <img 
+                           src={form.image || "/pic.jpg"}
+                           className={styles.avatar} alt="Avatar" />
+                        <h2>{form.name} <span className={styles.tag}>{form.field}</span></h2>
+                        <p>{form.description}</p>
+                        <p>{form.address}</p>
+                        <p>{form.email}</p>
+                        <p>{form.phone}</p>
+                        <button className={styles.editBtn} onClick={() => setIsDetailsVisible(false)}>
+                           <LiaEditSolid className={styles.editicon}/> Edit Profile
+                        </button>
+                     </div>
+                  </div>
+
+                  <div className={styles.dashboard}>
+                     <div className={styles.testInfo}>
+                        <div className={styles.countTest}>
+                           <div className={styles.box}>
+                              <div className={styles.head}>Total Tests Contributed</div>
+                              <div className={styles.count}>{teacherTests.length < 10 ? `0${teacherTests.length}` : teacherTests.length}</div>
+                           </div>
                         </div>
-                        {/* <div className={styles.description}>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae corporis ipsam porro eaque sit quis quasi, ipsum eius asperiores vel, aperiam earum doloremque maiores ea quisquam, perspiciatis inventore beatae nihil.
-                        </div> */}
-                        <div className={styles.edit}>
-                            <button className={styles.editbtn} onClick={() => {
-                                setIsDetailsVisible(!isDetailsVisible)
-                            }}>Edit Profile</button>
+                        <div className={styles.addTest}>
+                           <div className={styles.box}>
+                              <button className={styles.addTestBtn} onClick={() => navigate('/upload-test')}>
+                                 <IoIosAdd className={styles.pluslogo} /> Create Test
+                              </button>
+                           </div>
                         </div>
-                    </div>
-                    <div className={styles.fav}>
-                        Fav loading...
-                    </div>
-                </div> 
-                <div className={styles.right}>
-                    <div className={styles.filter}>
-                        <div className={styles.tag}>
-                            <Tagcard></Tagcard>
-                            <Tagcard></Tagcard>
+                     </div>
+
+                     <div className={styles.testHistory}>
+                        <h4>Tests Uploaded</h4>
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Test Name</th>
+                                 <th>Stream/Tag</th>
+                                 <th>Duration</th>
+                                 <th>Total Marks</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {[...teacherTests].reverse().map((test, index) => (
+                                 <tr key={index}>
+                                    <td>{test.details.title}</td>
+                                    <td>{test.details.stream} / {test.details.tag}</td>
+                                    <td>{test.details.time / 60} minutes</td>
+                                    <td>Completed</td>
+                                    <td><button className={styles.viewBtn}>View</button></td>
+                                 </tr>
+                              ))}
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <Footer />
+            </>
+         )}
+
+         {!isDetailsVisible && (
+            <div className={styles.profileWrapper}>
+               <div className={styles.edittop}>
+                  <div className={styles.backbutton} onClick={() => {setIsDetailsVisible(true)}}>
+                     <IoIosArrowBack className={styles.iconback} size={28} />
+                     <p className={styles.txtback}>Back</p>
+                  </div>
+
+                  <div className={styles.edittitlecontainer}>
+                     <h2 className={styles.editTitle}>Edit Profile</h2>    
+                  </div>              
+               </div>
+
+
+               <div className={styles.profileSection}>
+                  <div className={styles.imageSection}>
+                     <div className={styles.imageContainer}>
+                        <img
+                           src={image ? URL.createObjectURL(image) : (form?.image || "/pic.jpg")}
+                           alt="Profile"
+                           className={styles.profilePic}
+                        />
+                        <input
+                           type="file"
+                           accept="image/*"
+                           style={{ display: 'none' }}
+                           ref={fileInputRef}
+                           onChange={handleImageChange}
+                        />
+                        <div className={styles.editIcon} onClick={() => fileInputRef.current.click()}>
+                           <FaPen />
                         </div>
-                        <div className={styles.search}>
-                            <select name="tag" className={styles.branch}>
-                                <option value="All">All</option>
-                                <option value="Physics">Physics</option>
-                                <option value="Chemistry">Chemistry</option>
-                                <option value="Maths">Maths</option>
-                            </select>
+                     </div>
+                     <label className={styles.descLabel}>Description</label>
+                     <textarea
+                        className={styles.descriptionBox}
+                        name="description"
+                        value={form.description}
+                        onChange={handleInputChange}
+                        placeholder="Tell us something about yourself"
+                     />
+                  </div>
+
+                  <form className={styles.formSection} onSubmit={handleSubmit}>
+                     <div className={styles.inputPair}>
+                        <div>
+                           <label>Name</label>
+                           <input name="name" value={form.name} onChange={handleInputChange} type="text" placeholder="Name" />
                         </div>
-                    </div>
-                    <div className={styles.examlist}> 
-                            <div className={styles.listhead}>
-                                <div className={styles.status}><div>Status</div></div>
-                                <div className={styles.topic}><div>Topic</div></div>
-                                <div className={styles.duration}><div>Duration</div></div>
-                                <div className={styles.attempted}><div>Visits</div></div>
-                                <div className={styles.teacher}><div>Teacher</div></div>
-                            </div>
-                            <div className={styles.listlist}> 
-                                {
-                                    examObj.testList.map((item,index)=>{
-                                        // console.log(item)
-                                        return <List info={item.details} key={index}></List>;
-                                    })
-                                }
-                            </div>
+                        <div>
+                           <label>Gender</label>
+                           <select name="gender" value={form.gender} onChange={handleInputChange}>
+                              <option>Select</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                              <option>Other</option>
+                           </select>
                         </div>
-                </div>
-                
+                     </div>
+
+                     <div className={styles.inputPair}>
+                        <div>
+                           <label>Address</label>
+                           <input name="address" value={form.address} onChange={handleInputChange} type="text" placeholder="Address" />
+                        </div>
+                        <div>
+                           <label>Date of Birth</label>
+                           <input name="dob" value={form.dob} onChange={handleInputChange} type="date" />
+                        </div>
+                     </div>
+
+                     <div className={styles.inputPair}>
+                        <div>
+                           <label>Username</label>
+                           <input name="username" value={form.username} onChange={handleInputChange} type="text" placeholder="Username" />
+                        </div>
+                        <div>
+                           <label>Email</label>
+                           <input name="email" value={form.email} onChange={handleInputChange} type="email" placeholder="Email" />
+                        </div>
+                     </div>
+
+                     <div className={styles.inputPair}>
+                        <div>
+                           <label>Phone Number</label>
+                           <input name="phone" value={form.phone} onChange={handleInputChange} type="text" placeholder="Phone Number" />
+                        </div>
+                        <div>
+                           <label>Field</label>
+                           <input name="field" value={form.field} onChange={handleInputChange} type="text" placeholder="Field" />
+                        </div>
+                     </div>
+
+                     <button type="submit" className={styles.saveBtn} disabled={isDisable}>Save Changes</button>
+                  </form>
+               </div>
             </div>
-        </div> )}
-
-        {/* /////////////////////////////////////////////////////////////////////////////// */}
-        
-        {!isDetailsVisible && (
-        <div className={styles.update}>
-
-            <div className={styles.heading}>
-                <div className={styles.backbutton} onClick={ () => {
-                    setIsDetailsVisible(!isDetailsVisible)
-                }}><IoIosArrowBack className={styles.iconback} size={18}/><p className={styles.txtback}>Back</p>
-                </div>
-                <p className={styles.editprofile}>Edit Profile</p>
-            </div>
-            <div className={styles.main}>
-                <div className={styles.left}>
-                    <div className={styles.dpbox}>
-                        <div className={styles.bccolor}>
-                            <img src="/dp.jpeg" alt="imagine..." className={styles.dpimg} />
-                            <button className={styles.dpbtn}><LiaEditSolid size={60}/></button>
-                        </div>
-                        
-                    </div>
-                    <div className={styles.description}>
-                        <p>Description</p>
-                        <textarea name="description" className={styles.dtxt}></textarea>
-                    </div>
-                </div>
-
-                <div className={styles.detail}>
-                <div className={styles.basic}>
-                    <div className={styles.name}>
-                        <p>Name</p>
-                        <input type="text" className={`${styles.input} ${styles.name_input}`} placeholder="Name"/>
-                    </div>
-                    <div className={styles.dob}>
-                        <p>Date of birth</p>
-                        <input type="date" className={`${styles.input} ${styles.dob_input}`} placeholder="Date"/>
-                    </div>
-                    <div className={styles.username}>
-                        <p>Username</p>
-                        <input type="text" className={`${styles.input} ${styles.username_input}`} placeholder="Username"/>
-                    </div>
-                    <div className={styles.gender}>
-                        <p>Gender</p>
-                        <select name="Gender" id={styles.gender} className={`${styles.input} ${styles.gender_select}`}>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                            <option value="O">Others</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div className={styles.other}>
-                    <div className={styles.class}>
-                        <p>Class</p>
-                        <select name="Class" id={styles.class} className={`${styles.input} ${styles.class_select}`}>
-                            <option value="6">6th</option>
-                            <option value="7">7th</option>
-                            <option value="8">8th</option>
-                            <option value="9">9th</option>
-                            <option value="10">10th</option>
-                            <option value="11">11th</option>
-                            <option value="12">12th</option>
-                        </select>
-                    </div>
-                    <div className={styles.stream}>
-                        <p>Stream</p>
-                        <input type="text" className={`${styles.input} ${styles.stream_input}`} placeholder="Stream"/>
-                    </div>
-                    <div className={styles.university}>
-                        <p>University</p>
-                        <input type="text" className={`${styles.input} ${styles.university_input}`} placeholder="University"/>
-                    </div>
-                    <div className={styles.address}>
-                        <p>Address</p>
-                        <input type="text" className={`${styles.input} ${styles.address_input}`} placeholder="Address"/>
-                    </div>
-                </div>
-
-                <div className={styles.contact}>
-                    <div className={styles.phone}>
-                        <p>Phone No.</p>
-                        <input type="number" className={`${styles.input} ${styles.phone_input}`} placeholder="Phone No."/>
-                    </div>
-                    <div className={styles.email}>
-                        <p>Email</p>
-                        <input type="email" className={`${styles.input} ${styles.email_input}`} placeholder="Email"/>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-            <div className={styles.base}>
-                <button className={styles.savebtn}>Save Changes</button>
-            </div>
-        </div> )}
-        </>
-    )
+         )}
+      </>
+   );
 }

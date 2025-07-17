@@ -10,11 +10,14 @@ import { RxCross2 } from "react-icons/rx";
 import { MdOutlineEdit } from "react-icons/md";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { LuAlarmClock } from "react-icons/lu";
-
+import { createTest } from '../../services/testService';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export function Createtest() {
+
+    const navigate = useNavigate();
 
     const examTags = {
         JEE: ["All", "Physics", "Chemistry", "Maths"],
@@ -72,6 +75,31 @@ export function Createtest() {
     }, [hour, min, sec]);  // this runs setTime logic when any value changes
 
 
+    const handleSubmitData = async (e) => {
+        e.preventDefault();
+        try {
+            // Add missing required fields
+            const testDataToSend = {
+                ...page,
+                details: {
+                    ...page.details,
+                    id: page.details.testId || `test_${Date.now()}`, // Use testId or generate new one
+                    teacher_id: "teacher_123", // You'll need to get this from logged-in teacher
+                    teacher_name: "Teacher Name", // You'll need to get this from logged-in teacher
+                    max_score: 100, // Calculate based on questions or set default
+                    attempted: 0,
+                    avg_score: 0
+                }
+            };
+            
+            const result = await createTest(testDataToSend);
+            alert('Test created successfully!');
+            console.log('Test created:', result);
+        } catch (err) {
+            alert('Error: ' + err.message);
+        }
+    };
+
 
     return (
         <>
@@ -80,7 +108,8 @@ export function Createtest() {
             <div className={styles.createtest}>
                 <div className={styles.createhead}>
                     <div className={styles.back}>
-                        <button className={styles.backbtn}>Back</button>
+                        <button className={styles.backbtn} 
+                                onClick={() => navigate('/teacherprofile')}>Back</button>
                     </div>
                     <div className={styles.title}>
                         <input type="text" onChange={
@@ -267,7 +296,16 @@ export function Createtest() {
 
                         }> <FiPlus size={25}></FiPlus> <span className={styles.sectxt}>Section</span>  
                         </button>
-                        <button className={styles.submitbtn}>Submit</button>
+                        <button 
+                            className={styles.submitbtn}
+                            onClick={ async (e) => {
+                                const success = await handleSubmitData(e);
+                                navigate('/teacherprofile', {state: {refreshTests : true}});
+                                
+                                
+                            }
+                                
+                            }>Submit</button>
                     </div>
                     
                 </div>

@@ -13,7 +13,7 @@ body {
 
 /* Wrapper to center only the login card */
 .fullscreenWrapper {
-  min-height: 100vh;
+  min-height: 650px;
   min-width: 100vw;
   display: flex;
   justify-content: center;

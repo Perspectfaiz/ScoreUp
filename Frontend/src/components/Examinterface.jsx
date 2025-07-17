@@ -1,33 +1,98 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Examinterface.module.css'
-import examObj from './Examobject.js';
 import { List } from './List.jsx';
 import { Tagcard } from './Tagcard.jsx';
 import { GiMaterialsScience } from "react-icons/gi";
 import { TbWorldSearch } from "react-icons/tb";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Instruction } from './Instruction.jsx';
-// import { Instruction } from './Instruction.jsx'
+import axios from 'axios';
+
 export function Examinterface() {
-    // const {name}=subjects;
     const navigate = useNavigate();
     const [showInstruct,setShowInstuct]=useState(false);
+    const [selectedTest, setSelectedTest] = useState(null);
+    const [tests, setTests] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [selectedTag, setSelectedTag] = useState("All");
+
+    // Fetch tests from backend using axios directly
+    useEffect(() => {
+        const fetchTests = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('http://localhost:8080/api/tests/all');
+                if (response.data.success) {
+                    setTests(response.data.tests);
+                } else {
+                    setError('Failed to fetch tests');
+                }
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchTests();
+    }, []);
+
     function hide(){
-        setShowInstuct(!showInstruct);
+        setShowInstuct(false);
+        setSelectedTest(null);
     }
+
+    const handleTestClick = (test) => {
+        setSelectedTest(test);
+        setShowInstuct(true);
+    };
+
+    const handleStartTest = () => {
+        if (selectedTest) {
+            hide();
+            navigate('/testpage', { state: { testId: selectedTest._id } });
+        }
+    };
+
+    // Filter tests based on selected tag
+    const filteredTests = selectedTag === "All" 
+        ? tests 
+        : tests.filter(test => test.details.tag === selectedTag);
+
+    // Format time from seconds to MM:SS
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    };
+
+    // Get unique tags from tests
+    const availableTags = ["All", ...new Set(tests.map(test => test.details.tag).filter(Boolean))];
     
     return (
         <>
-        
-            {showInstruct && <Instruction hide={hide}></Instruction>} 
+            {showInstruct && selectedTest && (
+                <Instruction 
+                    hide={hide} 
+                    testData={selectedTest}
+                    onStartTest={handleStartTest}
+                />
+            )} 
             <div className={styles.examface}>
                 <div className={styles.examhead}><GiMaterialsScience size={21}/><div><b>JEE</b> TEST LIBRARY</div></div>
                 <div className={styles.exammain}>
                     <div className={styles.left}>
                         <div className={styles.tags}> 
                             {
-                                examObj.tag.map((item,index)=>{
-                                    return <Tagcard tag={item} key={index}></Tagcard>;
+                                availableTags.map((item,index)=>{
+                                    return (
+                                        <Tagcard 
+                                            tag={item} 
+                                            key={index}
+                                            isSelected={selectedTag === item}
+                                            onClick={() => setSelectedTag(item)}
+                                        />
+                                    );
                                 })
                             }
                         </div>
@@ -39,17 +104,29 @@ export function Examinterface() {
                                 <div className={styles.attempted}><div>Visits</div></div>
                                 <div className={styles.teacher}><div>Teacher</div></div>
                             </div>
-                            <div className={styles.listlist}  > 
-                                {
-                                    examObj.testList.map((item,index)=>{
-                                        // console.log(item)
-                                        // return <List info={item.details} key={index}  onClick={() => navigate('/instruction')} ></List>;
-                                        return <div key={index} onClick={hide} style={{ cursor: 'pointer' }}>
-                                        <List info={item.details} />
-                                    </div>
-                                    // onClick={() => navigate('/instruction')} 
+                            <div className={styles.listlist}> 
+                                {loading ? (
+                                    <div className={styles.loading}>Loading tests...</div>
+                                ) : error ? (
+                                    <div className={styles.error}>Error: {error}</div>
+                                ) : filteredTests.length === 0 ? (
+                                    <div className={styles.noTests}>No tests found</div>
+                                ) : (
+                                    filteredTests.map((item,index)=>{
+                                        const testInfo = {
+                                            ...item.details,
+                                            time: formatTime(item.details.time),
+                                            title: item.details.title || 'Untitled Test',
+                                            teachername: item.details.teacherName || 'Unknown Teacher',
+                                            attempted: item.details.attempted || 0
+                                        };
+                                        return (
+                                            <div key={index} onClick={() => handleTestClick(item)} style={{ cursor: 'pointer' }}>
+                                                <List info={testInfo} />
+                                            </div>
+                                        );
                                     })
-                                }
+                                )}
                             </div>
                         </div>
                     </div>

@@ -5,17 +5,20 @@
 
 * {
     font-family: 'Poppins';
+    
 }
 
 .nav{
+   
     display: flex;
     justify-content: left;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.871);
     backdrop-filter: blur(5px);
-    width: 100vw;
+    width: 100%;
     height: 9vh;
-    border-bottom: 1px solid rgb(155, 155, 155);
+    border-bottom: 1px solid rgb(240, 240, 240);
+ /* overflow: hidden; */
     position: sticky;
     top:0;
     z-index: 5;
@@ -37,7 +40,13 @@
     height: 40px;
     width: 40px;
     margin-left: 20px;
+    transition: transform 0.3s ease-in-out;
 }
+
+.brand img:hover{
+    transform: rotate(45deg);
+}
+
 .brand .txt{
     margin-left: 5px;
     color: rgb(0, 0, 0);
@@ -62,11 +71,90 @@
     text-decoration: none;
     border-radius: 50px;
     padding: 7px 15px;
+    display: flex;
+    align-items: center;
 }
 
 .field .in:hover{
     color: black;
-    background-color: #eee6ff;
+    background-color: #eee6ff ;
+}
+
+/* .about{
+    animation: blinkie 30s linear infinite;
+}
+
+@keyframes blinkie {
+   0%, 4%{
+      background-color: #eee6ff;
+      opacity: 0.3;
+   }
+   2%, 6%{
+      background-color: #ffffff00;
+      opacity: 1;
+   }
+   100% {
+      background-color: #ffffff00;
+      opacity: 1;
+   }
+} */
+
+.field .in img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    animation: rotate360 6s linear infinite;
+    transition: all 150ms ease-in-out;
+}
+
+@keyframes rotate360 {
+    from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.addTestBtn {
+    all: unset;
+    display: flex;
+    align-items: center;
+    /* font-size: 12px ; */
+    padding: 0.7rem 1rem;
+    background-color: #7a3ff2;
+    color: #fff;
+    width: 120px;
+    border-radius: 7px;
+    transition: all 250ms ease-in-out;
+    margin-right: 1.2rem;
+    /* height: 50px; */
+}
+.pluslogo{
+    font-size: 20px !important;
+    margin-right: 0.5rem;
+    background-color: #fdfbff;
+    color: #414141;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addTestBtn:hover{
+    border-radius: 70px;
+    background-color: #8345ff;
+}
+
+.addTestBtn:active{
+    border-radius: 70px;
+    filter: brightness(0.8);
+}
+
+.verline{
+    height: 70%;
+    width: 1px;
+    background-color: #dcdcdc;
 }
 
 .profile{
@@ -75,18 +163,23 @@
     align-items: center;
     text-decoration: none;
     color: rgb(0, 0, 0);
-    width: 350px;
+    width: 400px;
     height: 100%;
 }
 
 .profile img{
-    width: 25px;
-    height: 25px;
-    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 1rem;
+    transition: all 150ms ease-in-out;
+}
+.profile img:hover{
+    box-shadow: 0px 0px 0px 4px #efefef;
 }
 
 .profile .box{
-    background-color: #703ed1;
+    background-color: #7a3ff2;
     width: 150px;
     height: 60%;
     display: flex;
@@ -121,12 +214,12 @@
 .profileContainer {
     display: flex;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .profileImage {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     border-radius: 50%;
     transition: transform 0.2s ease;
@@ -138,25 +231,24 @@
 
 .logout {
     color: #fff;
-    background: linear-gradient(90deg, #703ed1 0%, #5d20d3 100%);
+    /* background: linear-gradient(90deg, #703ed1 0%, #5d20d3 100%); */
+    background-color: #7a3ff2;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    padding: 7px 32px ;
+    padding: 9px 32px ;
     border-radius: 20px;
     border: none;
-    box-shadow: 0 2px 8px rgba(93,32,211,0.08);
     margin-left: 8px;
     margin-right: 28px;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 150ms ease-in-out;
 }
 
 .logout:hover {
-    background: linear-gradient(90deg, #5d20d3 0%, #703ed1 100%);
-    box-shadow: 0 4px 16px rgba(93,32,211,0.15);
-    transform: translateY(-1px) scale(1.004);
+    background-color: #1a1a1a;
+    border-radius: 10px;
 }

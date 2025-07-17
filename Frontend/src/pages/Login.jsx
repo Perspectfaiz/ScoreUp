@@ -4,6 +4,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { Navbar } from "../components/Navbar";
 
 const Login = () => {
    const [signUp, setSignUp] = useState(true);
@@ -86,15 +88,29 @@ const Login = () => {
     setIsTeacher(!isTeacher);
    }
 
+   const location = useLocation();
+
+   useEffect(() => {
+      if (location.state?.runFunction) {
+         teacherPref();
+      }
+   }, [location]);
+
+   const teacherPref = () => {
+      setIsTeacher(true);
+   };
+
    return (
     <>
+    <Navbar></Navbar>
       <div className={styles.fullscreenWrapper}>
+      
         <form onSubmit={onSubmitHandler}>
             <div className={styles.mainbody}>
                 <div className={styles.heading}>
                     {signUp ? <h2>Sign Up</h2> : <h2>Login</h2>}
                 </div>
-
+                
                 <div className={styles.signopt}>
                     {signUp && (
                         <div>
