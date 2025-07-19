@@ -112,9 +112,11 @@ const Login = () => {
                 </div>
                 
                 <div className={styles.signopt}>
-                    {signUp && (
+                    {/* {signUp && ( */}
                         <div>
-                            <p className={styles.signtext}>Sign up as:</p>
+                            <p className={styles.signtext}>
+                                {signUp ? 'Signup as:' : 'Login as:'}
+                            </p>
                             <div className={styles.opt}>
                                 <button 
                                     type="button"
@@ -132,7 +134,7 @@ const Login = () => {
                                 </button>
                             </div>
                         </div>
-                    )}
+                    {/* )} */}
                 </div>
 
                 {signUp && (

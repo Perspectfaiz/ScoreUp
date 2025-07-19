@@ -1,40 +1,10 @@
-// import styles from '../Studentprofile.module.css';
-
-// export default function TestHistory({ testHistory }) {
-//     return (
-//         <div className={styles.historyCard}>
-//             <div className={styles.historyHeader}>Test History</div>
-//             <table className={styles.historyTable}>
-//                 <thead>
-//                     <tr>
-//                         <th>Test Name</th>
-//                         <th>Date</th>
-//                         <th>Score</th>
-//                         <th>Status</th>
-//                         <th>Action</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {testHistory.map((test, idx) => (
-//                         <tr key={idx}>
-//                             <td>{test.name}</td>
-//                             <td>{test.date}</td>
-//                             <td>{test.score}</td>
-//                             <td>{test.status}</td>
-//                             <td><button className={styles.viewBtn}>View</button></td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </table>
-//         </div>
-//     );
-// } 
-
 import { useEffect, useState } from 'react';
 import styles from '../Studentprofile.module.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function TestHistory({ testHistory }) {
+export default function TestHistory({ testHistory , studentId}) {
    const [history, setHistory] = useState(null);
+   const navigate=useNavigate();
 
    useEffect(() => {
       // Update only when testHistory is defined (even if empty)
@@ -81,11 +51,17 @@ export default function TestHistory({ testHistory }) {
             <tbody>
                {history.map((test, idx) => (
                   <tr key={idx}>
-                     <td>{test.name}</td>
-                     <td>{test.date}</td>
+                     <td>{test.title}</td>
+                     <td>{new Date(Number(test.date)).toLocaleDateString('en-GB')}</td>
                      <td>{test.score}</td>
                      <td>{test.status}</td>
-                     <td><button className={styles.viewBtn}>View</button></td>
+                     <td><button className={styles.viewBtn} onClick={()=>{
+                        console.log("test",test._id, " Student" ,studentId);
+                        navigate('/student-review', {state: {
+                           testId: test._id,
+                           studentId: studentId
+                        }})
+                     }}>View</button></td>
                   </tr>
                ))}
             </tbody>
@@ -93,3 +69,4 @@ export default function TestHistory({ testHistory }) {
       </div>
    );
 }
+

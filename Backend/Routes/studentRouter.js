@@ -13,9 +13,11 @@ studentRouter.use('/get-profile-data',authStudent,getStudentProfileData);
 studentRouter.use('/update-profile-data',authStudent,upload.single('image'),updateStudentProfileData);
 
 studentRouter.post('/test-history', authStudent, getTestHistory);
-studentRouter.post('/add-test-history', authStudent, addTestHistory);
+studentRouter.post('/submit-test', authStudent, addTestHistory);
 studentRouter.post('/favorite-tests', authStudent, getFavoriteTests);
 studentRouter.post('/set-favorite-tests', authStudent, setFavoriteTests);
 studentRouter.post('/performance-data', authStudent, getPerformanceData);
+// studentRouter.post('/submit-test', authStudent, submitTest);
+
 
 export default studentRouter;

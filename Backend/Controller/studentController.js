@@ -200,13 +200,26 @@ const getTestHistory = async (req, res) => {
 };
 
 const addTestHistory = async (req, res) => {
+    
+
+    console.log("controller started...");
     try {
-        const { studentId, test } = req.body; // test: { testId, name, date, score, status }
-        const student = await studentModel.findById(studentId);
-        if (student) {
-            student.testHistory.push(test);
-            await student.save();
-            return res.json({ success: true, message: "Test history updated" });
+        console.log("xoxox")
+        console.log("this is body",req.body);
+        const { studentId, ...answer } = req.body; // test: { testId, name, date, score, status }
+        console.log("this is ANS",answer)
+        const {token} = req.headers;
+        const token_decode=jwt.verify(token, process.env.JWT_SECRET);
+        if(token_decode){
+            const student = await studentModel.findByIdAndUpdate(token_decode.id, 
+                {$push: {
+                    "testHistory": answer
+                }}
+            )
+            console.log("rndi angay",student);
+            if (student) {
+                return res.json({ success: true, message: "Test Submitted" });
+            }
         } else {
             return res.json({ success: false, message: "Student not found" });
         }
@@ -269,6 +282,25 @@ const getPerformanceData = async (req, res) => {
         res.json({ success: false, message: error.message });
     }
 };
+
+// const submitTest = async (req,res)=>{
+//     try{
+//         const {token} = req.headers
+//         const token_decode = jwt.verify(token, proccess.env.JWT_SECRET);
+//         console.log(token_decode);
+//         const ans= await findByIdAndUpdate(token_decode.id, 
+//             $push:{
+//                 "testHistory.$.ans":{req.body.answer}
+//             }
+//         )
+
+        
+
+
+//     }catch(err){
+
+//     }
+// }
 
 export {signupStudent,loginStudent,getStudentProfileData,updateStudentProfileData,getTestHistory,addTestHistory,getFavoriteTests,setFavoriteTests,getPerformanceData}
 

@@ -144,7 +144,7 @@ export function Studentprofile() {
                         <StatsSummary stats={stats} />
                         <LastTestPerformance lastTest={lastTest} />
                     </div>
-                    <TestHistory testHistory={testHistory} />
+                    <TestHistory testHistory={testHistory} studentId={studentData._id}  />
                 </div>
             </div>
             {/* <Footer></Footer> */}

@@ -25,11 +25,12 @@ const studentSchema = new mongoose.Schema({
     description:{ type:String, default:"...."},
     classes:{ type:String, default:"12"},
     testHistory: [{
-        testId: { type: String },
-        name: { type: String },
+        _id: { type: String },
+        title: {type: String},
         date: { type: String },
         score: { type: Number },
-        status: { type: String },
+        sec: mongoose.Schema.Types.Mixed,
+
     }],
     favoriteTests: [{ type: String }], // Array of test IDs
     performanceData: [{

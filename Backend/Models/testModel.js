@@ -23,7 +23,7 @@ const testSchema = new mongoose.Schema({
                qstat: { type: String },
                image: { type: String },
                options: [{ type: String }],
-               ans: { type: Number, default: -1 },
+               ans: { type: Number },
                qnstat: { type: String, required: true }
             }
          ]

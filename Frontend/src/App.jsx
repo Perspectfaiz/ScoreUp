@@ -22,6 +22,7 @@ import { FreeReso } from './components/resources/resources'
 import { Createtest } from './components/upload test/Createtest'
 import { Qnform } from './components/upload test/Qnform'
 import { Teacherprofile } from './components/Teacherprofile.jsx'
+import { Testreview } from './components/testReview.jsx'
 
 function App() {
   return (
@@ -36,8 +37,10 @@ function App() {
       <Route path='/about' element={<About />} />
       <Route path='/free-resources' element={<FreeReso />} />
       <Route path='/upload-test' element={<Createtest/>} />
+      <Route path='/student-review' element={<Testreview/>}/>
       {/* <Route path='/upload-test/qnform' element={<Qnform />} /> */}
     </Routes>
+
   )
 }
 

@@ -13,11 +13,82 @@ export function Testpage() {
     const location = useLocation();
     const navigate = useNavigate();
     const testId = location.state?.testId;
+    const [submitDisable, setSubmitDisable]=useState(false);
     
     const [sec, setSec] = useState([]);
     const [detail, setDetail] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const [answer, setAnswer] = useState({
+        _id: detail.id || testId,
+        title: detail.title || "dum",
+        date: Date.now(),
+        score: 0,
+        sec: sec.map((sec) => ({
+            name: sec.subName,
+            list: sec.list.map(() => -3)
+        }))
+    });    
+
+    const token = localStorage.getItem("token");
+
+// const calcScore =()=>{
+//     let netScore=0;
+//     for(let i=0; i<sec.length; i++){
+//         for(let j=0; j<sec[i].list.length; j++){
+//             let val=answer.sec[i].list[j];
+//             if(val!=-1){
+//                 if(val==sec[i].list[j].ans) netScore+=4;
+//                 else netScore--;
+//             }
+//         }
+//     }
+//     console.log(netScore);
+//     setScore(netScore);
+// }
+
+const submitTest = async () => {
+  setSubmitDisable(true);
+  if (token) {
+    try {
+      console.log("Hi");
+
+      // 1. Calculate score directly (not via setScore)
+      let netScore = 0;
+      for (let i = 0; i < sec.length; i++) {
+        for (let j = 0; j < sec[i].list.length; j++) {
+          let val = answer.sec[i].list[j];
+          if (val !== -1) {
+            if (val === sec[i].list[j].ans) netScore += 4;
+            else netScore -= 1;
+          }
+        }
+      }
+
+      // 2. Build updated answer object with score
+      const updatedAnswer = { ...answer, score: netScore };
+
+      // 3. Submit to backend
+      console.log(updatedAnswer);
+      const { data } = await axios.post(
+        "http://localhost:8080/api/student/submit-test",
+        updatedAnswer,
+        {
+          headers: { token },
+        }
+      );
+
+      console.log("my name is abhay", data);
+      navigate("/studentprofile");
+    } catch (err) {
+      console.error("Axios error:", err.response ? err.response.data : err.message);
+    }
+  } else {
+    console.log("User not authorized");
+  }
+};
+
 
     // Fetch test data from backend
     useEffect(() => {
@@ -30,48 +101,56 @@ export function Testpage() {
                         const testData = response.data.test;
                         setSec(testData.section);
                         setDetail(testData.details);
+                        console.log(sec);
+                        setAnswer({
+                            _id: testData.details.id || testId,
+                            title: detail.title || "dum2",
+                            date: Date.now(),
+                            score: 0,
+                            sec: testData.section.map((sec) => ({
+                                name: sec.subName,
+                                list: sec.list.map(() => -1)
+                            }))
+                        });
                     } else {
                         setError('Failed to fetch test data');
                     }
                 } else {
                     setError('No testId provided');
                 }
+                
             } catch (err) {
                 setError(err.message);
             } finally {
                 setLoading(false);
             }
+            
         };
         fetchTest();
     }, [testId]);
 
     // Answer state
-    const [answer, setAnswer] = useState({
-        _id: detail.id || testId,
-        sec: sec.map((sec) => ({
-            name: sec.subName,
-            list: sec.list.map(() => null)
-        }))
-    });
+
 
     const [secIdx, setSecIdx] = useState(0);
     const [qnIdx, setQnIdx] = useState(0);
     const [qn, setQn] = useState(sec[0]?.list[0] || {});
     const [isDisable, setIsDisable] = useState(true);
     const [ansIdx, setAnsIdx] = useState(null);
+    const [score, setScore]= useState(0); 
 
     // Update answer structure when sec changes
-    useEffect(() => {
-        if (sec.length > 0) {
-            setAnswer({
-                _id: detail.id || testId,
-                sec: sec.map((sec) => ({
-                    name: sec.subName,
-                    list: sec.list.map(() => null)
-                }))
-            });
-        }
-    }, [sec, detail, testId]);
+    // useEffect(() => {
+    //     if (sec.length > 0) {
+    //         setAnswer({
+    //             _id: detail.id || testId,
+    //             sec: sec.map((sec) => ({
+    //                 name: sec.subName,
+    //                 list: sec.list.map(() => -1)
+    //             }))
+    //         });
+    //     }
+    // }, [sec, detail, testId]);
 
     // Update current question when sec or indices change
     useEffect(() => {
@@ -81,14 +160,14 @@ export function Testpage() {
     }, [sec, secIdx, qnIdx]);
 
     useEffect(() => {
-        setIsDisable(ansIdx === null);
+        setIsDisable(ansIdx === -1);
     }, [ansIdx]);
 
     const changeAns = (idx) => {
         const updatedAnswer = { ...answer };
         updatedAnswer.sec[secIdx].list[qnIdx] = idx;
         setAnswer(updatedAnswer);
-        setIsDisable(idx === null);
+        setIsDisable(idx === -1);
     };
 
     useEffect(() => {
@@ -115,9 +194,9 @@ export function Testpage() {
 
     const clearResponse = () => {
         const updatedAnswer = { ...answer };
-        updatedAnswer.sec[secIdx].list[qnIdx] = null;
+        updatedAnswer.sec[secIdx].list[qnIdx] = -1;
         setAnswer(updatedAnswer);
-        setAnsIdx(null);
+        setAnsIdx(-1);
 
         const updatedSec = [...sec];
         updatedSec[secIdx].list[qnIdx].state = 1;
@@ -165,7 +244,7 @@ export function Testpage() {
 
     // Update countdown when detail changes
     useEffect(() => {
-        setCountdown(Number(detail.time) || 0);
+        setCountdown(Number(detail.time) || 60);
     }, [detail]);
 
     useEffect(() => {
@@ -175,6 +254,8 @@ export function Testpage() {
                 if (newTime < 60) setLastmin(true);
                 if (newTime <= 0) {
                     clearInterval(timer);
+                    submitTest();
+                    console.log("running..");
                     return 0;
                 }
                 return newTime;
@@ -203,8 +284,14 @@ export function Testpage() {
         return <div className={styles.noTest}>No test data available</div>;
     }
 
+
+
+
+
+
     return (
         <>
+        {/* <button onClick={() => console.log(answer)}>show answers</button> */}
         <div className={styles.testpage}>
             <div className={styles.heading}>
                 <div className={styles.logo}>
@@ -223,18 +310,21 @@ export function Testpage() {
                     </div>
                 </div>
                 <div className={styles.submit}>
-                    <button className={styles.submitbtn}>Submit</button>
+                    <button className={styles.submitbtn} onClick={()=>{
+                        // console.log("wertyujghn");
+                        submitTest();
+                    }} disabled={submitDisable}>Submit</button>
                 </div>
             </div>
             <div className={styles.main}>
                 <div className={styles.left}>
                     <div className={styles.containQnData}>
                         <div className={styles.qndata}>
-                            {detail.id || detail.testId} <IoIosArrowForward /> <b>{sec[secIdx]?.subName}</b> <IoIosArrowForward /> <b>Q. {qnIdx + 1}</b>
+                            {detail.title} <IoIosArrowForward /> <b>{sec[secIdx]?.subName}</b> <IoIosArrowForward /> <b>Q. {qnIdx + 1}</b>
                         </div>
                     </div>
                     <div className={styles.panel}>
-                        <div className={styles.qntxt}>{qn.qstat}</div>
+                        <div className={styles.qntxt}>{qn.qnstat}</div>
                         {qn.image !== '#' && <div className={styles.qnimg}><img src={qn.image} alt="imagine..." className={styles.objimg} /></div>}
                         <div className={styles.option}>
                             {qn.options?.map((opt, index) => (

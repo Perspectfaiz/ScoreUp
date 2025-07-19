@@ -42,9 +42,12 @@ testRouter.post('/add', authTeacher, createTest);
 // Dynamic route comes last
 testRouter.get('/:testId', async (req, res) => {
    try {
+      console.log("reached backend...")
       const { testId } = req.params;
+      console.log(testId || "bad...");
       const test = await testModel.findById(testId);
       if (!test) {
+         console.log("no test data found,,,");
          return res.json({ success: false, message: 'Test not found' });
       }
       res.json({ success: true, test });

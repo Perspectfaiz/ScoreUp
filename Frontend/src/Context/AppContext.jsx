@@ -85,7 +85,7 @@ export const AppContextProvider=(props)=>{
             const { data } = await axios.post('http://localhost:8080/api/student/update-profile-data', formData, {
                 headers: { 
                     token,
-                    'Content-Type': 'multipart/form-data'
+                    //'Content-Type': 'multipart/form-data'
                 },
             });
             console.log('Backend response:', data);
@@ -106,7 +106,7 @@ export const AppContextProvider=(props)=>{
             const { data } = await axios.put('http://localhost:8080/api/teacher/update-profile-data', formData, {
                 headers: {
                     itoken,
-                    'Content-Type': 'multipart/form-data'
+                    //'Content-Type': 'multipart/form-data'
                 }
             });
             console.log('Backend response:', data);
