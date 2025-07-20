@@ -9,7 +9,6 @@ import resourceRouter from './Routes/resourceRoutes.js';
 import testRouter from './Routes/testRouter.js';
 
 dotenv.config(); // Place this at the top before anything else
-console.log('Cloudinary ENV:', process.env.CLOUDINARY_CLOUD_NAME, process.env.CLOUDINARY_API_KEY, process.env.CLOUDINARY_API_SECRET);
 const app = express();
 const PORT = process.env.PORT || 8080;
 
