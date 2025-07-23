@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,useState } from "react";
+import { useContext, useEffect,useState } from "react";
 import { Hero } from "../components/Hero";
 import { Explore } from "../components/Explore";
 import { Alert } from "../components/Alert";

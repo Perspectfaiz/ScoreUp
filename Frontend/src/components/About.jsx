@@ -17,7 +17,7 @@ export function About() {
 				<div className={styles.contents}>
 					<div className={styles.header}>
 						The Story behind{' '}
-						<img className={styles.scoreupimg} src="../../public/6527325.png" alt="Scoreup" />{' '}
+						<img className={styles.scoreupimg} src="/6527325.png" alt="Scoreup" />{' '}
 						<span className={styles.scoreup}>ScoreUp</span>
 					</div>
 
@@ -116,7 +116,7 @@ export function About() {
 
                     <div className={styles.builthead}>
 						The Team{' '}
-                        <img className={styles.scoreupimg} src="../../public/6527325.png" alt="Scoreup" />{' '}
+                        <img className={styles.scoreupimg} src="/6527325.png" alt="Scoreup" />{' '}
                         <span>ScoreUp</span>
 					</div>
 
@@ -124,7 +124,7 @@ export function About() {
                         <div className={styles.teamtray}>
                             <div className={`${styles.teamtrayleft} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../faiz.png" alt="imagine" />
+                                    <img className={styles.teampic} src="/faiz.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Md Faiz</p>
@@ -138,7 +138,7 @@ export function About() {
                             </div>
                             <div className={`${styles.teamtrayright} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../manish.png" alt="imagine" />
+                                    <img className={styles.teampic} src="/manish.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Manish Verma</p>
@@ -154,7 +154,7 @@ export function About() {
                         <div className={styles.teamtray}>
                             <div className={`${styles.teamtrayleft} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../akash.png" alt="imagine" />
+                                    <img className={styles.teampic} src="/akash.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Akash Jha</p>
@@ -168,7 +168,7 @@ export function About() {
                             </div>
                             <div className={`${styles.teamtrayright} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="../../pratik.png" alt="imagine" />
+                                    <img className={styles.teampic} src="/pratik.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Pratik Soni</p>
@@ -183,7 +183,7 @@ export function About() {
                         </div>
                     </div>
                     <div className={styles.imgcentre}>
-                        <img className={`${styles.scoreupbottomimg}`} src="../../public/6527325.png" alt="Scoreup" />
+                        <img className={`${styles.scoreupbottomimg}`} src="/6527325.png" alt="Scoreup" />
                     </div>
                     
 				</div>

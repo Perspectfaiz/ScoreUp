@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import { Navbar } from "../components/Navbar";
 
 const Login = () => {
-   const [signUp, setSignUp] = useState(true);
+   const [signUp, setSignUp] = useState(false);
    const [isTeacher, setIsTeacher] = useState(false);
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
