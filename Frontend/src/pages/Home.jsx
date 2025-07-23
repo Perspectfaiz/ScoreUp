@@ -1,6 +1,6 @@
 import React, { useContext, useEffect,useState } from "react";
 import { Hero } from "../components/Hero";
-import { Explore } from "../components/explore";
+import { Explore } from "../components/Explore";
 import { Alert } from "../components/Alert";
 import { AppContext } from "../Context/AppContext";
 import { Navbar } from "../components/Navbar";
