@@ -12,7 +12,7 @@ import { About } from './components/About'
 import { FreeReso } from './components/resources/resources'
 import { Createtest } from './components/upload test/Createtest'
 import { Teacherprofile } from './components/Teacherprofile.jsx'
-import { Testreview } from './components/testReview.jsx'
+import { Testreview } from './components/Testreview.jsx'
 
 function App() {
   return (
