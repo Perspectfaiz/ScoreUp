@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { Qnbtn } from './Qnbtn'
 import styles from './Qnum.module.css'
 

@@ -1,5 +1,4 @@
 import styles from './List.module.css'
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { TbClipboardCheck } from "react-icons/tb";
 // color='#11b73d'
 

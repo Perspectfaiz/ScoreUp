@@ -2,7 +2,7 @@ import styles from './Testpage.module.css'
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
-import { Section } from './section.jsx';
+import { Section } from './Section.jsx';
 import { Qnbtn } from './Qnbtn'
 import { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";

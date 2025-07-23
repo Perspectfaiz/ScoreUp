@@ -1,6 +1,4 @@
 import styles from './Teacherprofile.module.css';
-import { FaEdit, FaUniversity, FaLinkedin, FaUserGraduate } from 'react-icons/fa';
-import { IoLocationSharp } from 'react-icons/io5';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { IoIosAdd, IoIosArrowBack } from "react-icons/io";

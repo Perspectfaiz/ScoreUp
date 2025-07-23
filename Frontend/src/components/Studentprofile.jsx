@@ -1,11 +1,7 @@
-import { Footer } from './footer'
 import styles from './Studentprofile.module.css'
-import { LiaEditSolid } from "react-icons/lia";
-import { IoIosArrowBack } from "react-icons/io";
 import { useState, useContext, useEffect } from 'react'
 
 import 'react-circular-progressbar/dist/styles.css';
-import ProgressBar from './ProgressBar';
 import { Navbar } from './Navbar';
 import ProfileCard from './studprof/ProfileCard';
 import FavoriteTests from './studprof/FavoriteTests';

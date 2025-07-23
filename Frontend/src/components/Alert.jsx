@@ -1,5 +1,4 @@
 import styles from './Alert.module.css'
-import { ImCross } from "react-icons/im";
 import { RxCross2 } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
 

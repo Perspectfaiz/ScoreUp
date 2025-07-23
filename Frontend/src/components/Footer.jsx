@@ -6,8 +6,6 @@ import { RiTelegram2Line } from "react-icons/ri";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
-import { TbSend } from "react-icons/tb";
-import { use } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';

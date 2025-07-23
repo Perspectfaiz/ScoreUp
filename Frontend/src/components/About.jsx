@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styles from './About.module.css';
-import { AiOutlineDeploymentUnit } from "react-icons/ai";
 import { Navbar } from './Navbar';
-import { Footer } from './footer';
+import { Footer } from './Footer';
 
 export function About() {
 	const text =

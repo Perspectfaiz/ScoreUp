@@ -1,12 +1,10 @@
 import styles from './Createtest.module.css'
 import { FiPlus } from "react-icons/fi";
-import { Popup } from './Popup';
 import {Testtemp} from './Testtemp';
 import Sectiontemp from './Sectiontemp';
 import {Questiontemp} from './Questiontemp';
 import { useState, useRef, useEffect } from 'react';
 import { Qnform } from './Qnform';
-import { RxCross2 } from "react-icons/rx";
 import { MdOutlineEdit } from "react-icons/md";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { LuAlarmClock } from "react-icons/lu";

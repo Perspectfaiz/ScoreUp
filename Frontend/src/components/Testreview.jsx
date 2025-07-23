@@ -1,7 +1,6 @@
 import styles from './Testreview.module.css';
 import { IoIosArrowForward, IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
-import { LuAlarmClock } from "react-icons/lu";
-import { Section } from './section.jsx';
+import { Section } from './Section.jsx';
 import { Qnbtn } from './Qnbtn.jsx';
 import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
