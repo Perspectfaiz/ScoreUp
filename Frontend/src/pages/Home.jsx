@@ -3,15 +3,8 @@ import { Hero } from "../components/Hero";
 import { Explore } from "../components/explore";
 import { Alert } from "../components/Alert";
 import { AppContext } from "../Context/AppContext";
-import { Instruction } from "../components/Instruction";
 import { Navbar } from "../components/Navbar";
-import { Footer } from '../components/footer';
-import { FreeReso } from "../components/resources/resources";
-import { About } from "../components/About";
-import { Createtest } from "../components/upload test/Createtest";
-import { Teacherprofile } from "../components/Teacherprofile";
-import { Studentprofile } from "../components/Studentprofile";
-import { Testpage } from "../components/Testpage";
+import { Footer } from '../components/Footer';
 
 const Home=()=>{
    const {token,itoken}=useContext(AppContext);
