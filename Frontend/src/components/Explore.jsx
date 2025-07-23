@@ -1,4 +1,4 @@
-import { Card } from './card'
+import { Card } from './Card'
 import styles from './Explore.module.css'
 import { TbWorld } from "react-icons/tb";
 
