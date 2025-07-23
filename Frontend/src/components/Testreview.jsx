@@ -25,7 +25,7 @@ export function Testreview() {
         const fetchTest = async () => {
             try {
                 if (testId) {
-                    const response = await axios.get(`http://localhost:8080/api/tests/${testId}`);
+                    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tests/${testId}`);
                     if (response.data.success) {
                         const testData = response.data.test;
                         setSec(testData.section);

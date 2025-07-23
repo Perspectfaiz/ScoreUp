@@ -19,10 +19,12 @@ const Login = () => {
    const onSubmitHandler = async (event) => {
     event.preventDefault();
 
+
+
     try {
         if (signUp) {
             if (isTeacher) {
-                const { data } = await axios.post('http://localhost:8080/api/teacher/sign-up', { name, email, username, password });
+                const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/teacher/sign-up`, { name, email, username, password });
                 if (data.success) {
                     localStorage.setItem('itoken', data.itoken);
                     toast.success("Teacher account created successfully!");
@@ -33,7 +35,7 @@ const Login = () => {
                     toast.error(data.message || "Failed to create teacher account");
                 }
             } else {
-                const { data } = await axios.post('http://localhost:8080/api/student/sign-up', { name, email, username, password });
+                const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/student/sign-up`, { name, email, username, password });
                 if (data.success) {
                     localStorage.setItem('token', data.token);
                     toast.success("Student account created successfully!");
@@ -46,7 +48,7 @@ const Login = () => {
             }
         } else {
             if (isTeacher) {
-                const { data } = await axios.post('http://localhost:8080/api/teacher/login', { usernameORemail: email, password });
+                const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/teacher/login`, { usernameORemail: email, password });
                 if (data.success) {
                     localStorage.setItem('itoken', data.itoken);
                     toast.success("Teacher login successful!");
@@ -57,7 +59,7 @@ const Login = () => {
                     toast.error(data.message || "Invalid teacher credentials");
                 }
             } else {
-                const { data } = await axios.post('http://localhost:8080/api/student/login', { usernameORemail: email, password });
+                const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/student/login`, { usernameORemail: email, password });
                 if (data.success) {
                     localStorage.setItem('token', data.token);
                     toast.success("Student login successful!");

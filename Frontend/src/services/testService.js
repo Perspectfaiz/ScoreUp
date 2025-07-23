@@ -6,7 +6,7 @@ export async function createTest(testData) {
   const token = localStorage.getItem('itoken');
   try {
     const response = await axios.post(
-      'http://localhost:8080/api/tests/add', 
+      `${import.meta.env.VITE_BACKEND_URL}/api/tests/add`, 
       testData,
       {
         headers: {
@@ -24,7 +24,7 @@ export async function createTest(testData) {
 
 export async function getAllTests() {
   try {
-    const response = await axios.get('http://localhost:8080/api/tests/all');
+    const response = await axios.get(`h${import.meta.env.VITE_BACKEND_URL}/api/tests/all`);
     return response.data;
   } catch (error) {
     console.error('Error fetching tests:', error);
@@ -34,7 +34,7 @@ export async function getAllTests() {
 
 export async function getTestById(testId) {
   try {
-    const response = await axios.get(`http://localhost:8080/api/tests/${testId}`);
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tests/${testId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching test:', error);

@@ -2,7 +2,7 @@ import styles from './Teacherprofile.module.css';
 import { FaEdit, FaUniversity, FaLinkedin, FaUserGraduate } from 'react-icons/fa';
 import { IoLocationSharp } from 'react-icons/io5';
 import { Navbar } from './Navbar';
-import { Footer } from './footer';
+import { Footer } from './Footer';
 import { IoIosAdd, IoIosArrowBack } from "react-icons/io";
 import { FaPen } from "react-icons/fa";
 import { useState, useRef, useEffect, useContext } from 'react';
@@ -44,7 +44,7 @@ export function Teacherprofile() {
          if (!itoken) return;
 
          try {
-            const { data } = await axios.get('http://localhost:8080/api/teacher/get-profile-data', {
+            const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/teacher/get-profile-data`, {
                headers: { itoken }
             });
             if (data.success && data.data) {
@@ -76,7 +76,7 @@ export function Teacherprofile() {
          const itoken = localStorage.getItem('itoken');
          if (!itoken || !teacher) return;
          try {
-            const { data } = await axios.get('http://localhost:8080/api/tests/my-tests', {
+            const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tests/my-tests`, {
                headers: { itoken }
             });
             if (data.success && data.tests) {

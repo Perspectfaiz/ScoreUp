@@ -22,7 +22,7 @@ export function Examinterface() {
         const fetchTests = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://localhost:8080/api/tests/all');
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tests/all`);
                 if (response.data.success) {
                     setTests(response.data.tests);
                 } else {

@@ -52,7 +52,6 @@ const submitTest = async () => {
   setSubmitDisable(true);
   if (token) {
     try {
-      console.log("Hi");
 
       // 1. Calculate score directly (not via setScore)
       let netScore = 0;
@@ -72,14 +71,13 @@ const submitTest = async () => {
       // 3. Submit to backend
       console.log(updatedAnswer);
       const { data } = await axios.post(
-        "http://localhost:8080/api/student/submit-test",
+        `${import.meta.env.VITE_BACKEND_URL}/api/student/submit-test`,
         updatedAnswer,
         {
           headers: { token },
         }
       );
 
-      console.log("my name is abhay", data);
       navigate("/studentprofile");
     } catch (err) {
       console.error("Axios error:", err.response ? err.response.data : err.message);
@@ -96,12 +94,11 @@ const submitTest = async () => {
             try {
                 setLoading(true);
                 if (testId) {
-                    const response = await axios.get(`http://localhost:8080/api/tests/${testId}`);
+                    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tests/${testId}`);
                     if (response.data.success) {
                         const testData = response.data.test;
                         setSec(testData.section);
                         setDetail(testData.details);
-                        console.log(sec);
                         setAnswer({
                             _id: testData.details.id || testId,
                             title: detail.title || "dum2",

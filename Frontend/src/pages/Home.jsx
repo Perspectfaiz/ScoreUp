@@ -5,14 +5,13 @@ import { Alert } from "../components/Alert";
 import { AppContext } from "../Context/AppContext";
 import { Instruction } from "../components/Instruction";
 import { Navbar } from "../components/Navbar";
-import { Footer } from '../components/footer';
+import { Footer } from '../components/Footer';
 import { FreeReso } from "../components/resources/resources";
 import { About } from "../components/About";
 import { Createtest } from "../components/upload test/Createtest";
 import { Teacherprofile } from "../components/Teacherprofile";
 import { Studentprofile } from "../components/Studentprofile";
 import { Testpage } from "../components/Testpage";
-import { Testreview } from "../components/testReview";
 
 const Home=()=>{
    const {token,itoken}=useContext(AppContext);

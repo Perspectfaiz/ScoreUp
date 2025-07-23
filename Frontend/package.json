@@ -17,6 +17,7 @@
     "@supabase/supabase-js": "^2.49.4",
     "axios": "^1.9.0",
     "cloudinary-react": "^1.8.1",
+    "dotenv": "^17.2.0",
     "firebase": "^11.6.1",
     "pdfjs-dist": "^5.2.133",
     "react": "^18.2.0",

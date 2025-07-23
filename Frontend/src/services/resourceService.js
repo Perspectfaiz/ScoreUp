@@ -1,7 +1,10 @@
+// import dotenv from 'dotenv';
+// dotenv.config();
 import axios from 'axios';
 import { getPDFUrl } from './supabaseStorageService';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/resources';
+
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/api/resources`;
 
 export const resourceService = {
     // Get all resources with optional filters

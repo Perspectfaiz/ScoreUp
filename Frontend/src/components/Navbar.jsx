@@ -23,10 +23,6 @@ export function Navbar() {
 }, [token, itoken, studentData, teacherData]);
 
 
-    if(token) console.log("Navbar:", studentData);
-    if(itoken) console.log("Navbar:", teacherData);
-
-
     // Add useEffect to check token on mount and when localStorage changes
     useEffect(() => {
         setToken(!!localStorage.getItem('token'));

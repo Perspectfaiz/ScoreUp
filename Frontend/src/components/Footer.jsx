@@ -26,7 +26,7 @@ console.log("Message:", message);
   const itoken = localStorage.getItem("itoken"); 
   
   if(token){
-const {data}=  await axios.post('http://localhost:8080/api/admin/feedback', {message},{headers: {token } });
+const {data}=  await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/admin/feedback`, {message},{headers: {token } });
   if (data.success) {
                     toast.success("your feedback has been sent successfully!");
                     setMessage(""); 
@@ -34,7 +34,7 @@ const {data}=  await axios.post('http://localhost:8080/api/admin/feedback', {mes
                     toast.error(data.message || "Failed to create teacher account");
                 }
   }else if(itoken){
-const { data } =  await axios.post('http://localhost:8080/api/admin/feedback', {message},{headers: {itoken } });
+const { data } =  await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/admin/feedback`, {message},{headers: {itoken } });
   if (data.success) {
                     toast.success("your feedback has been sent successfully!");
                     setMessage(""); 

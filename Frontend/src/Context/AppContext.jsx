@@ -134,7 +134,6 @@ export const AppContextProvider=(props)=>{
                headers: {itoken}
             });
             if(data.success && data.tests) {
-               console.log("Teacher Tests: ", data);
                
                setTeacherTests(data.tests);
             }
