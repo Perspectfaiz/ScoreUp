@@ -24,7 +24,7 @@ export async function createTest(testData) {
 
 export async function getAllTests() {
   try {
-    const response = await axios.get(`h${import.meta.env.VITE_BACKEND_URL}/api/tests/all`);
+    const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tests/all`);
     return response.data;
   } catch (error) {
     console.error('Error fetching tests:', error);
