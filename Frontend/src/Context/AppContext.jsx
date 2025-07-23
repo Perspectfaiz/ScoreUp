@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
+const BACKEND_PORT = import.meta.env.VITE_BACKEND_URL;
+
 export const AppContext = createContext();
 export const AppContextProvider=(props)=>{
     const [token, setToken] = useState(localStorage.getItem('token') || false);
@@ -14,7 +16,7 @@ export const AppContextProvider=(props)=>{
     const [performanceData, setPerformanceData] = useState([]);
     const loadStudentProfileData = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8080/api/student/get-profile-data', { headers: { token } });
+            const { data } = await axios.get(`${BACKEND_PORT}/api/student/get-profile-data`, { headers: { token } });
             
             if (data.success) {
                 setStudentData(data.data);
@@ -28,7 +30,7 @@ export const AppContextProvider=(props)=>{
     };
     const loadTeacherProfileData = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8080/api/teacher/get-profile-data', { headers: { itoken } });
+            const { data } = await axios.get(`${BACKEND_PORT}/api/teacher/get-profile-data`, { headers: { itoken } });
             
             if (data.success) {
                 setTeacherData(data.data);
@@ -42,7 +44,7 @@ export const AppContextProvider=(props)=>{
     };
     const loadTestHistory = async () => {
         try {
-            const { data } = await axios.post('http://localhost:8080/api/student/test-history', {}, { headers: { token } });
+            const { data } = await axios.post(`${BACKEND_PORT}/api/student/test-history`, {}, { headers: { token } });
             if (data.success) {
                 setTestHistory(data.testHistory);
             } else {
@@ -55,7 +57,7 @@ export const AppContextProvider=(props)=>{
     };
     const loadFavoriteTests = async () => {
         try {
-            const { data } = await axios.post('http://localhost:8080/api/student/favorite-tests', {}, { headers: { token } });
+            const { data } = await axios.post(`${BACKEND_PORT}/api/student/favorite-tests`, {}, { headers: { token } });
             if (data.success) {
                 setFavoriteTests(data.favoriteTests);
             } else {
@@ -68,7 +70,7 @@ export const AppContextProvider=(props)=>{
     };
     const loadPerformanceData = async () => {
         try {
-            const { data } = await axios.post('http://localhost:8080/api/student/performance-data', {}, { headers: { token } });
+            const { data } = await axios.post(`${BACKEND_PORT}/api/student/performance-data`, {}, { headers: { token } });
             if (data.success) {
                 setPerformanceData(data.performanceData);
             } else {
@@ -82,7 +84,7 @@ export const AppContextProvider=(props)=>{
 
     const updateStudentProfile = async (formData) => {
         try {
-            const { data } = await axios.post('http://localhost:8080/api/student/update-profile-data', formData, {
+            const { data } = await axios.post(`${BACKEND_PORT}/api/student/update-profile-data`, formData, {
                 headers: { 
                     token,
                     //'Content-Type': 'multipart/form-data'
@@ -103,7 +105,7 @@ export const AppContextProvider=(props)=>{
 
     const updateTeacherProfile = async (formData) => {
         try{
-            const { data } = await axios.put('http://localhost:8080/api/teacher/update-profile-data', formData, {
+            const { data } = await axios.put(`${BACKEND_PORT}/api/teacher/update-profile-data`, formData, {
                 headers: {
                     itoken,
                     //'Content-Type': 'multipart/form-data'
@@ -130,7 +132,7 @@ export const AppContextProvider=(props)=>{
         const itoken = localStorage.getItem('itoken');
          if(!itoken) return;
          try{
-            const { data } = await axios.get('http://localhost:8080/api/tests/my-tests', {
+            const { data } = await axios.get(`${BACKEND_PORT}/api/tests/my-tests`, {
                headers: {itoken}
             });
             if(data.success && data.tests) {
