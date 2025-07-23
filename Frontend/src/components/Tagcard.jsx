@@ -1,4 +1,4 @@
-import styles from './tagcard.module.css'
+import styles from './Tagcard.module.css'
 
 export function Tagcard({tag, isSelected = false, onClick}) {
     return (
