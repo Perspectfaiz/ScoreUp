@@ -19,6 +19,7 @@ const Login = () => {
 
     // ✅ Safe base URL (removes trailing slash if exists)
     const BASE_URL = import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '');
+    console.log("🔍 VITE_BACKEND_URL =", import.meta.env.VITE_BACKEND_URL);
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
