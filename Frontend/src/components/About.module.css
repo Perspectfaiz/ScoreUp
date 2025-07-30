@@ -406,3 +406,109 @@
 .aboutus a:active{
     opacity: 0.6;
 }
+
+
+
+/* Mobile Responsive CSS Enhancements for About Section */
+
+@media (max-width: 768px) {
+  .aboutus .header {
+    font-size: 5vh;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .aboutus .scoreupimg {
+    height: 6vh;
+    margin-left: 0;
+    margin-top: 1vh;
+  }
+
+  .aboutus .containstory {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutus .storyleft,
+  .aboutus .storyrighttop,
+  .aboutus .storyrightbottom {
+    width: 90%;
+    margin: 10px 0;
+    padding: 25px;
+    font-size: 16px;
+  }
+
+  .aboutus .storyright {
+    width: 100%;
+    align-items: center;
+  }
+
+  .aboutus .builthead {
+    font-size: 5vh;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .aboutus .builtcontainer {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .aboutus .builtleft,
+  .aboutus .builtmid,
+  .aboutus .builtright {
+    width: 90%;
+    margin: 10px 0;
+    border-radius: 30px;
+  }
+
+  .aboutus .builttxtcontainer p {
+    height: auto;
+    font-size: 15px;
+  }
+
+  .aboutus .container2textbox {
+    width: 90%;
+    padding: 30px;
+    font-size: 20px;
+  }
+
+  .aboutus .teamtray {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aboutus .teamtrayleft,
+  .aboutus .teamtrayright {
+    margin: 0;
+  }
+
+  .aboutus .teamcard {
+    width: 80vw;
+    height: auto;
+  }
+
+  .aboutus .teamcardmid {
+    padding: 10px;
+  }
+
+  .aboutus .name {
+    font-size: 20px;
+  }
+
+  .aboutus .teamcardbottom {
+    padding: 10px;
+  }
+
+  .aboutus a i {
+    font-size: 18px;
+    margin: 15px;
+  }
+
+  .aboutus .scoreupbottomimg {
+    width: 60px;
+    height: 60px;
+  }
+}

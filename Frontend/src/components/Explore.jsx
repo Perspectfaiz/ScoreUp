@@ -7,32 +7,32 @@ export function Explore() {
     [
         {
             name:"JEE",
-            image:"#",
+            image:"/jee.png",
             link:"#"
         },
         {
             name:"NEET",
-            image:"#",
+            image:"/neet.png",
             link:"#"
         },
         {
             name:"UPSE",
-            image:"#",
+            image:"/upsc.png",
             link:"#"
         },
         {
-            name:"GATE",
-            image:"#",
+            name:"CUET",
+            image:"/cuet.png",
             link:"#"
         },
         {
             name:"CAT",
-            image:"#",
+            image:"/cat.png",
             link:"#"
         },
         {
             name:"CLAT",
-            image:"#",
+            image:"/clat.png",
             link:"#"
         }  
     ];

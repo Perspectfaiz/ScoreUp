@@ -6,7 +6,12 @@ export function Card({subjects}) {
             <div className={styles.bgcolor}>
                 
                 <div className={styles.top}>
-                    <img src="" alt="Imagine..." className={styles.img} />
+                <img 
+                src={subjects.image} 
+                alt={subjects.name} 
+                className={styles.img} 
+                />
+
                 </div>
                 <div className={styles.bottom} /*style={{ backgroundColor: subjects.clr }}*/>
                     <p className={styles.txt}>
