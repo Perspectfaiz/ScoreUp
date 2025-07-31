@@ -79,7 +79,7 @@ export function Examinterface() {
                 />
             )} 
             <div className={styles.examface}>
-                <div className={styles.examhead}><GiMaterialsScience size={21}/><div><b>ScoreUP</b> TEST LIBRARY</div></div>
+                <div className={styles.examhead}><GiMaterialsScience size={21}/><div><b>ScoreUp</b> TEST LIBRARY</div></div>
                 <div className={styles.exammain}>
                     <div className={styles.left}>
                         <div className={styles.tags}> 
