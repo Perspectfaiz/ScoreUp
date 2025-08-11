@@ -1,11 +1,11 @@
-# ScoreUP - Educational Platform for JEE Preparation
+# ScoreUP - Educational Platform for Test Preparation
 
-ScoreUP is a comprehensive educational platform designed specifically for JEE (Joint Entrance Examination) preparation. It provides students with access to mock tests, practice questions, performance analytics, and free educational resources, while allowing teachers to create and manage tests.
+ScoreUP is a comprehensive educational platform designed specifically for  Entrance Examination preparation. It provides students with access to mock tests, practice questions, performance analytics, and free educational resources, while allowing teachers to create and manage tests.
 
 ## 🚀 Features
 
 ### For Students
-- **Mock Tests**: Take comprehensive JEE mock tests with real-time scoring
+- **Mock Tests**: Take comprehensive mock tests with real-time scoring
 - **Performance Analytics**: Track your progress with detailed performance charts and statistics
 - **Test History**: View all your previous test attempts and scores
 - **Favorite Tests**: Save and access your preferred tests easily
@@ -87,8 +87,8 @@ ScoreUP/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
+- Node.js 
+- npm 
 - MongoDB database
 - Cloudinary account (for file storage)
 
@@ -120,7 +120,7 @@ ScoreUP/
 
    **Backend/.env:**
    ```env
-   PORT=8080
+   backend: https://scoreup-9e4a.onrender.com
    MONGODB_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret
    CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
@@ -262,7 +262,13 @@ This is a group project developed for educational purposes.
 ## 📞 Support
 
 For support and questions, please contact the development team or create an issue in the repository.
+Email: 
+Akash- akashxjha@gmail.com
+Faiz- mf22mmb0a38@student.nitw.ac.in
+Manish- mv22mmb0a40@student.nitw.ac.in
+Faiz- ps22mmb0a41@student.nitw.ac.in
+
 
 ---
 
-**ScoreUP** - Empowering students to excel in their JEE preparation journey! 🎓
+**ScoreUP** - Empowering students to excel in their preparation journey! 🎓
