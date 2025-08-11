@@ -1,11 +1,13 @@
-# ScoreUP - Educational Platform for Test Preparation
 
-ScoreUP is a comprehensive educational platform designed specifically for  Entrance Examination preparation. It provides students with access to mock tests, practice questions, performance analytics, and free educational resources, while allowing teachers to create and manage tests.
+# ScoreUP - Educational Platform for Preparation
+
+ScoreUP is a comprehensive educational platform designed specifically for Entrance Examination preparation. It provides students with access to mock tests, practice questions, performance analytics, and free educational resources, while allowing teachers to create and manage tests.
+
 
 ## 🚀 Features
 
 ### For Students
-- **Mock Tests**: Take comprehensive mock tests with real-time scoring
+- **Mock Tests**: Take comprehensive  mock tests with real-time scoring
 - **Performance Analytics**: Track your progress with detailed performance charts and statistics
 - **Test History**: View all your previous test attempts and scores
 - **Favorite Tests**: Save and access your preferred tests easily
