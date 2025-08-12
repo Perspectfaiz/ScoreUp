@@ -266,7 +266,7 @@ This is a group project developed for educational purposes.
 For support and questions, please contact the development team or create an issue in the repository.
 Email: 
 Akash- akashxjha@gmail.com
-Faiz- mf22mmb0a38@student.nitw.ac.in
+Faiz- faizmd.work@gmail.com
 Manish- mv22mmb0a40@student.nitw.ac.in
 Pratik- ps22mmb0a41@student.nitw.ac.in
 
