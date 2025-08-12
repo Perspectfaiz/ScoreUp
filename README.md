@@ -268,7 +268,7 @@ Email:
 Akash- akashxjha@gmail.com
 Faiz- mf22mmb0a38@student.nitw.ac.in
 Manish- mv22mmb0a40@student.nitw.ac.in
-Faiz- ps22mmb0a41@student.nitw.ac.in
+Pratik- ps22mmb0a41@student.nitw.ac.in
 
 
 ---
