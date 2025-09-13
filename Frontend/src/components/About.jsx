@@ -128,7 +128,7 @@ export function About() {
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Md Faiz</p>
-                                    <p className={styles.title}>Title</p>
+                                    <p className={styles.title}>Developer</p>
                                 </div>
                                 <div className={`${styles.teamcardbottom}`}>
                                     <a href="mailto:faizmd.work@gmail.com"><i class="fa-solid fa-envelope"></i></a>
@@ -142,7 +142,7 @@ export function About() {
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Manish Verma</p>
-                                    <p className={styles.title}>Title</p>
+                                    <p className={styles.title}>Developer</p>
                                 </div>
                                 <div className={`${styles.teamcardbottom}`}>
                                     <a href="mailto:vermanish272155@gmail.com"><i class="fa-solid fa-envelope"></i></a>
@@ -158,7 +158,7 @@ export function About() {
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Akash Jha</p>
-                                    <p className={styles.title}>Title</p>
+                                    <p className={styles.title}>Developer</p>
                                 </div>
                                 <div className={`${styles.teamcardbottom}`}>
                                     <a href="mailto:akashxjha@gmail.com"><i class="fa-solid fa-envelope"></i></a>
@@ -168,15 +168,16 @@ export function About() {
                             </div>
                             <div className={`${styles.teamtrayright} ${styles.teamcard}`}>
                                 <div className={`${styles.teamcardtop}`}>
-                                    <img className={styles.teampic} src="/pratik.png" alt="imagine" />
+                                    {/* <img className={styles.teampic} src="/pratik.png" alt="imagine" /> */}
+									<img className={styles.teampic} src="/pratik2.png" alt="imagine" />
                                 </div>
                                 <div className={`${styles.teamcardmid}`}>
                                     <p className={styles.name}>Pratik Soni</p>
-                                    <p className={styles.title}>Title</p>
+                                    <p className={styles.title}>Developer</p>
                                 </div>
                                 <div className={`${styles.teamcardbottom}`}>
-                                    <a href=""><i class="fa-solid fa-envelope"></i></a>
-                                    <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                                    <a href="mailto:pratiksoni10017@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                                    <a href="https://www.linkedin.com/in/pratik-soni-208a97263"><i class="fa-brands fa-linkedin"></i></a>
                                     <a href="https://www.instagram.com/pratik_s_124/"><i class="fa-brands fa-square-instagram"></i></a>
                                 </div>
                             </div>

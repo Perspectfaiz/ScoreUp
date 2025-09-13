@@ -3,7 +3,7 @@ import upload from '../Middleware/multer.js';
 const studentRouter =express.Router();
 import { signupStudent,loginStudent,getStudentProfileData, updateStudentProfileData, getTestHistory, addTestHistory, getFavoriteTests, setFavoriteTests, getPerformanceData } from '../Controller/studentController.js';
 import authStudent from '../Middleware/authStudent.js';
-// studentRouter.use('/login',);
+// studentRouter.use('/login',); 
 studentRouter.use('/sign-up',signupStudent);
 studentRouter.use('/login',loginStudent);
 

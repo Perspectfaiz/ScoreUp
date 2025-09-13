@@ -46,7 +46,7 @@ export function Explore() {
                 <div className={styles.section}>
                     {
                         arr.map((item,index) => {
-                           return <div className={styles.test} key={index}><Card subjects={item}></Card></div>
+                           return <a href='/hunt-tests' className={styles.test} key={index}><Card subjects={item}></Card></a>
                         }) 
                     }
                     

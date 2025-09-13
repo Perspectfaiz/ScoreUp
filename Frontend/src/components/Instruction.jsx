@@ -1,6 +1,42 @@
 import styles from './Instruction.module.css'
 import { RxCross2 } from "react-icons/rx";
 import { Qnbtn } from './Qnbtn';
+import {
+  Box,
+  Typography,
+  Paper,
+  Dialog,
+  DialogContent,
+  DialogActions,
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Divider,
+  Chip,
+  Card,
+  CardContent,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Grid
+} from '@mui/material';
+import {
+  Close,
+  Assignment,
+  AccessTime,
+  Quiz,
+  CheckCircle,
+  Cancel,
+  Flag,
+  RadioButtonUnchecked,
+  PlayArrow,
+  Info,
+  Warning,
+  School
+} from '@mui/icons-material';
 
 export function Instruction({hide, testData, onStartTest}) {
     // Format time from seconds to HH:MM:SS
@@ -15,120 +51,294 @@ export function Instruction({hide, testData, onStartTest}) {
     const totalQuestions = testData?.section?.reduce((total, section) => total + section.list.length, 0) || 0;
 
     return (
-        <>
-            <div className={styles.fixed}>         
-                <div className={styles.instruct}>
-                    <div className={styles.cross}>
-                        <button className={styles.crossbtn} onClick={hide}> < RxCross2 /> </button>
-                    </div>
-                    <div className={styles.general}>
-                        <h2>Instructions 📋: </h2>
-                        <hr />
-                        <p><strong>Test Title: </strong>{testData?.details?.title || 'Untitled Test'}</p>
-                        <p><strong>Test Duration: </strong>You have {formatTime(testData?.details?.time || 0)} to complete the test. A countdown timer will be displayed on the screen.</p>
+        <Dialog
+            open={true}
+            onClose={hide}
+            maxWidth="md"
+            fullWidth
+            PaperProps={{
+                sx: {
+                    borderRadius: '15px',
+                    backgroundColor: 'white',
+                    boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.1)',
+                    minHeight: '80vh'
+                }
+            }}
+        >
+            <DialogContent sx={{ p: 0, position: 'relative' }}>
+                {/* Close Button */}
+                <IconButton
+                    onClick={hide}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        zIndex: 1,
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        '&:hover': {
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)'
+                        }
+                    }}
+                >
+                    <Close />
+                </IconButton>
 
-                        <p><strong>Test Structure: </strong></p>
-                        <ul>
-                        <li>The test comprises {totalQuestions} questions, divided into {testData?.section?.length || 0} sections.</li>
-                        <li>Each section may includes a variety of question types:
-                            <div style={{marginLeft: '20px'}}>
-                                <div>• Multiple Choice Questions (MCQs) with a single correct answer.</div>
-                                <div>• Multiple Choice Questions (MCQs) with multiple correct answers.</div>
-                                <div>• Numerical Value Questions (NVQs).</div>
-                                <div>• Assertion and Reason.</div>
-                                <div>• Match the following.</div>
-                            </div>
-                            <div style={{marginLeft: '20px'}}>Instructions for each question type will be provided alongside the questions.</div>
-                        </li>
-                        </ul>
+                {/* Header */}
+                <Box sx={{ p: 3, pb: 2 }}>
+                    <Typography variant="h4" sx={{ 
+                        fontWeight: 'bold', 
+                        color: '#703ed1',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 1
+                    }}>
+                        <Assignment sx={{ fontSize: 32 }} />
+                        Test Instructions
+                    </Typography>
+                    <Divider sx={{ mt: 2, borderColor: '#d1c4e9' }} />
+                </Box>
+                {/* Content */}
+                <Box sx={{ px: 3, pb: 2, maxHeight: '60vh', overflow: 'auto' }}>
+                    {/* Test Info Card */}
+                    <Card sx={{ mb: 3, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+                        <CardContent>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={6}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <School sx={{ color: '#703ed1' }} />
+                                        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                            {testData?.details?.title || 'Untitled Test'}
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <AccessTime sx={{ color: '#703ed1' }} />
+                                        <Typography variant="body1">
+                                            <strong>Duration:</strong> {formatTime(testData?.details?.time || 0)}
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Quiz sx={{ color: '#703ed1' }} />
+                                        <Typography variant="body1">
+                                            <strong>Total Questions:</strong> {totalQuestions} questions in {testData?.section?.length || 0} sections
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
 
-                        <p><strong>Marking Scheme:</strong></p>
-                        <ul>
-                        <li><strong>MCQs (Single Correct):</strong>
-                            <div style={{marginLeft: '20px'}}>
-                                <div>• +4 marks for a correct answer.</div>
-                                <div>• -1 mark for an incorrect answer.</div>
-                                <div>• 0 marks for unanswered questions.</div>
-                            </div>
-                        </li>
-                        <li><strong>MCQs (Multiple Correct):</strong>
-                            <div style={{marginLeft: '20px'}}>
-                                <div>• +4 marks for all correct options selected.</div>
-                                <div>• Partial marks may be awarded if some, but not all, correct options are selected.</div>
-                                <div>• Negative marks for incorrect options selected.</div>
-                                <div>• 0 marks for unanswered questions.</div>
-                            </div>
-                        </li>
-                        <li><strong>Numerical Value Questions (NVQs):</strong>
-                            <div style={{marginLeft: '20px'}}>
-                                <div>• +4 marks for a correct answer.</div>
-                                <div>• 0 marks for incorrect or unanswered questions.</div>
-                            </div>
-                        </li>
-                        <li><strong>Assertion and Reason and Match the following:</strong>
-                            <div style={{marginLeft: '20px'}}>
-                                <div>• Follow the specific instructions given within those question sets for their marking scheme.</div>
-                            </div>
-                        </li>
-                        </ul>
+                    {/* Instructions Sections */}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        {/* Test Structure */}
+                        <Accordion defaultExpanded>
+                            <AccordionSummary expandIcon={<Info />}>
+                                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                    Test Structure
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <List>
+                                    <ListItem>
+                                        <ListItemText 
+                                            primary={`The test comprises ${totalQuestions} questions, divided into ${testData?.section?.length || 0} sections.`}
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemText 
+                                            primary="Each section may include a variety of question types:"
+                                            secondary={
+                                                <Box sx={{ mt: 1 }}>
+                                                    <Chip label="Multiple Choice (Single)" size="small" sx={{ mr: 1, mb: 1 }} />
+                                                    <Chip label="Multiple Choice (Multiple)" size="small" sx={{ mr: 1, mb: 1 }} />
+                                                    <Chip label="Numerical Value" size="small" sx={{ mr: 1, mb: 1 }} />
+                                                    <Chip label="Assertion & Reason" size="small" sx={{ mr: 1, mb: 1 }} />
+                                                    <Chip label="Match the Following" size="small" sx={{ mr: 1, mb: 1 }} />
+                                                </Box>
+                                            }
+                                        />
+                                    </ListItem>
+                                </List>
+                            </AccordionDetails>
+                        </Accordion>
 
-                        <p><strong>Navigation:</strong></p>
-                        <ul>
-                        <li>Use the navigation buttons ("Next," "Previous") to move between questions.</li>
-                        <li>A "Question Palette" will display all question numbers, allowing you to jump to specific questions.</li>
-                        <li>The "question palette" interface displays different icons to help navigating through the test efficiently. Each icon has a specific meaning:
-                            <div style={{marginLeft: '20px'}}>
-                                <div className={styles.liner}><Qnbtn num={1} qdata={{state: 0}}></Qnbtn> Not Visited (The question has not been viewed yet.)</div>
-                                <div className={styles.liner}><Qnbtn num={1} qdata={{state: 1}}></Qnbtn> Not Answered (The question has been viewed but not answered.)</div>
-                                <div className={styles.liner}><Qnbtn num={1} qdata={{state: 2}}></Qnbtn> Answered (The question has been answered and saved.)</div>
-                                <div className={styles.liner}><Qnbtn num={1} qdata={{state: 3}}></Qnbtn> Current Question (The question you are currently viewing.)</div>
-                                <div className={styles.liner}><Qnbtn num={1} qdata={{state: 4}}></Qnbtn> Marked for Review & Not Answered (The question has been marked for review but has not been answered. It won't be considered in evaluation unless answered later.)</div>
-                                <div className={styles.liner}><Qnbtn num={1} qdata={{state: 5}}></Qnbtn> Marked for Review & Answered (The question has been answered, but you have marked it for review. The answer will be considered in evaluation.)</div>
-                            </div>
-                        </li>
-                        </ul>
+                        {/* Marking Scheme */}
+                        <Accordion>
+                            <AccordionSummary expandIcon={<Info />}>
+                                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                    Marking Scheme
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <List>
+                                    <ListItem>
+                                        <ListItemIcon><CheckCircle color="success" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="MCQs (Single Correct)"
+                                            secondary="+4 marks for correct, -1 for incorrect, 0 for unanswered"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon><CheckCircle color="success" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="MCQs (Multiple Correct)"
+                                            secondary="+4 for all correct, partial marks possible, negative for incorrect"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon><CheckCircle color="success" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="Numerical Value Questions"
+                                            secondary="+4 marks for correct, 0 for incorrect/unanswered"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon><Info color="primary" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="Assertion & Reason / Match the Following"
+                                            secondary="Follow specific instructions provided with each question set"
+                                        />
+                                    </ListItem>
+                                </List>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        {/* Navigation */}
+                        <Accordion>
+                            <AccordionSummary expandIcon={<Info />}>
+                                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                    Navigation & Question Palette
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <List>
+                                    <ListItem>
+                                        <ListItemText 
+                                            primary="Use navigation buttons to move between questions"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemText 
+                                            primary="Question Palette shows all question numbers with status indicators:"
+                                        />
+                                    </ListItem>
+                                </List>
+                                <Box sx={{ ml: 2, mt: 1 }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <Qnbtn num={1} qdata={{state: 0}} />
+                                        <Typography variant="body2">Not Visited</Typography>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <Qnbtn num={1} qdata={{state: 1}} />
+                                        <Typography variant="body2">Not Answered</Typography>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <Qnbtn num={1} qdata={{state: 2}} />
+                                        <Typography variant="body2">Answered</Typography>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <Qnbtn num={1} qdata={{state: 3}} />
+                                        <Typography variant="body2">Current Question</Typography>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <Qnbtn num={1} qdata={{state: 4}} />
+                                        <Typography variant="body2">Marked for Review (Not Answered)</Typography>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                        <Qnbtn num={1} qdata={{state: 5}} />
+                                        <Typography variant="body2">Marked for Review (Answered)</Typography>
+                                    </Box>
+                                </Box>
+                            </AccordionDetails>
+                        </Accordion>
 
 
-                        <p><strong>Answer Submission:</strong></p>
-                        <ul>
-                        <li>For MCQs, select the appropriate option(s) by clicking on the radio buttons or checkboxes.</li>
-                        <li>For NVQs, enter the numerical value in the provided input box. Follow any specified decimal place requirements.</li>
-                        <li>For Assertion and Reason, select the correct option that matches the relationship between the two statements.</li>
-                        <li>Your answers will be automatically saved as you progress.</li>
-                        </ul>
+                        {/* Important Notes */}
+                        <Accordion>
+                            <AccordionSummary expandIcon={<Warning />}>
+                                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                    Important Notes
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <List>
+                                    <ListItem>
+                                        <ListItemIcon><Warning color="warning" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="Ensure stable internet connection"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon><Warning color="warning" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="Close unnecessary applications and browser tabs"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon><Warning color="warning" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="Read each question carefully before answering"
+                                        />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon><Cancel color="error" /></ListItemIcon>
+                                        <ListItemText 
+                                            primary="No calculators or external resources allowed"
+                                        />
+                                    </ListItem>
+                                </List>
+                            </AccordionDetails>
+                        </Accordion>
+                    </Box>
 
-                        <p><strong>Submission:</strong></p>
-                        <ul>
-                        <li>The Test will be submitted after clicking "Submit Test" button on the top or else when the timer expires.</li>
-                        <li>Once you click "Submit Test," you will not be able to modify your answers.</li>
-                        </ul>
+                    {/* Good Luck Message */}
+                    <Box sx={{ 
+                        textAlign: 'center', 
+                        mt: 3, 
+                        p: 2, 
+                        backgroundColor: 'rgba(112, 62, 209, 0.1)',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(112, 62, 209, 0.2)'
+                    }}>
+                        <Typography variant="h6" sx={{ 
+                            fontWeight: 'bold', 
+                            color: '#703ed1',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: 1
+                        }}>
+                            <School />
+                            Best of luck!
+                        </Typography>
+                    </Box>
+                </Box>
+            </DialogContent>
 
-                        <p><strong>Calculators and External Resources:</strong></p>
-                        <ul>
-                        <li>Use of calculators, external websites, or any other electronic devices is strictly prohibited.</li>
-                        <li>The test is designed to be completed without those aids.</li>
-                        </ul>
-
-                        <p><strong>Honesty and Integrity:</strong></p>
-                        <ul>
-                        <li>This test is designed to assess your knowledge and skills. Please maintain honesty and integrity throughout the test.</li>
-                        </ul>
-
-                        <h2>Important Notes:</h2>
-
-                        <ul>
-                        <li>Ensure a stable internet connection for the duration of the test.</li>
-                        <li>Close all unnecessary applications and browser tabs to avoid distractions.</li>
-                        <li>Read each question carefully and thoroughly before attempting to answer.</li>
-                        </ul>
-
-                        <p><strong>Best of luck!</strong></p>
-                    </div> 
-                    <div className={styles.start}>
-                        <button className={styles.startbtn} onClick={onStartTest}>Start Test</button>
-                    </div>  
-                </div> 
-            </div>
-        </>
+            {/* Start Test Button */}
+            <DialogActions sx={{ p: 3, pt: 0 }}>
+                <Button
+                    variant="contained"
+                    size="large"
+                    onClick={onStartTest}
+                    startIcon={<PlayArrow />}
+                    sx={{
+                        backgroundColor: '#703ed1',
+                        '&:hover': {
+                            backgroundColor: '#5d20d3'
+                        },
+                        px: 4,
+                        py: 1.5,
+                        fontSize: '1.1rem',
+                        fontWeight: 'bold'
+                    }}
+                >
+                    Start Test
+                </Button>
+            </DialogActions>
+        </Dialog>
     )
 }

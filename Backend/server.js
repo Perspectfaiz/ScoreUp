@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors());
 
 // API Routes
-app.use('/api/student', studentRouter);
+app.use('/api/student', studentRouter); 
 app.use('/api/teacher', teacherRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/resources', resourceRouter);

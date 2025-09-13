@@ -11,7 +11,7 @@ const authStudent=async (req,res,next)=>{
    if(!token){
      return res.json({success:false,message:"Not Autherized Login Again"})
    }
-   const token_decode=jwt.verify(token,process.env.JWT_SECRET)
+   const token_decode=jwt.verify(token, process.env.JWT_SECRET)
    
    
    req.body.studentId=token_decode.id

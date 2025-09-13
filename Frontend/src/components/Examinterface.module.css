@@ -1,3 +1,9 @@
+/* 
+ * Material UI Examinterface Styles
+ * Most styling is now handled by Material UI components
+ * This file contains minimal custom styles for specific needs
+ */
+
 @font-face {
     font-family: 'pop'; 
     src: local('Poppins'); 
@@ -7,176 +13,59 @@
     font-family: 'Poppins';
 }
 
-.examface{
-    height: 91vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
+/* Custom styles for components that still use CSS classes */
+.examface {
+    /* This class is no longer used as we're using Material UI Box */
+    /* Keeping for backward compatibility if needed */
 }
 
-.examface .examhead{
-    /* background-color: rgb(255, 197, 197);
-     */
-    display: flex;
-    align-items: center;
-    padding-left: 2%;
-    font-size: 17px;
-    font-weight: 300;
-    min-height:7vh;
-    background: linear-gradient(90deg, #573ed1 0%, #703ed1 20%);
-    color: rgb(240, 240, 240);
-    border-bottom: 1px solid #c2c2c2;
+/* Responsive adjustments for Material UI components */
+@media (max-width: 768px) {
+    /* Mobile-specific adjustments if needed */
+    .MuiAppBar-root {
+        min-height: 56px !important;
+    }
+    
+    .MuiToolbar-root {
+        padding: 0 8px !important;
+    }
+    
+    .MuiTableContainer-root {
+        overflow-x: auto;
+    }
 }
 
-.examface .examhead > *{
-    margin-right: 0.4%;
+/* Custom scrollbar styling for better UX */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-.examface .exammain{
-    height: 84vh;
-    display: flex;
-
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
 }
 
-.examface .left{
-    width: 75%;
-    height: 100%;
-    border-top-right-radius: 10px;
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
 }
 
-.examface .tags{
-    min-height: 5vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    overflow: scroll;
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
 
-.examface .examlist{
-    width: 100%;
-    height: 79vh;
-    /* background-color: rgb(255, 255, 255); */
-}
-
-.examface .listhead{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 7vh;
-    background-color: #ececec;
-    border-bottom: 1px solid #c2c2c2;
-}
-
-.examface .listhead > *{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    margin: 0 1%;
-}
-
-.examface .listhead > * > *{
-    margin-left: 8px;
-}
-
-.examface .listhead .status{
-    width: 8%;
-}
-
-.examface .listhead .topic{
-    width: 43%;
-}
-
-.examface .listhead .duration{
-    width: 8%;
-}
-
-.examface .listhead .attempted{
-    width: 8%;
-}
-
-.examface .listhead .teacher{
-    min-width: 23%;
-}
-
-.examface .listlist{
-    width: 100%;
-    height: 72vh;
-    /* background-color: rgb(255, 255, 255); */
-    overflow: scroll;
-}
-
-.examface .right{
-    width: 25%;
-    height: 84vh;
-    border-left: 1px solid rgb(194, 194, 194);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #bfbfbf;
-    font-weight: bold;
-    border-bottom: 1px solid rgb(194, 194, 194);
-    /* background-color: green; */
-}
-
-.examface .loading{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 16px;
-    color: #666;
-}
-
-.examface .error{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 16px;
-    color: #d32f2f;
-    text-align: center;
-    padding: 20px;
-}
-
-.examface .noTests{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 16px;
-    color: #666;
-    text-align: center;
-    padding: 20px;
-}
-
-.examface .load {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.examface .loadicon{
-    margin-left: 10px;
-    opacity: 0.3;
-    height: 15px;
-    width: 15px;
-    animation: load 0.7s infinite linear;
-}
-
-@keyframes load{
-    0%{
+/* Animation for loading states */
+@keyframes load {
+    0% {
         transform: rotate(0deg);
     }
-    100%{
+    100% {
         transform: rotate(360deg);
     }
 }
 
-
-
-.space{
+/* Custom styles for any remaining legacy elements */
+.space {
     height: 10vh;
     width: 100%;
 }
